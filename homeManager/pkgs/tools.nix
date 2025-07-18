@@ -44,6 +44,7 @@
         # openvpn
         # networkmanager-openvpn
         smartmontools
+        chafa
     ];
 
 }
