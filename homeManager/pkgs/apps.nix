@@ -30,6 +30,7 @@
         ghostty
         gittyup
         bottles
+        redisinsight
     ] ++ [
         inputs.zen-browser.packages.${pkgs.system}.default
     ] ++ (with inputs.dated19dec-nixpkgs.legacyPackages.${pkgs.system}; [
