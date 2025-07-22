@@ -1,7 +1,11 @@
-{ util, pkgs, ... }@confInps: util.mkModule {
+{ util, pkgs, ... }@confInps: let
+    sddm-astronaut = pkgs.sddm-astronaut.override {
+        embeddedTheme = "pixel_sakura";
+    };
+in util.mkModule {
     inherit confInps;
     name = "sddm";
-} {
+}  {
 
     services.displayManager.sddm = {
         enable = true;
@@ -15,7 +19,7 @@
         ];
     };
 
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = [
         sddm-astronaut
     ];
 
