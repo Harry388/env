@@ -1,4 +1,4 @@
-{ util, ... }@confInps: util.mkModule {
+{ util, pkgs, ... }@confInps: util.mkModule {
     inherit confInps;
     name = "smallGnome";
 } {
@@ -7,7 +7,14 @@
         enable = true;
     };
 
-    services.displayManager.sddm.enable = true;
+    services.displayManager.sddm = {
+        enable = true;
+        theme = "astronaut";
+    };
+
+    environment.systemPackages = with pkgs; [
+        sddm-astronaut
+    ];
 
     services.gnome.gnome-keyring.enable = true;
     services.gvfs.enable = true;
