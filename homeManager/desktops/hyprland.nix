@@ -26,6 +26,7 @@
 
     home.packages = with pkgs; [
         hyprpaper
+        hyprlock
         fuzzel
         waybar
         playerctl
