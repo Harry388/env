@@ -9,7 +9,7 @@
 
     services.displayManager.sddm = {
         enable = true;
-        theme = "astronaut";
+        theme = "sddm-astronaut-theme";
     };
 
     environment.systemPackages = with pkgs; [
