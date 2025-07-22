@@ -78,7 +78,28 @@
         "dated19dec-nixpkgs": "dated19dec-nixpkgs",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
+        "silentSDDM": "silentSDDM",
         "zen-browser": "zen-browser"
+      }
+    },
+    "silentSDDM": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1752420577,
+        "narHash": "sha256-cOEqnqVGuNLje/3kttVfu5gxpIVBDZ2SBhL6sh2XB2U=",
+        "owner": "uiriansan",
+        "repo": "SilentSDDM",
+        "rev": "d6800ae791ed48834ac53ccbd2ee2b8a63f4aa8c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "uiriansan",
+        "repo": "SilentSDDM",
+        "type": "github"
       }
     },
     "zen-browser": {

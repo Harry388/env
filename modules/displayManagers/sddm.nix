@@ -1,26 +1,25 @@
-{ util, pkgs, ... }@confInps: let
-    sddm-astronaut = pkgs.sddm-astronaut.override {
-        embeddedTheme = "pixel_sakura";
+{ util, pkgs, inputs, ... }@confInps: let
+    sddm-theme = inputs.silentSDDM.packages.${pkgs.system}.default.override {
+        theme = "default";
     };
 in util.mkModule {
     inherit confInps;
     name = "sddm";
 }  {
 
+    qt.enable = true;
+
     services.displayManager.sddm = {
         enable = true;
         wayland.enable = true;
         package = pkgs.kdePackages.sddm;
-        theme = "sddm-astronaut-theme";
-        extraPackages = with pkgs; [
-            kdePackages.qtsvg
-            kdePackages.qtmultimedia
-            kdePackages.qtvirtualkeyboard
-        ];
+        theme = sddm-theme.pname;
+        extraPackages = sddm-theme.propagatedBuildInputs;
     };
 
     environment.systemPackages = [
-        sddm-astronaut
+        sddm-theme
+        sddm-theme.test
     ];
 
 }
