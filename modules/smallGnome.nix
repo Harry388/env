@@ -12,6 +12,6 @@
     services.gnome.gnome-keyring.enable = true;
     services.gvfs.enable = true;
 
-    security.pam.services.gdm.enableGnomeKeyring = true;
+    security.pam.services.sddm.enableGnomeKeyring = true;
 
 }
