@@ -3,18 +3,15 @@
     name = "smallGnome";
 } {
 
-    services.xserver = {
-        enable = true;
-    };
-
     services.displayManager.sddm = {
         enable = true;
+        package = pkgs.kdePackages.sddm;
+        wayland.enable = true;
         theme = "sddm-astronaut-theme";
+        extraPackages = with pkgs; [
+            sddm-astronaut
+        ];
     };
-
-    environment.systemPackages = with pkgs; [
-        sddm-astronaut
-    ];
 
     services.gnome.gnome-keyring.enable = true;
     services.gvfs.enable = true;
