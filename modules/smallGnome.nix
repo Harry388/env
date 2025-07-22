@@ -7,7 +7,7 @@
         enable = true;
     };
 
-    services.displayManager.gdm.enable = true;
+    services.displayManager.sddm.enable = true;
 
     services.gnome.gnome-keyring.enable = true;
     services.gvfs.enable = true;
