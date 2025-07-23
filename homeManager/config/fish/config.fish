@@ -26,7 +26,3 @@ alias git-log-pretty "git log --graph --abbrev-commit --decorate --format=format
 
 zoxide init fish | source
 starship init fish | source
-
-if test -z "$TMUX"
-    session "$HOME"
-end
