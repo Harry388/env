@@ -1,4 +1,8 @@
-{ util, pkgs, inputs, ... }@confInps: util.mkModule {
+{ util, pkgs, inputs, ... }@confInps: let
+    flameshot = pkgs.flameshot.override {
+        enableWlrSupport = true;
+    };
+in util.mkModule {
     inherit confInps;
     name = "hyprlandHome";
 } {
@@ -37,6 +41,8 @@
         swaynotificationcenter
         waybar
         ulauncher
+    ] ++ [
+        flameshot
     ];
 
 }
