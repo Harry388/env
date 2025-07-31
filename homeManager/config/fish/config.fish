@@ -11,6 +11,8 @@ set -x LESS "-R"
 
 set -x EDITOR "nvim"
 
+set -x TERMINAL "ghostty"
+
 fish_add_path "$HOME/.local/scripts"
 
 bind ctrl-f find-session

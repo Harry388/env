@@ -40,7 +40,7 @@ in util.mkModule {
         networkmanagerapplet
         swaynotificationcenter
         waybar
-        ulauncher
+        rofi-wayland
     ] ++ [
         flameshot
     ];
