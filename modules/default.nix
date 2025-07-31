@@ -12,6 +12,7 @@
         ./openssh.nix
         ./tailscale.nix
         ./tlp.nix
+        ./flatpak.nix
     ];
 } {
 
@@ -25,4 +26,5 @@
     openssh.enable = lib.mkDefault false;
     tailscale.enable = lib.mkDefault true;
     tlp.enable = lib.mkDefault false;
+    flatpak.enable = lib.mkDefault true;
 }
