@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if [ -z "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+    hyprland
+fi

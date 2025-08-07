@@ -17,6 +17,7 @@ fish_add_path "$HOME/.local/scripts"
 
 bind ctrl-f find-session
 bind ctrl-space accept-autosuggestion
+bind ctrl-h smart-hyprland
 
 set -x STARSHIP_CONFIG "$HOME/.config/starship/starship.toml"
 
