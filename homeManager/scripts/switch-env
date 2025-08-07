@@ -51,32 +51,26 @@ append_host_to_config () {
     cat "$host" >> "$config"
 }
 
-move_config () {
-    move "$MY_CONFIG/$1" "$XDG_CONFIG_HOME/$1"
-}
-
 move "$MY_SCRIPTS" "$SCRIPTS_HOME"
 chmod -R +x "$SCRIPTS_HOME"
 
 move "$MY_SESSIONS" "$SESSIONS_HOME"
 chmod -R +x "$SESSIONS_HOME"
 
-move_config "alacritty"
-move_config "ghostty"
-move_config "tmux"
-move_config "git"
-move_config "btop"
-move_config "waybar"
-move_config "fuzzel"
-move_config "yazi"
-move_config "nvim"
-move_config "fish"
-move_config "starship"
-move_config "flameshot"
-move_config "rofi"
+for config in $(find "$MY_CONFIG" -maxdepth 1 -mindepth 1 -type d);
+do
+    base=$(basename $config)
+    if [ "$base" = "hypr" ]; then
+        continue
+    fi
+    move "$config" "$XDG_CONFIG_HOME/$base"
+done
+
+pkill waybar
+waybar &
 
 if [ "$1" = "--hypr" ]; then
-    move_config "hypr"
+    move "$MY_CONFIG/hypr" "$XDG_CONFIG_HOME/hypr"
     append_host_to_config "hypr/hyprland.conf"
     hyprctl reload
 fi
