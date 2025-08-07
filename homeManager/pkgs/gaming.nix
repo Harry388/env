@@ -8,6 +8,7 @@
         prismlauncher
         dolphin-emu
         clonehero
+        azahar
     ] ++ (with inputs.dated19dec-nixpkgs.legacyPackages.${pkgs.system}; [
         lime3ds
     ]);
