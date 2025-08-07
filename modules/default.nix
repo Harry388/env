@@ -18,7 +18,7 @@
 
     defaultDesktop.enable = lib.mkDefault true;
     defaultApps.enable = lib.mkDefault true;
-    defaultDisplayManager.enable = lib.mkDefault true;
+    defaultDisplayManager.enable = lib.mkDefault false;
     gvfs.enable = lib.mkDefault true;
     keyring.enable = lib.mkDefault true;
     fonts.enable = lib.mkDefault true;

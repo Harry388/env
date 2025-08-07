@@ -12,10 +12,6 @@ if [ -z "$MY_CONFIG" ]; then
     MY_CONFIG="$HOME/nix/homeManager/config"
 fi
 
-if [ -z "$MY_HOST_CONFIG" ]; then
-    MY_HOST_CONFIG="$HOME/nix/homeManager/hostConfig/$HOST"
-fi
-
 if [ -z "$SCRIPTS_HOME" ]; then
     SCRIPTS_HOME="$HOME/.local/scripts"
 fi
@@ -39,18 +35,6 @@ move () {
     cp -R "$dir" "$to"
 }
 
-append_host_to_config () {
-    config="$XDG_CONFIG_HOME/$1"
-    host="$MY_HOST_CONFIG/$1"
-    if ! [ -f "$config" ]; then
-        exit 0
-    fi
-    if ! [ -f "$host" ]; then
-        exit 0
-    fi
-    cat "$host" >> "$config"
-}
-
 move "$MY_SCRIPTS" "$SCRIPTS_HOME"
 chmod -R +x "$SCRIPTS_HOME"
 
@@ -60,17 +44,19 @@ chmod -R +x "$SESSIONS_HOME"
 for config in $(find "$MY_CONFIG" -maxdepth 1 -mindepth 1 -type d);
 do
     base=$(basename $config)
-    if [ "$base" = "hypr" ]; then
+    if [ "$base" == "hypr" ] && [ "$1" != "hypr" ] && [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
         continue
     fi
     move "$config" "$XDG_CONFIG_HOME/$base"
+    if [ "$base" == "hypr" ]; then
+        cat "$MY_CONFIG/../hyprland/$HOST.conf" >> "$XDG_CONFIG_HOME/hypr/hyprland.conf"
+    fi
 done
 
-pkill waybar
-waybar &
-
-if [ "$1" = "--hypr" ]; then
-    move "$MY_CONFIG/hypr" "$XDG_CONFIG_HOME/hypr"
-    append_host_to_config "hypr/hyprland.conf"
-    hyprctl reload
+if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+    pkill waybar
+    waybar &
+    if [ "$1" == "hypr" ]; then
+        hyprctl reload
+    fi
 fi
