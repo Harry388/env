@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+cat "$MY_HOST_CONFIG/hyprland.conf" >> "$XDG_CONFIG_HOME/hypr/hyprland.conf"

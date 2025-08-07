@@ -12,6 +12,10 @@ if [ -z "$MY_CONFIG" ]; then
     MY_CONFIG="$HOME/nix/homeManager/config"
 fi
 
+if [ -z "$MY_HOST_CONFIG" ]; then
+    MY_HOST_CONFIG="$HOME/nix/homeManager/hosts/$HOST"
+fi
+
 if [ -z "$SCRIPTS_HOME" ]; then
     SCRIPTS_HOME="$HOME/.local/scripts"
 fi
@@ -44,19 +48,15 @@ chmod -R +x "$SESSIONS_HOME"
 for config in $(find "$MY_CONFIG" -maxdepth 1 -mindepth 1 -type d);
 do
     base=$(basename $config)
-    if [ "$base" == "hypr" ] && [ "$1" != "hypr" ] && [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
-        continue
-    fi
     move "$config" "$XDG_CONFIG_HOME/$base"
-    if [ "$base" == "hypr" ]; then
-        cat "$MY_CONFIG/../hyprland/$HOST.conf" >> "$XDG_CONFIG_HOME/hypr/hyprland.conf"
-    fi
 done
+
+if [ -f "$MY_HOST_CONFIG/switch-env" ]; then
+    source "$MY_HOST_CONFIG/switch-env"
+fi
 
 if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
     pkill waybar
     waybar &
-    if [ "$1" == "hypr" ]; then
-        hyprctl reload
-    fi
+    hyprctl reload
 fi
