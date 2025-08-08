@@ -9,11 +9,11 @@ if [ -z "$XDG_CONFIG_HOME" ]; then
 fi
 
 if [ -z "$MY_CONFIG" ]; then
-    MY_CONFIG="$HOME/nix/homeManager/config"
+    MY_CONFIG="$HOME/nix/environment/config"
 fi
 
 if [ -z "$MY_HOST_CONFIG" ]; then
-    MY_HOST_CONFIG="$HOME/nix/homeManager/hosts/$HOST"
+    MY_HOST_CONFIG="$HOME/nix/environment/hosts/$HOST"
 fi
 
 if [ -z "$SCRIPTS_HOME" ]; then
@@ -21,7 +21,7 @@ if [ -z "$SCRIPTS_HOME" ]; then
 fi
 
 if [ -z "$MY_SCRIPTS" ]; then
-    MY_SCRIPTS="$HOME/nix/homeManager/scripts"
+    MY_SCRIPTS="$HOME/nix/environment/scripts"
 fi
 
 if [ -z "$SESSIONS_HOME" ]; then
@@ -29,7 +29,7 @@ if [ -z "$SESSIONS_HOME" ]; then
 fi
 
 if [ -z "$MY_SESSIONS" ]; then
-    MY_SESSIONS="$HOME/nix/homeManager/sessions"
+    MY_SESSIONS="$HOME/nix/environment/sessions"
 fi
 
 move () {

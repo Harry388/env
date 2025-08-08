@@ -6,7 +6,7 @@ if [ -z "$TMUX" ]; then
 fi
 
 if [ -z "$MY_SESSIONS" ]; then
-    MY_SESSIONS="$HOME/nix/homeManager/sessions"
+    MY_SESSIONS="$HOME/nix/environment/sessions"
 fi
 
 if [ -z "$SESSIONS_HOME" ]; then

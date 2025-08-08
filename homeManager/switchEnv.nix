@@ -4,7 +4,7 @@
 } {
 
     home.packages = with pkgs; [
-        (writeShellScriptBin "switch-env" (builtins.readFile ./scripts/switch-env))
+        (writeShellScriptBin "switch-env" (builtins.readFile ../environment/scripts/switch-env))
     ];
 
 }
