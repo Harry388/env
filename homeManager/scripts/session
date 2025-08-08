@@ -13,8 +13,6 @@ dir="$1"
 
 name=$(basename "$dir")
 
-export SESSION_NAME="$name"
-
 open () {
     if [ -n "$TMUX" ]; then
         tmux switch -t "$1" &> /dev/null

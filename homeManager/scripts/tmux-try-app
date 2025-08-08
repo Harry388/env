@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
+session=$(tmux display-message -p "#{session_name}")
 app="$1"
-window="$SESSION_NAME:$2"
+window="$session:$2"
 
 if ! tmux select-window -t "$window" &> /dev/null; then
     tmux neww -t "$window" -d
