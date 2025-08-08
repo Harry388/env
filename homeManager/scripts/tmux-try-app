@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+app="$1"
+window="$SESSION_NAME:$2"
+
+if ! tmux select-window -t "$window" &> /dev/null; then
+    tmux neww -t "$window" -d
+    tmux send-keys -t "$window" "$app" c-M
+    tmux select-window -t "$window"
+fi
