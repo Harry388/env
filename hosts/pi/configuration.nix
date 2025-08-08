@@ -25,7 +25,7 @@
     defaultApps.enable = false;
     defaultDisplayManager.enable = false;
     hardware.graphics.enable = lib.mkForce false;
-    flatpack.enable = false;
+    flatpak.enable = false;
 
     services.getty.autologinUser = "harry";
 
