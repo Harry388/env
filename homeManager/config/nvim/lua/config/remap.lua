@@ -1,7 +1,6 @@
 vim.g.mapleader = " "
 
 vim.keymap.set("x", "<leader>p", [["_dP]])
-vim.keymap.set("n", "<C-s>", "<cmd>w<CR>")
 vim.keymap.set("n", "<leader>t", "<cmd>tabnew<CR>")
 vim.keymap.set("n", "<M-l>", "<cmd>tabnext<CR>")
 vim.keymap.set("n", "<M-h>", "<cmd>tabprev<CR>")
