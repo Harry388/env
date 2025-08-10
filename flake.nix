@@ -27,6 +27,7 @@
     with util; {
         nixosConfigurations = {
             laptop = mkSystem "laptop";
+            oldlaptop = mkSystem "oldlaptop";
             desktop = mkSystem "desktop";
             pi = mkSystem "pi";
         };
