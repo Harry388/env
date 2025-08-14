@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if [ $(tty) = "/dev/tty1" ] && [ -z "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+    hyprland
+fi
