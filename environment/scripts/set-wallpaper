@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+while ! hyprctl hyprpaper reload ", $1"; do
+    sleep 0.1
+done
