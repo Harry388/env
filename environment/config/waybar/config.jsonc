@@ -8,12 +8,14 @@
         "custom/launcher",
         "hyprland/workspaces",
     ],
+    "modules-center": [
+        "clock",
+    ],
     "modules-right": [
         "battery",
         "backlight",
         "pulseaudio",
         "tray",
-        "clock",
     ],
     "custom/launcher": {
         "format": "",
@@ -28,7 +30,7 @@
         "format-charging": "󰂄\t{capacity}%"
     },
     "clock": {
-        "format": "{:%I:%M %p}",
+        "format": "{:%a, %d. %b  %I:%M %p}",
         "format-alt": "{:%a, %d. %b  %I:%M %p}"
     },
     "hyprland/workspaces": {
