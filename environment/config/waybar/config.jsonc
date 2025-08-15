@@ -1,6 +1,6 @@
 {
     // General Waybar configuration
-    "layer": "top",
+    "layer": "bottom",
     "position": "top",
     "height": 34,
     // Modules configuration
