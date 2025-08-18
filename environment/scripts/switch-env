@@ -1,19 +1,11 @@
 #!/usr/bin/env bash
 
-if [ -z "$HOST" ]; then
-    HOST=$(hostname)
-fi
-
 if [ -z "$XDG_CONFIG_HOME" ]; then
     XDG_CONFIG_HOME="$HOME/.config"
 fi
 
 if [ -z "$MY_CONFIG" ]; then
     MY_CONFIG="$HOME/nix/environment/config"
-fi
-
-if [ -z "$MY_HOST_CONFIG" ]; then
-    MY_HOST_CONFIG="$HOME/nix/environment/hosts/$HOST"
 fi
 
 if [ -z "$SCRIPTS_HOME" ]; then
@@ -32,11 +24,36 @@ if [ -z "$MY_SESSIONS" ]; then
     MY_SESSIONS="$HOME/nix/environment/sessions"
 fi
 
+if [ -z "$MY_HOSTS" ]; then
+    MY_HOSTS="$HOME/nix/environment/hosts"
+fi
+
+if [ -z "$HOST" ]; then
+    HOST=$(hostname)
+fi
+
+if [ -z "$MY_THEMES" ]; then
+    MY_THEMES="$HOME/nix/environment/themes"
+fi
+
+if [ -z "$THEME" ]; then
+    THEME=$(<"$MY_THEMES/current")
+fi
+
 move () {
     dir="$1"
     to="$2"
     rm -rf "$to"
     cp -R "$dir" "$to"
+}
+
+overlay () {
+    selection="$1"
+    for file in $(find "$selection" -type f);
+    do
+        base=${file#"$selection/"}
+        cp "$file" "$XDG_CONFIG_HOME/$base"
+    done
 }
 
 move "$MY_SCRIPTS" "$SCRIPTS_HOME"
@@ -51,9 +68,8 @@ do
     move "$config" "$XDG_CONFIG_HOME/$base"
 done
 
-if [ -f "$MY_HOST_CONFIG/switch-env" ]; then
-    source "$MY_HOST_CONFIG/switch-env"
-fi
+overlay "$MY_HOSTS/$HOST"
+overlay "$MY_THEMES/$THEME"
 
 if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
     pkill waybar
