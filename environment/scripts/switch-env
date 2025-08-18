@@ -59,4 +59,5 @@ if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
     pkill waybar
     waybar &
     hyprctl reload
+    swaync-client --reload-config
 fi
