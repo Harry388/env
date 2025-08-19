@@ -34,7 +34,6 @@
         gtypist
         bat
         starship
-        fselect
         jq
         tokei
         caddy
