@@ -32,12 +32,12 @@ if [ -z "$HOST" ]; then
     HOST=$(hostname)
 fi
 
-if [ -z "$MY_THEMES" ]; then
-    MY_THEMES="$HOME/nix/environment/themes"
+if [ -z "$MY_OVERLAYS" ]; then
+    MY_OVERLAYS="$HOME/nix/environment/overlays"
 fi
 
-if [ -z "$THEME" ]; then
-    THEME=$(<"$MY_THEMES/current")
+if [ -z "$OVERLAY" ]; then
+    OVERLAY=$(<"$MY_OVERLAYS/current")
 fi
 
 move () {
@@ -47,7 +47,7 @@ move () {
     cp -R "$dir" "$to"
 }
 
-overlay () {
+apply-overlay () {
     selection="$1"
     for file in $(find "$selection" -type f);
     do
@@ -77,8 +77,8 @@ done
 
 cp "$MY_CONFIG/zshrc" "$HOME/.zshrc"
 
-overlay "$MY_HOSTS/$HOST"
-overlay "$MY_THEMES/$THEME"
+apply-overlay "$MY_HOSTS/$HOST"
+apply-overlay "$MY_OVERLAYS/$OVERLAY"
 
 if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
     pkill waybar
