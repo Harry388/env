@@ -68,6 +68,8 @@ do
     move "$config" "$XDG_CONFIG_HOME/$base"
 done
 
+cp "$MY_CONFIG/zshrc" "$HOME/.zshrc"
+
 overlay "$MY_HOSTS/$HOST"
 overlay "$MY_THEMES/$THEME"
 

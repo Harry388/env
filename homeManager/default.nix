@@ -4,7 +4,6 @@
     imports = [
         ./pkgs/default.nix
         ./desktops/default.nix
-        ./zsh.nix
         ./syncthing.nix
         ./switchEnv.nix
     ];
@@ -14,7 +13,6 @@
     defaultHomeDesktop.enable = lib.mkDefault true;
 
     syncthing.enable = lib.mkDefault true;
-    zsh.enable = lib.mkDefault false;
     switchEnv.enable = lib.mkDefault true;
 
 }
