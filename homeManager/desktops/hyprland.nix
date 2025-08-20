@@ -41,6 +41,7 @@ in util.mkModule {
         swaynotificationcenter
         waybar
         rofi-wayland
+        hyprpicker
     ] ++ [
         flameshot
     ];
