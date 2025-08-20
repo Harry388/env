@@ -21,7 +21,6 @@
         wayvnc
         wl-clipboard
         wtype
-        bemoji
         udiskie
         colorz
         git-filter-repo

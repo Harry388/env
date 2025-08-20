@@ -20,7 +20,7 @@
     ],
     "custom/launcher": {
         "format": "",
-        "on-click": "rofi -show drun -show-icons"
+        "on-click": "vicinae",
     },
     "backlight": {
         "device": "intel_backlight",

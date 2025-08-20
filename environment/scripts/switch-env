@@ -83,5 +83,7 @@ apply-overlay "$MY_OVERLAYS/$OVERLAY"
 if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
     pkill waybar
     waybar &> /dev/null &
+    pkill vicinae
+    vicinae server &> /dev/null &
     hyprctl reload
 fi
