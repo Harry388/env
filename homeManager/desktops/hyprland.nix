@@ -44,6 +44,9 @@ in util.mkModule {
         swaynotificationcenter
         waybar
         hyprpicker
+        wayvnc
+        wl-clipboard
+        wtype
     ] ++ [
         flameshot
         vicinae

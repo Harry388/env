@@ -18,9 +18,6 @@
         inotify-tools
         lazygit
         nmap
-        wayvnc
-        wl-clipboard
-        wtype
         udiskie
         colorz
         git-filter-repo
