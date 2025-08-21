@@ -39,7 +39,6 @@
         go-task
         jujutsu
         elinks
-        networkmanager-openvpn
         smartmontools
         chafa
         opencode
