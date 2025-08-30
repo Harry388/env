@@ -5,11 +5,10 @@ if [ -z "$SESSIONS_HOME" ]; then
 fi
 
 if [ -z "$1" ]; then
-    echo "Session directory required"
-    exit 1
+    dir=$(pwd)
+else
+    dir="$1"
 fi
-
-dir="$1"
 
 name=$(basename "$dir")
 
