@@ -1,13 +1,21 @@
 #!/usr/bin/env bash
 
-dirs=(
-    "$HOME" "$HOME/work" "$HOME/programming" "$HOME/programming/lua"
-    "$HOME/programming/js" "$HOME/programming/zig" "$HOME/programming/rust"
-    "$HOME/programming/gleam" "$HOME/programming/golang" "$HOME/programming/elixir"
+searches=(
+    "$HOME/work" "$HOME/dev"
 )
-dir=$(find "${dirs[@]}" -maxdepth 1 -mindepth 1 -type d ! -path "*/.*" 2> /dev/null | cat - <(echo "$HOME") | fzf)
-if [ -z "$dir" ]; then
+
+extras=(
+    "$HOME" "$HOME/nix"
+)
+
+extras=$(echo "${extras[@]}" | tr ' ' '\n')
+
+options=$(find "${searches[@]}" -maxdepth 1 -mindepth 1 -type d ! -path "*/.*" 2> /dev/null)
+options=$(echo -e "$extras\n$options")
+
+selection=$(echo "$options" | fzf)
+if [ -z "$selection" ]; then
     exit 1
 fi
 
-session "$dir"
+session "$selection"
