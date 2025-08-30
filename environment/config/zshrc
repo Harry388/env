@@ -15,7 +15,8 @@ export PATH="$HOME/.local/scripts:$PATH"
 
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
-bindkey -s "^F" 'session^M'
+bindkey -s "^F" 'find-session^M'
+bindkey -s "^S" 'search-session^M'
 
 alias clear="clear -x"
 alias sail="sh $([ -f sail ] && echo sail || echo vendor/bin/sail)"

@@ -16,6 +16,7 @@ set -x TERMINAL "ghostty"
 fish_add_path "$HOME/.local/scripts"
 
 bind ctrl-f find-session
+bind ctrl-s search-session
 bind ctrl-space accept-autosuggestion
 
 set -x STARSHIP_CONFIG "$HOME/.config/starship/starship.toml"
