@@ -2,9 +2,6 @@
     flameshot = pkgs.flameshot.override {
         enableWlrSupport = true;
     };
-    vicinae = pkgs.callPackage ./vicinae.nix {
-        inherit (pkgs) lib stdenv fetchFromGitHub cmake ninja nodejs qt6 qt6Packages kdePackages protobuf cmark-gfm libqalculate minizip rapidfuzz-cpp;
-    };
 in util.mkModule {
     inherit confInps;
     name = "hyprlandHome";
@@ -49,7 +46,7 @@ in util.mkModule {
         wtype
     ] ++ [
         flameshot
-        vicinae
+        inputs.vicinae.packages.${pkgs.system}.default
     ];
 
 }
