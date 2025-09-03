@@ -10,7 +10,6 @@
         templ
         gleam
         zig_0_15
-        zls
         mysql84
         typescript
         typescript-language-server
