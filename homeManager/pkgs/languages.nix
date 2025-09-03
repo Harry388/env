@@ -9,7 +9,7 @@
         go
         templ
         gleam
-        zig
+        zig_0_15
         zls
         mysql84
         typescript
