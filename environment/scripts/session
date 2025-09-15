@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
+if [ -z "$XDG_CONFIG_HOME" ]; then
+    XDG_CONFIG_HOME="$HOME/.config"
+fi
+
 if [ -z "$SESSIONS_HOME" ]; then
-    SESSIONS_HOME="$HOME/.local/sessions"
+    SESSIONS_HOME="$XDG_CONFIG_HOME/sessions"
 fi
 
 if [ -z "$1" ]; then
@@ -31,12 +35,8 @@ fi
 
 tmux new-session -c "$dir" -s "$name" -d
 
-if [ -f "$SESSIONS_HOME/$name/shell.fish" ]; then
-    tmux set-option -t "$name" -s default-command "fish -C \"source $SESSIONS_HOME/$name/shell.fish $name\""
-fi
-
-if [ -f "$SESSIONS_HOME/$name/session" ]; then
-    tmux send-keys -t "$name" "$SESSIONS_HOME/$name/session $name" c-M
+if [ -f "$SESSIONS_HOME/$name" ]; then
+    tmux send-keys -t "$name" "$SESSIONS_HOME/$name $name" c-M
 else
     tmux send-keys -t "$name" "default-session $name" c-M
 fi

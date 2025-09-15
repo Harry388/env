@@ -16,14 +16,6 @@ if [ -z "$MY_SCRIPTS" ]; then
     MY_SCRIPTS="$HOME/nix/environment/scripts"
 fi
 
-if [ -z "$SESSIONS_HOME" ]; then
-    SESSIONS_HOME="$HOME/.local/sessions"
-fi
-
-if [ -z "$MY_SESSIONS" ]; then
-    MY_SESSIONS="$HOME/nix/environment/sessions"
-fi
-
 if [ -z "$MY_HOSTS" ]; then
     MY_HOSTS="$HOME/nix/environment/hosts"
 fi
@@ -66,14 +58,13 @@ apply-overlay () {
 move "$MY_SCRIPTS" "$SCRIPTS_HOME"
 chmod -R +x "$SCRIPTS_HOME"
 
-move "$MY_SESSIONS" "$SESSIONS_HOME"
-chmod -R +x "$SESSIONS_HOME"
-
 for config in $(find "$MY_CONFIG" -maxdepth 1 -mindepth 1 -type d);
 do
     base=$(basename $config)
     move "$config" "$XDG_CONFIG_HOME/$base"
 done
+
+chmod -R +x "$XDG_CONFIG_HOME/sessions"
 
 cp "$MY_CONFIG/zshrc" "$HOME/.zshrc"
 
