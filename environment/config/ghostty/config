@@ -5,7 +5,7 @@ window-decoration = false
 # Dark blue for rose pine
 # background = 191724
 
-background = 161a1d
+background = 0f0f0f
 background-opacity = 1
 
 cursor-style = block
