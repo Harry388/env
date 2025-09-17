@@ -41,6 +41,9 @@ move () {
 
 apply-overlay () {
     selection="$1"
+    if [ ! -d "$selection" ]; then
+        exit 0
+    fi
     for file in $(find "$selection" -type f);
     do
         after=${file#"$selection/"}
