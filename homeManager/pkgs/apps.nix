@@ -32,6 +32,7 @@
         bottles
         warehouse
         mysql-workbench
+        weylus
     ] ++ [
         inputs.zen-browser.packages.${pkgs.system}.default
     ];

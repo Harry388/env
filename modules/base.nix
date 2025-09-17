@@ -81,6 +81,8 @@
         enable = true;
         # allowedTCPPorts = [ 5900 ];
         # allowedUDPPorts = [ 56700 5900 ];
+        # allowedTCPPorts = [ 1701 ];
+        # allowedUDPPorts = [ 1701 ];
     };
 
 }
