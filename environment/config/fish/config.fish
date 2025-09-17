@@ -29,5 +29,6 @@ alias git-log-pretty "git log --graph --abbrev-commit --decorate --format=format
 
 zoxide init fish | source
 starship init fish | source
+fzf --fish | source
 
 auto-hyprland
