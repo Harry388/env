@@ -1,5 +1,6 @@
 {
     // General Waybar configuration
+    "include": "./theme.jsonc",
     "layer": "bottom",
     "position": "bottom",
     "height": 34,
@@ -19,7 +20,6 @@
         "custom/notification"
     ],
     "custom/launcher": {
-        "format": "",
         "on-click": "vicinae",
     },
     "backlight": {
