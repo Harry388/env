@@ -5,6 +5,8 @@
 
     # copied from https://nixos.wiki/wiki/Laptop
 
+    services.upower.enable = true;
+
     services.tlp = {
         enable = true;
         settings = {
