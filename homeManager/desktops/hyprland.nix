@@ -49,6 +49,8 @@ in util.mkModule {
         wayvnc
         wl-clipboard
         wtype
+        matugen
+        cava
     ] ++ [
         flameshot
         inputs.vicinae.packages.${pkgs.system}.default
