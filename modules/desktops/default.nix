@@ -6,6 +6,7 @@
         ./kde.nix
         ./xfcei3.nix
         ./hyprland.nix
+        ./niri.nix
     ];
 } {
 
@@ -13,5 +14,6 @@
     gnome.enable = lib.mkDefault false;
     xfcei3.enable = lib.mkDefault false;
     hyprland.enable = lib.mkDefault true;
+    niri.enable = lib.mkDefault true;
 
 }
