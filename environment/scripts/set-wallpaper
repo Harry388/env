@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+  exit 1
+fi
+
+count=0
+while ! dms ipc call wallpaper set "$1"; do
+  sleep 0.2
+  count=$((count + 1))
+  if [ "$count" -ge 100 ]; then
+    exit 1
+  fi
+done
