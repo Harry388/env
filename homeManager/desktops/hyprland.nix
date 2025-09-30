@@ -25,10 +25,10 @@ in util.mkModule {
     gtk = {
         enable = true;
 
-        iconTheme = {
-            package = pkgs.papirus-icon-theme;
-            name = "Papirus-Dark";
-        };
+        # iconTheme = {
+        #     package = pkgs.papirus-icon-theme;
+        #     name = "Papirus-Dark";
+        # };
     };
     
     programs.dankMaterialShell.enable = true;
