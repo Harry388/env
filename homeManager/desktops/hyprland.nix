@@ -11,9 +11,9 @@ in util.mkModule {
 } {
 
     home.pointerCursor = {
-        gtk.enable = true;
-        x11.enable = true;
-        sway.enable = true;
+        # gtk.enable = true;
+        # x11.enable = true;
+        # sway.enable = true;
         # package = pkgs.banana-cursor;
         # name = "Banana";
         # size = 32;
@@ -22,14 +22,14 @@ in util.mkModule {
         size = 24;
     };
 
-    gtk = {
-        enable = true;
+    # gtk = {
+    #     enable = true;
 
-        iconTheme = {
-            package = pkgs.papirus-icon-theme;
-            name = "Papirus-Dark";
-        };
-    };
+    #     iconTheme = {
+    #         package = pkgs.papirus-icon-theme;
+    #         name = "Papirus-Dark";
+    #     };
+    # };
     
     programs.dankMaterialShell.enable = true;
 
