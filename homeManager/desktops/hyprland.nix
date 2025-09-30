@@ -11,9 +11,6 @@ in util.mkModule {
 } {
 
     home.pointerCursor = {
-        # gtk.enable = true;
-        # x11.enable = true;
-        # sway.enable = true;
         # package = pkgs.banana-cursor;
         # name = "Banana";
         # size = 32;
@@ -34,17 +31,11 @@ in util.mkModule {
     programs.dankMaterialShell.enable = true;
 
     home.packages = with pkgs; [
-        hyprpaper
-        hyprlock
         fuzzel
-        waybar
         playerctl
         pavucontrol
         brightnessctl
         grimblast
-        networkmanagerapplet
-        swaynotificationcenter
-        waybar
         hyprpicker
         wayvnc
         wl-clipboard
