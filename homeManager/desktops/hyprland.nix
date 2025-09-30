@@ -5,6 +5,9 @@
 in util.mkModule {
     inherit confInps;
     name = "hyprlandHome";
+    imports = [
+        inputs.dankMaterialShell.homeModules.dankMaterialShell.default
+    ];
 } {
 
     home.pointerCursor = {
@@ -27,6 +30,8 @@ in util.mkModule {
             name = "Papirus-Dark";
         };
     };
+    
+    programs.dankMaterialShell.enable = true;
 
     home.packages = with pkgs; [
         hyprpaper

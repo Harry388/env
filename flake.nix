@@ -22,6 +22,11 @@
         vicinae = {
             url = "github:vicinaehq/vicinae";
         };
+
+        dankMaterialShell = {
+            url = "github:AvengeMedia/DankMaterialShell";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = inputs:
