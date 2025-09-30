@@ -9,6 +9,7 @@
           nerd-fonts.jetbrains-mono
           nerd-fonts.gohufont
           noto-fonts
+          material-symbols
       ];
       fontconfig = {
           defaultFonts = {

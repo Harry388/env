@@ -49,7 +49,6 @@ in util.mkModule {
         wayvnc
         wl-clipboard
         wtype
-        material-symbols
     ] ++ [
         flameshot
         inputs.vicinae.packages.${pkgs.system}.default
