@@ -174,7 +174,7 @@
   "dankBarSquareCorners": true,
   "dankBarNoBackground": false,
   "dankBarGothCornersEnabled": false,
-  "dankBarPosition": 1,
+  "dankBarPosition": 0,
   "lockScreenShowPowerActions": true,
   "hideBrightnessSlider": false,
   "widgetBackgroundColor": "sth",
