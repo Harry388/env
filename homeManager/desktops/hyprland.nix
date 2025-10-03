@@ -43,6 +43,7 @@ in util.mkModule {
         wtype
         matugen
         cava
+        networkmanagerapplet
     ] ++ [
         flameshot
         inputs.vicinae.packages.${pkgs.system}.default
