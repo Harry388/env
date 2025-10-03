@@ -33,6 +33,7 @@
         warehouse
         mysql-workbench
         weylus
+        xournalpp
     ] ++ [
         inputs.zen-browser.packages.${pkgs.system}.default
     ];
