@@ -42,7 +42,7 @@ move () {
 apply-overlay () {
     selection="$1"
     if [ ! -d "$selection" ]; then
-        exit 0
+        return 0
     fi
     for file in $(find "$selection" -type f);
     do
