@@ -5,9 +5,6 @@
 in util.mkModule {
     inherit confInps;
     name = "hyprlandHome";
-    imports = [
-        inputs.dankMaterialShell.homeModules.dankMaterialShell.default
-    ];
 } {
 
     home.pointerCursor = {
@@ -29,10 +26,6 @@ in util.mkModule {
         };
     };
     
-    programs.dankMaterialShell = {
-        enable = true;
-    };
-
     home.packages = with pkgs; [
         fuzzel
         playerctl
