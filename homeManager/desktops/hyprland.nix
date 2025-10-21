@@ -29,7 +29,10 @@ in util.mkModule {
         };
     };
     
-    programs.dankMaterialShell.enable = true;
+    programs.dankMaterialShell = {
+        enable = true;
+        enableSystemd = true;
+    };
 
     home.packages = with pkgs; [
         fuzzel
