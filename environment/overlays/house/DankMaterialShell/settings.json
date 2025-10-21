@@ -170,7 +170,7 @@
   "soundPluggedIn": true,
   "gtkThemingEnabled": false,
   "qtThemingEnabled": false,
-  "syncModeWithPortal": true,
+  "syncModeWithPortal": false,
   "showDock": false,
   "dockAutoHide": false,
   "dockGroupByApp": false,
