@@ -58,6 +58,10 @@ apply-overlay () {
     done
 }
 
+if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+    pkill vicinae
+fi
+
 move "$MY_SCRIPTS" "$SCRIPTS_HOME"
 chmod -R +x "$SCRIPTS_HOME"
 
@@ -75,7 +79,6 @@ apply-overlay "$MY_HOSTS/$HOST"
 apply-overlay "$MY_OVERLAYS/$OVERLAY"
 
 if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
-    pkill vicinae
     vicinae server &> /dev/null &
     hyprctl reload
 fi

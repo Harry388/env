@@ -1,8 +1,12 @@
 {
-    "faviconService": "twenty",
+    "closeOnFocusLoss": false,
+    "faviconService": "google",
     "font": {
         "normal": "JetBrainsMono Nerd Font Mono",
         "size": 10
+    },
+    "keybinding": "default",
+    "keybinds": {
     },
     "popToRootOnClose": true,
     "rootSearch": {
