@@ -39,6 +39,11 @@
             inputs.dgop.follows = "dgop";
             inputs.dms-cli.follows = "dms-cli";
         };
+
+        matugen = {
+            url = "github:/InioX/Matugen";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = inputs:

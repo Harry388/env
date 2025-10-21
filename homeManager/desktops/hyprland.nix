@@ -43,12 +43,12 @@ in util.mkModule {
         wayvnc
         wl-clipboard
         wtype
-        matugen
         cava
         networkmanagerapplet
     ] ++ [
         flameshot
         inputs.vicinae.packages.${pkgs.system}.default
+            #inputs.matugen.packages.${pkgs.system}.default
     ];
 
 }
