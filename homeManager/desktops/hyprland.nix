@@ -44,6 +44,7 @@ in util.mkModule {
         matugen
         cava
         networkmanagerapplet
+        xdg-desktop-portal-gtk
     ] ++ [
         flameshot
         inputs.vicinae.packages.${pkgs.system}.default
