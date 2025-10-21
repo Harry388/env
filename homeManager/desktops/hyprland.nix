@@ -31,7 +31,6 @@ in util.mkModule {
     
     programs.dankMaterialShell = {
         enable = true;
-        enableDynamicTheming = false;
     };
 
     home.packages = with pkgs; [
@@ -49,7 +48,6 @@ in util.mkModule {
     ] ++ [
         flameshot
         inputs.vicinae.packages.${pkgs.system}.default
-        inputs.matugen.packages.${pkgs.system}.default
     ];
 
 }
