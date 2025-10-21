@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+if [ -z "$XDG_CONFIG_HOME" ]; then
+    XDG_CONFIG_HOME="$HOME/.config"
+fi
+
+if [ -z "$MY_CONFIG" ]; then
+    MY_CONFIG="$HOME/nix/environment/config"
+fi
+
+if [ -z "$MY_OVERLAYS" ]; then
+    MY_OVERLAYS="$HOME/nix/environment/overlays"
+fi
+
+if [ -z "$OVERLAY" ]; then
+    OVERLAY=$(<"$MY_OVERLAYS/current")
+fi
+
+move () {
+    dir="$1"
+    to="$2"
+    if [ -d "$to" ] && [ -d "$dir" ]; then
+        rm -rf "$to"
+        cp -R "$dir" "$to"
+    fi
+}
+
+if [[ "$1" == "--overlay" ]]; then
+    config="$2"
+    from="$XDG_CONFIG_HOME/$config"
+    to="$MY_OVERLAYS/$OVERLAY/$config"
+    move "$from" "$to"
+    exit 0
+fi
+
+config="$1"
+from="$XDG_CONFIG_HOME/$config"
+to="$MY_CONFIG/$config"
+move "$from" "$to"
