@@ -81,4 +81,5 @@ apply-overlay "$MY_OVERLAYS/$OVERLAY"
 if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
     vicinae server &> /dev/null &
     hyprctl reload
+    pkill ghostty --signal SIGUSR2 # reload config
 fi
