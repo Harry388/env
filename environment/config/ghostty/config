@@ -1,7 +1,7 @@
 gtk-single-instance = true
 quit-after-last-window-closed = false
 
-window-decoration = false
+window-decoration = none
 
 # Dark blue for rose pine
 # background = 191724

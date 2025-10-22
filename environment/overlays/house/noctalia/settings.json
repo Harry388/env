@@ -273,12 +273,12 @@
         "foot": false,
         "fuzzel": false,
         "ghostty": false,
-        "gtk": false,
+        "gtk": true,
         "kcolorscheme": false,
         "kitty": false,
         "pywalfox": false,
         "qt": false,
-        "vicinae": false
+        "vicinae": true
     },
     "ui": {
         "fontDefault": "Roboto",
