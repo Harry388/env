@@ -19,7 +19,7 @@
         "volumeStep": 5
     },
     "bar": {
-        "backgroundOpacity": 0.8,
+        "backgroundOpacity": 1,
         "density": "default",
         "floating": false,
         "marginHorizontal": 0.25,
