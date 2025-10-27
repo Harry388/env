@@ -73,6 +73,7 @@ return {
             }
         })
         local lspconfig = require('lspconfig')
+        vim.diagnostic.config({ virtual_text = true })
 
         lspconfig.gleam.setup({})
   
