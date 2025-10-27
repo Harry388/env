@@ -16,6 +16,7 @@ cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor
 cursor-color = cell-foreground
+mouse-hide-while-typing = true
 
 keybind = alt+0=unbind
 keybind = alt+1=unbind
