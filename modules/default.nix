@@ -4,7 +4,6 @@
     imports = [
         ./desktops/default.nix
         ./apps/default.nix
-        ./displayManagers/default.nix
         ./gvfs.nix
         ./keyring.nix
         ./fonts.nix
@@ -15,10 +14,8 @@
         ./flatpak.nix
     ];
 } {
-
     defaultDesktop.enable = lib.mkDefault true;
     defaultApps.enable = lib.mkDefault true;
-    defaultDisplayManager.enable = lib.mkDefault false;
     gvfs.enable = lib.mkDefault true;
     keyring.enable = lib.mkDefault true;
     fonts.enable = lib.mkDefault true;

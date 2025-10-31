@@ -23,7 +23,6 @@
 
     defaultDesktop.enable = false;
     defaultApps.enable = false;
-    defaultDisplayManager.enable = false;
     hardware.graphics.enable = lib.mkForce false;
     flatpak.enable = false;
 

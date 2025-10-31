@@ -14,11 +14,6 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        silentSDDM = {
-            url = "github:uiriansan/SilentSDDM";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
         vicinae = {
             url = "github:vicinaehq/vicinae";
         };
