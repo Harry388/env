@@ -58,7 +58,10 @@ apply-overlay () {
     done
 }
 
-if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+vicinae_running=$(pgrep vicinae)
+ghostty_running=$(pgrep ghostty)
+
+if [ -n "$vicinae_running" ]; then
     pkill vicinae
 fi
 
@@ -78,8 +81,14 @@ cp "$MY_CONFIG/zshrc" "$HOME/.zshrc"
 apply-overlay "$MY_HOSTS/$HOST"
 apply-overlay "$MY_OVERLAYS/$OVERLAY"
 
-if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+if [ -n "$vicinae_running" ]; then
     vicinae server &> /dev/null &
-    hyprctl reload
+fi
+
+if [ -n "$ghostty_running" ]; then
     pkill ghostty --signal SIGUSR2 # reload config
+fi
+
+if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+    hyprctl reload
 fi
