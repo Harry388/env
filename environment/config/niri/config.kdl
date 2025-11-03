@@ -162,6 +162,9 @@ binds {
     Mod+Up { set-window-height "-10%"; }
     Mod+Down { set-window-height "+10%"; }
 
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-column-right; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-column-left; }
+
     Mod+V       { toggle-window-floating; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
