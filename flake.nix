@@ -28,6 +28,11 @@
             inputs.nixpkgs.follows = "nixpkgs";
             inputs.quickshell.follows = "quickshell";
         };
+
+        xwaylandSatellite = {
+            url = "github:Supreeeme/xwayland-satellite";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = inputs:

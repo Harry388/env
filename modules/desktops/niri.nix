@@ -1,4 +1,4 @@
-{ util, pkgs, ... }@confInps: util.mkModule {
+{ util, pkgs, inputs, ... }@confInps: util.mkModule {
     inherit confInps;
     name = "niri";
 } {
@@ -12,5 +12,9 @@
     environment.sessionVariables = {
         NIXOS_OZONE_WL = "1";
     };
+
+    environment.systemPackages = [
+        inputs.xwaylandSatellite.packages.${pkgs.system}.default
+    ];
 
 }
