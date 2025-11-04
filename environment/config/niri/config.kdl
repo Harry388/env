@@ -2,7 +2,6 @@ spawn-at-startup "noctalia-shell"
 spawn-at-startup "udiskie"
 spawn-at-startup "flameshot"
 spawn-sh-at-startup "vicinae server"
-spawn-sh-at-startup "ghostty --initial-window=false"
 
 input {
     keyboard {
