@@ -65,6 +65,8 @@
             "right": [
                 {
                     "blacklist": [
+                        "*blue*",
+                        "nm-applet"
                     ],
                     "colorizeIcons": false,
                     "id": "Tray"
