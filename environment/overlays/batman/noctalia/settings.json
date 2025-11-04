@@ -127,9 +127,9 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "matugenSchemeType": "scheme-tonal-spot",
-        "predefinedScheme": "Noctalia (default)",
+        "predefinedScheme": "Monochrome",
         "schedulingMode": "off",
-        "useWallpaperColors": true
+        "useWallpaperColors": false
     },
     "controlCenter": {
         "cards": [
@@ -318,12 +318,12 @@
             {
                 "directory": "/home/harry/nix/wallpaper",
                 "name": "eDP-1",
-                "wallpaper": "/home/harry/nix/wallpaper/house.jpg"
+                "wallpaper": "/home/harry/nix/wallpaper/batman.jpg"
             },
             {
                 "directory": "/home/harry/nix/wallpaper",
                 "name": "HDMI-A-1",
-                "wallpaper": "/home/harry/nix/wallpaper/house.jpg"
+                "wallpaper": "/home/harry/nix/wallpaper/batman.jpg"
             }
         ],
         "panelPosition": "folow_bar",

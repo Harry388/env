@@ -60,9 +60,14 @@ apply-overlay () {
 
 vicinae_running=$(pgrep vicinae)
 ghostty_running=$(pgrep ghostty)
+noctalia_running=$(noctalia-shell list | grep "Process ID")
 
 if [ -n "$vicinae_running" ]; then
     pkill vicinae
+fi
+
+if [ -n "$noctalia_running" ]; then
+    noctalia-shell kill
 fi
 
 move "$MY_SCRIPTS" "$SCRIPTS_HOME"
@@ -87,6 +92,10 @@ fi
 
 if [ -n "$ghostty_running" ]; then
     pkill ghostty --signal SIGUSR2 # reload config
+fi
+
+if [ -n "$noctalia_running" ]; then
+    noctalia-shell &> /dev/null &
 fi
 
 if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
