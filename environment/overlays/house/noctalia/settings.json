@@ -66,7 +66,8 @@
                 {
                     "blacklist": [
                         "*blue*",
-                        "nm-applet"
+                        "nm-applet",
+                        "flameshot"
                     ],
                     "colorizeIcons": false,
                     "id": "Tray"
