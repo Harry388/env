@@ -1,6 +1,8 @@
 {
     "appLauncher": {
         "backgroundOpacity": 1,
+        "customLaunchPrefix": "",
+        "customLaunchPrefixEnabled": false,
         "enableClipboardHistory": true,
         "pinnedExecs": [
         ],
@@ -21,11 +23,13 @@
     "bar": {
         "backgroundOpacity": 1,
         "density": "default",
+        "exclusive": true,
         "floating": false,
         "marginHorizontal": 0.25,
         "marginVertical": 0.25,
         "monitors": [
         ],
+        "outerCorners": false,
         "position": "top",
         "showCapsule": true,
         "widgets": {
@@ -41,12 +45,14 @@
             ],
             "left": [
                 {
+                    "characterCount": 2,
                     "hideUnoccupied": false,
                     "id": "Workspace",
                     "labelMode": "index"
                 },
                 {
                     "hideMode": "hidden",
+                    "hideWhenIdle": false,
                     "id": "MediaMini",
                     "maxWidth": 145,
                     "scrollingMode": "hover",
@@ -111,7 +117,9 @@
         "chargingMode": 0
     },
     "brightness": {
-        "brightnessStep": 5
+        "brightnessStep": 5,
+        "enableDdcSupport": false,
+        "enforceMinimum": true
     },
     "colorSchemes": {
         "darkMode": true,
@@ -119,9 +127,9 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "matugenSchemeType": "scheme-tonal-spot",
-        "predefinedScheme": "Monochrome",
+        "predefinedScheme": "Noctalia (default)",
         "schedulingMode": "off",
-        "useWallpaperColors": false
+        "useWallpaperColors": true
     },
     "controlCenter": {
         "cards": [
@@ -182,6 +190,7 @@
         "backgroundOpacity": 1,
         "colorizeIcons": false,
         "displayMode": "always_visible",
+        "enabled": false,
         "floatingRatio": 1,
         "monitors": [
         ],
@@ -196,6 +205,7 @@
         "avatarImage": "/home/harry/.face",
         "compactLockScreen": false,
         "dimDesktop": false,
+        "enableShadows": false,
         "forceBlackScreenCorners": false,
         "language": "",
         "lockOnSuspend": true,
@@ -210,8 +220,11 @@
         "wallpaperChange": ""
     },
     "location": {
+        "analogClockInCalendar": false,
+        "firstDayOfWeek": -1,
         "name": "London",
         "showCalendarEvents": true,
+        "showCalendarWeather": true,
         "showWeekNumberInCalendar": false,
         "use12hourFormat": false,
         "useFahrenheit": false,
@@ -230,6 +243,7 @@
         "nightTemp": "4000"
     },
     "notifications": {
+        "backgroundOpacity": 1,
         "criticalUrgencyDuration": 15,
         "doNotDisturb": false,
         "location": "top",
@@ -259,9 +273,11 @@
         "videoCodec": "h264",
         "videoSource": "portal"
     },
-    "settingsVersion": 16,
+    "settingsVersion": 18,
     "setupCompleted": true,
     "templates": {
+        "alacritty": false,
+        "code": false,
         "discord": false,
         "discord_armcord": false,
         "discord_dorion": false,
@@ -278,14 +294,17 @@
         "kitty": false,
         "pywalfox": false,
         "qt": false,
-        "vicinae": true
+        "vicinae": true,
+        "walker": false,
+        "wezterm": false
     },
     "ui": {
         "fontDefault": "Roboto",
         "fontDefaultScale": 1,
         "fontFixed": "DejaVu Sans Mono",
         "fontFixedScale": 1,
-        "panelsOverlayLayer": true,
+        "panelsAttachedToBar": true,
+        "panelsOverlayLayer": false,
         "tooltipsEnabled": true
     },
     "wallpaper": {
@@ -299,7 +318,7 @@
             {
                 "directory": "/home/harry/nix/wallpaper",
                 "name": "eDP-1",
-                "wallpaper": "/home/harry/nix/wallpaper/batman.jpg"
+                "wallpaper": "/home/harry/nix/wallpaper/house.jpg"
             },
             {
                 "directory": "/home/harry/nix/wallpaper",
@@ -307,8 +326,10 @@
                 "wallpaper": "/home/harry/nix/wallpaper/house.jpg"
             }
         ],
+        "panelPosition": "folow_bar",
         "randomEnabled": false,
         "randomIntervalSec": 300,
+        "recursiveSearch": false,
         "setWallpaperOnAllMonitors": true,
         "transitionDuration": 1500,
         "transitionEdgeSmoothness": 0.05,
