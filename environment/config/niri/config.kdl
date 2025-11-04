@@ -32,8 +32,7 @@ layout {
     }
 
 
-    default-column-width {}
-
+    default-column-width { proportion 1.0; }
 
     focus-ring {
         off
@@ -64,11 +63,6 @@ animations {
     workspace-switch {
         off
     }
-}
-
-window-rule {
-    match app-id="ghostty"
-    default-column-width { proportion 1.0; }
 }
 
 window-rule {
