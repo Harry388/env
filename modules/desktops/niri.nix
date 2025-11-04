@@ -14,7 +14,7 @@
     };
 
     environment.systemPackages = [
-        inputs.xwaylandSatellite.packages.${pkgs.system}.default
+        inputs.xwaylandSatellite.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
 }

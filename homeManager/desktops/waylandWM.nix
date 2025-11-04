@@ -1,10 +1,11 @@
+# Installs the extra packages used with a wayland compositor to create a desktop environment
 { util, pkgs, inputs, ... }@confInps: let
     flameshot = pkgs.flameshot.override {
         enableWlrSupport = true;
     };
 in util.mkModule {
     inherit confInps;
-    name = "hyprlandHome";
+    name = "waylandWMHome";
 } {
 
     home.pointerCursor = {
@@ -41,8 +42,8 @@ in util.mkModule {
         matugen
     ] ++ [
         flameshot
-        inputs.vicinae.packages.${pkgs.system}.default
-        inputs.noctalia.packages.${pkgs.system}.default
+        inputs.vicinae.packages.${pkgs.stdenv.hostPlatform.system}.default
+        inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
 }

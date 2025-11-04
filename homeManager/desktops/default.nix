@@ -3,11 +3,11 @@
     name = "defaultHomeDesktop";
     imports = [
         ./gnome.nix
-        ./hyprland.nix
+        ./waylandWM.nix
     ];
 } {
 
     gnomeHome.enable = lib.mkDefault false;
-    hyprlandHome.enable = lib.mkDefault true;
+    waylandWMHome.enable = lib.mkDefault true;
 
 }
