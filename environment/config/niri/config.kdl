@@ -31,8 +31,7 @@ layout {
         proportion 0.66667
     }
 
-
-    default-column-width { proportion 1.0; }
+    default-column-width {}
 
     focus-ring {
         off
@@ -50,10 +49,6 @@ layout {
         offset x=0 y=5
         color "#0007"
     }
-}
-
-overview {
-    zoom 0.6
 }
 
 hotkey-overlay {
