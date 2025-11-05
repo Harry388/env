@@ -62,11 +62,11 @@ hotkey-overlay {
 
 screenshot-path null
 
-animations {
-    workspace-switch {
-        off
-    }
-}
+// animations {
+//     workspace-switch {
+//         off
+//     }
+// }
 
 window-rule {
     geometry-corner-radius 10
