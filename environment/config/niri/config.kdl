@@ -3,6 +3,8 @@ spawn-at-startup "udiskie"
 spawn-at-startup "flameshot"
 spawn-sh-at-startup "vicinae server"
 
+prefer-no-csd
+
 input {
     keyboard {
         xkb {

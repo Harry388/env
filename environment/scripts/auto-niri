@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
 if [ "$(tty)" = "/dev/tty1" ] && ! pgrep niri; then
-    niri-session
-    trap "pkill niri" EXIT
+    niri-session -l
 fi
