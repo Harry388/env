@@ -16,6 +16,7 @@
         "mprisBlacklist": [
         ],
         "preferredPlayer": "",
+        "visualizerQuality": "high",
         "visualizerType": "linear",
         "volumeOverdrive": false,
         "volumeStep": 5
@@ -70,7 +71,10 @@
                         "flameshot"
                     ],
                     "colorizeIcons": false,
-                    "id": "Tray"
+                    "drawerEnabled": true,
+                    "id": "Tray",
+                    "pinned": [
+                    ]
                 },
                 {
                     "displayMode": "alwaysShow",
@@ -84,7 +88,8 @@
                     "showDiskUsage": false,
                     "showMemoryAsPercent": false,
                     "showMemoryUsage": true,
-                    "showNetworkStats": false
+                    "showNetworkStats": false,
+                    "usePrimaryColor": false
                 },
                 {
                     "hideWhenZero": true,
@@ -108,6 +113,7 @@
                     "id": "Brightness"
                 },
                 {
+                    "colorizeDistroLogo": false,
                     "customIconPath": "",
                     "icon": "noctalia",
                     "id": "ControlCenter",
@@ -215,6 +221,9 @@
         "radiusRatio": 1,
         "scaleRatio": 1,
         "screenRadiusRatio": 1,
+        "shadowDirection": "bottom_right",
+        "shadowOffsetX": 2,
+        "shadowOffsetY": 3,
         "showScreenCorners": false
     },
     "hooks": {
@@ -224,7 +233,7 @@
     },
     "location": {
         "analogClockInCalendar": false,
-        "firstDayOfWeek": -1,
+        "firstDayOfWeek": 1,
         "name": "London",
         "showCalendarEvents": true,
         "showCalendarWeather": true,
@@ -248,7 +257,8 @@
     "notifications": {
         "backgroundOpacity": 1,
         "criticalUrgencyDuration": 15,
-        "doNotDisturb": false,
+        "enableKeyboardLayoutToast": true,
+        "enabled": true,
         "location": "top",
         "lowUrgencyDuration": 3,
         "monitors": [
@@ -276,12 +286,12 @@
         "videoCodec": "h264",
         "videoSource": "portal"
     },
-    "settingsVersion": 18,
+    "settingsVersion": 21,
     "setupCompleted": true,
     "templates": {
         "alacritty": false,
         "code": false,
-        "discord": false,
+        "discord": true,
         "discord_armcord": false,
         "discord_dorion": false,
         "discord_equibop": false,
@@ -297,6 +307,7 @@
         "kitty": false,
         "pywalfox": false,
         "qt": false,
+        "spicetify": false,
         "vicinae": true,
         "walker": false,
         "wezterm": false
@@ -307,7 +318,7 @@
         "fontFixed": "JetBrainsMono Nerd Font",
         "fontFixedScale": 1,
         "panelsAttachedToBar": true,
-        "panelsOverlayLayer": false,
+        "settingsPanelAttachToBar": true,
         "tooltipsEnabled": true
     },
     "wallpaper": {
@@ -329,7 +340,8 @@
                 "wallpaper": "/home/harry/nix/wallpaper/house.jpg"
             }
         ],
-        "panelPosition": "folow_bar",
+        "overviewEnabled": false,
+        "panelPosition": "follow_bar",
         "randomEnabled": false,
         "randomIntervalSec": 300,
         "recursiveSearch": false,
