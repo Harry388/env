@@ -13,6 +13,8 @@ set -x EDITOR "nvim"
 
 set -x TERMINAL "ghostty"
 
+set -x QT_QPA_PLATFORMTHEME "gtk3"
+
 fish_add_path "$HOME/.local/scripts"
 
 bind ctrl-f find-session
