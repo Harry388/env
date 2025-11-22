@@ -9,6 +9,7 @@
         dolphin-emu
         clonehero
         azahar
+        olympus
     ];
 
 }
