@@ -10,7 +10,7 @@ extras=(
 
 extras=$(echo "${extras[@]}" | tr ' ' '\n')
 
-options=$(find "${searches[@]}" -maxdepth 1 -mindepth 1 -type d ! -path "*/.*" 2> /dev/null)
+options=$(find "${searches[@]}" -maxdepth 2 -mindepth 2 -type d ! -path "*/.*" 2> /dev/null)
 options=$(echo -e "$extras\n$options")
 
 selection=$(echo "$options" | fzf)
