@@ -13,6 +13,7 @@
         postman
         zed-editor
         transmission_4-gtk
+        qbittorrent
         libreoffice-qt
         hunspell
         hunspellDicts.en_GB-ise
