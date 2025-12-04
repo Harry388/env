@@ -102,6 +102,10 @@
                 },
                 {
                     "displayMode": "onhover",
+                    "id": "VPN"
+                },
+                {
+                    "displayMode": "onhover",
                     "id": "WiFi"
                 },
                 {
