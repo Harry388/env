@@ -11,7 +11,6 @@
         azahar
         olympus
         rpcs3
-        ps3-disc-dumper
     ];
 
 }
