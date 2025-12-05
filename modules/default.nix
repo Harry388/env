@@ -12,6 +12,7 @@
         ./tailscale.nix
         ./tlp.nix
         ./flatpak.nix
+        ./memlock.nix
     ];
 } {
     defaultDesktop.enable = lib.mkDefault true;
@@ -24,4 +25,5 @@
     tailscale.enable = lib.mkDefault true;
     tlp.enable = lib.mkDefault false;
     flatpak.enable = lib.mkDefault true;
+    memlock.enable = lib.mkDefault false;
 }
