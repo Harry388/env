@@ -22,7 +22,7 @@
         allowedUDPPorts = [ 1701 ];
     };
 
-    # memlock.enable = true;
+    memlock.enable = true;
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
