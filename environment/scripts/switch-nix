@@ -14,7 +14,7 @@ new_generation=$(readlink /nix/var/nix/profiles/system | cut -d - -f2)
 
 pushd "$MY_NIX" > /dev/null
 if [ "$current_generation" != "$new_generation" ]; then
-    git stage "*"
+    git add -A
     git commit -m "$new_generation $1"
     echo "$new_generation: $1"
 else
