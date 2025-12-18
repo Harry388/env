@@ -181,3 +181,5 @@ binds {
 
     Mod+M { quit; }
 }
+
+include "./noctalia.kdl"

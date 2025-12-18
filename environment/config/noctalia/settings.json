@@ -444,7 +444,7 @@
         "kcolorscheme": false,
         "kitty": false,
         "mango": false,
-        "niri": false,
+        "niri": true,
         "pywalfox": false,
         "qt": false,
         "spicetify": false,

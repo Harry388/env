@@ -22,6 +22,11 @@ move () {
     if [ -d "$to" ] && [ -d "$dir" ]; then
         rm -rf "$to"
         cp -R "$dir" "$to"
+        return 0
+    fi
+    if [ -f "$to" ] && [ -f "$dir" ]; then
+        rm -f "$to"
+        cp "$dir" "$to"
     fi
 }
 
