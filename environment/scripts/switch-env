@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
+if [ -z "$MY_NIX" ]; then
+    MY_NIX="$HOME/nix"
+fi
+
 if [ -z "$XDG_CONFIG_HOME" ]; then
     XDG_CONFIG_HOME="$HOME/.config"
 fi
 
 if [ -z "$MY_CONFIG" ]; then
-    MY_CONFIG="$HOME/nix/environment/config"
+    MY_CONFIG="$MY_NIX/environment/config"
 fi
 
 if [ -z "$SCRIPTS_HOME" ]; then
@@ -13,11 +17,11 @@ if [ -z "$SCRIPTS_HOME" ]; then
 fi
 
 if [ -z "$MY_SCRIPTS" ]; then
-    MY_SCRIPTS="$HOME/nix/environment/scripts"
+    MY_SCRIPTS="$MY_NIX/environment/scripts"
 fi
 
 if [ -z "$MY_HOSTS" ]; then
-    MY_HOSTS="$HOME/nix/environment/hosts"
+    MY_HOSTS="$MY_NIX/environment/hosts"
 fi
 
 if [ -z "$HOST" ]; then
@@ -25,11 +29,15 @@ if [ -z "$HOST" ]; then
 fi
 
 if [ -z "$MY_OVERLAYS" ]; then
-    MY_OVERLAYS="$HOME/nix/environment/overlays"
+    MY_OVERLAYS="$MY_NIX/environment/overlays"
 fi
 
 if [ -z "$OVERLAY" ]; then
     OVERLAY=$(<"$MY_OVERLAYS/current")
+fi
+
+if [ -z "$MY_WALLPAPERS" ]; then
+    MY_WALLPAPERS="$MY_NIX/wallpaper"
 fi
 
 move () {
@@ -60,14 +68,14 @@ apply-overlay () {
 
 vicinae_running=$(pgrep vicinae)
 ghostty_running=$(pgrep ghostty)
-noctalia_running=$(noctalia-shell list | grep "Process ID")
+noctalia_running=$(noctalia-shell list | grep "Process ID" | awk '/Process ID: [0-9]+/ {print $3}')
 
 if [ -n "$vicinae_running" ]; then
     pkill vicinae
 fi
 
 if [ -n "$noctalia_running" ]; then
-    noctalia-shell kill
+    kill -STOP "$noctalia_running"
 fi
 
 move "$MY_SCRIPTS" "$SCRIPTS_HOME"
@@ -95,7 +103,11 @@ if [ -n "$ghostty_running" ]; then
 fi
 
 if [ -n "$noctalia_running" ]; then
-    noctalia-shell &> /dev/null &
+    kill -CONT "$noctalia_running"
+    wallpaper="$MY_WALLPAPERS/$(<"$XDG_CONFIG_HOME/wallpaper/config")"
+    if [ -f "$wallpaper" ]; then
+        noctalia-shell ipc call wallpaper set "$wallpaper" "all" &> /dev/null
+    fi
 fi
 
 if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then

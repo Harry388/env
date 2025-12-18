@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+noctalia_running=$(noctalia-shell list | grep "Process ID")
+
+if [ -n "$noctalia_running" ]; then
+    noctalia-shell kill &> /dev/null
+fi
+
+noctalia-shell &> /dev/null &
