@@ -452,7 +452,7 @@
         "vicinae": true,
         "walker": false,
         "wezterm": false,
-        "yazi": false,
+        "yazi": true,
         "zed": false
     },
     "ui": {
