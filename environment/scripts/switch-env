@@ -68,7 +68,7 @@ apply-overlay () {
 
 vicinae_running=$(pgrep vicinae)
 ghostty_running=$(pgrep ghostty)
-noctalia_running=$(noctalia-shell list | grep "Process ID" | awk '/Process ID: [0-9]+/ {print $3}')
+noctalia_running=$(command -v noctalia-shell && noctalia-shell list | grep "Process ID" | awk '/Process ID: [0-9]+/ {print $3}')
 
 if [ -n "$vicinae_running" ]; then
     pkill vicinae
