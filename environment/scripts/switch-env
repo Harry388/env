@@ -90,6 +90,7 @@ done
 chmod -R +x "$XDG_CONFIG_HOME/sessions"
 
 cp "$MY_CONFIG/zshrc" "$HOME/.zshrc"
+cp "$MY_CONFIG/bashrc" "$HOME/.bashrc"
 
 apply-overlay "$MY_HOSTS/$HOST"
 apply-overlay "$MY_OVERLAYS/$OVERLAY"

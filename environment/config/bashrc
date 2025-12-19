@@ -12,8 +12,8 @@ export QT_QPA_PLATFORMTHEME="gtk3"
 
 if [ -e "$HOME/.local/scripts" ]; then
     export PATH="$PATH:$HOME/.local/scripts"
-    bindkey -s "^F" 'find-session^M'
-    bindkey -s "^S" 'search-session^M'
+    bind 'control-f:"find-session\n"'
+    bind 'control-s:"search-session\n"'
 fi
 
 alias clear="clear -x"
@@ -23,12 +23,12 @@ alias git-auto-commit="git add -A && git commit -m"
 alias git-log-pretty="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
 
 if command -v zoxide &> /dev/null; then
-    eval "$(zoxide init zsh)"
+    eval "$(zoxide init bash)"
 fi
 
 if command -v starship &> /dev/null; then
     export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
-    eval "$(starship init zsh)"
+    eval "$(starship init bash)"
 fi
 
 if command -v fzf &> /dev/null; then
@@ -38,7 +38,7 @@ if command -v fzf &> /dev/null; then
       --color=prompt:#cd9bff,spinner:#ff48ad,pointer:#cd9bff,header:#87afaf
       --color=border:#262626,label:#aeaeae,query:#d9d9d9
       --prompt="> " --marker=">" --pointer="◆" --separator="─" --scrollbar="│"'
-    eval "$(fzf --zsh)"
+    eval "$(fzf --bash)"
 fi
 
 if command -v niri &> /dev/null && command -v auto-niri &> /dev/null; then
