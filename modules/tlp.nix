@@ -7,6 +7,8 @@
 
     services.upower.enable = true;
 
+    # services.power-profiles-daemon.enable = true; This service allows selecing a power profile, but it cannot be used with tlp
+
     services.tlp = {
         enable = true;
         settings = {
