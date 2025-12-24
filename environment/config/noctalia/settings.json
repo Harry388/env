@@ -28,7 +28,7 @@
         "capsuleOpacity": 1,
         "density": "default",
         "exclusive": true,
-        "floating": false,
+        "floating": true,
         "marginHorizontal": 0.25,
         "marginVertical": 0.25,
         "monitors": [
@@ -37,7 +37,7 @@
         "position": "top",
         "showCapsule": true,
         "showOutline": false,
-        "transparent": false,
+        "transparent": true,
         "widgets": {
             "center": [
                 {
@@ -87,7 +87,6 @@
                     ]
                 },
                 {
-                    "deviceNativePath": "",
                     "displayMode": "alwaysShow",
                     "id": "Battery",
                     "showNoctaliaPerformance": false,
@@ -226,7 +225,7 @@
                     "id": "Notifications"
                 },
                 {
-                    "id": "PowerProfile"
+                    "id": "DarkMode"
                 },
                 {
                     "id": "KeepAwake"
