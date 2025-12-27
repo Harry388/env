@@ -40,9 +40,9 @@ in util.mkModule {
         cava
         networkmanagerapplet
         matugen
+        vicinae
     ] ++ [
         flameshot
-        inputs.vicinae.packages.${pkgs.stdenv.hostPlatform.system}.default
         inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
