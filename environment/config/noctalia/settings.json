@@ -123,7 +123,7 @@
                     "usePrimaryColor": false
                 },
                 {
-                    "hideWhenZero": true,
+                    "hideWhenZero": false,
                     "id": "NotificationHistory",
                     "showUnreadBadge": true
                 },
