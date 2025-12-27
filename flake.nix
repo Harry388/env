@@ -23,6 +23,11 @@
             url = "github:Supreeeme/xwayland-satellite";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        wooz = {
+            url = "github:negrel/wooz";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = inputs:
