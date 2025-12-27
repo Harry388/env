@@ -73,6 +73,19 @@
                     "showVisualizer": true,
                     "useFixedWidth": false,
                     "visualizerType": "linear"
+                },
+                {
+                    "colorizeIcons": false,
+                    "hideMode": "hidden",
+                    "iconScale": 0.8,
+                    "id": "Taskbar",
+                    "maxTaskbarWidth": 40,
+                    "onlyActiveWorkspaces": true,
+                    "onlySameOutput": true,
+                    "showPinnedApps": true,
+                    "showTitle": false,
+                    "smartWidth": true,
+                    "titleWidth": 120
                 }
             ],
             "right": [
@@ -119,11 +132,11 @@
                     "id": "VPN"
                 },
                 {
-                    "displayMode": "onhover",
+                    "displayMode": "alwaysShow",
                     "id": "WiFi"
                 },
                 {
-                    "displayMode": "onhover",
+                    "displayMode": "alwaysShow",
                     "id": "Bluetooth"
                 },
                 {
