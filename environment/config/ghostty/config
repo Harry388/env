@@ -10,7 +10,7 @@ background = 0a0a0a
 background-opacity = 0.95
 # background-opacity = 0.7
 
-window-padding-x = 8
+window-padding-x = 10
 window-padding-y = 8
 
 cursor-style = block

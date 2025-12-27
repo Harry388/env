@@ -1,0 +1,5 @@
+background = 0a0a0a
+background-opacity = 1
+background-image = /home/harry/nix/wallpaper/blur/house-0x75.jpg
+background-image-opacity = 0.1
+background-image-fit = cover
