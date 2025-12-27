@@ -6,6 +6,7 @@
         ./desktops/default.nix
         ./syncthing.nix
         ./switchEnv.nix
+        ./spicetify.nix
     ];
 } {
 
@@ -14,5 +15,6 @@
 
     syncthing.enable = lib.mkDefault true;
     switchEnv.enable = lib.mkDefault true;
+    spicetify.enable = lib.mkDefault true;
 
 }

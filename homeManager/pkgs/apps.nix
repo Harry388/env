@@ -8,7 +8,7 @@
     home.packages = with pkgs; [
         alacritty
         sqlitebrowser
-        spotify
+        # spotify
         obsidian
         postman
         zed-editor
