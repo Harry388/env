@@ -10,7 +10,7 @@ in util.mkModule {
 
     programs.spicetify = {
         enable = true;
-        theme = spicePkgs.themes.defaultDynamic;
+        theme = spicePkgs.themes.comfy;
     };
 
 }
