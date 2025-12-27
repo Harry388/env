@@ -4,6 +4,7 @@
         "customLaunchPrefixEnabled": false,
         "enableClipPreview": true,
         "enableClipboardHistory": true,
+        "iconMode": "tabler",
         "pinnedExecs": [
         ],
         "position": "center",
@@ -19,7 +20,6 @@
         "mprisBlacklist": [
         ],
         "preferredPlayer": "",
-        "visualizerQuality": "high",
         "visualizerType": "linear",
         "volumeOverdrive": false,
         "volumeStep": 5
@@ -87,13 +87,16 @@
                     ]
                 },
                 {
+                    "deviceNativePath": "",
                     "displayMode": "alwaysShow",
+                    "hideIfNotDetected": true,
                     "id": "Battery",
                     "showNoctaliaPerformance": false,
                     "showPowerProfiles": false,
                     "warningThreshold": 30
                 },
                 {
+                    "compactMode": true,
                     "diskPath": "/",
                     "id": "SystemMonitor",
                     "showCpuTemp": true,
@@ -103,6 +106,7 @@
                     "showMemoryAsPercent": false,
                     "showMemoryUsage": true,
                     "showNetworkStats": false,
+                    "useMonospaceFont": true,
                     "usePrimaryColor": false
                 },
                 {
@@ -237,7 +241,6 @@
         }
     },
     "desktopWidgets": {
-        "editMode": false,
         "enabled": false,
         "gridSnap": false,
         "monitorWidgets": [
@@ -286,6 +289,8 @@
     "hooks": {
         "darkModeChange": "",
         "enabled": false,
+        "performanceModeDisabled": "",
+        "performanceModeEnabled": "",
         "screenLock": "",
         "screenUnlock": "",
         "wallpaperChange": ""
@@ -326,6 +331,11 @@
         "normalUrgencyDuration": 8,
         "overlayLayer": true,
         "respectExpireTimeout": false,
+        "saveToHistory": {
+            "critical": true,
+            "low": true,
+            "normal": true
+        },
         "sounds": {
             "criticalSoundFile": "",
             "enabled": false,
@@ -404,9 +414,10 @@
                 "enabled": true
             }
         ],
-        "showHeader": true
+        "showHeader": true,
+        "showNumberLabels": true
     },
-    "settingsVersion": 31,
+    "settingsVersion": 33,
     "systemMonitor": {
         "cpuCriticalThreshold": 90,
         "cpuPollingInterval": 3000,
@@ -415,7 +426,7 @@
         "diskCriticalThreshold": 90,
         "diskPollingInterval": 3000,
         "diskWarningThreshold": 80,
-        "enableNvidiaGpu": false,
+        "enableDgpuMonitoring": false,
         "gpuCriticalThreshold": 90,
         "gpuPollingInterval": 3000,
         "gpuWarningThreshold": 80,
@@ -440,6 +451,8 @@
         "fuzzel": false,
         "ghostty": false,
         "gtk": true,
+        "helix": false,
+        "hyprland": false,
         "kcolorscheme": false,
         "kitty": false,
         "mango": false,
@@ -455,6 +468,8 @@
         "zed": false
     },
     "ui": {
+        "bluetoothDetailsViewMode": "grid",
+        "bluetoothHideUnnamedDevices": false,
         "fontDefault": "Noto Sans",
         "fontDefaultScale": 1,
         "fontFixed": "JetBrainsMono Nerd Font",
@@ -462,7 +477,8 @@
         "panelBackgroundOpacity": 1,
         "panelsAttachedToBar": true,
         "settingsPanelMode": "attached",
-        "tooltipsEnabled": true
+        "tooltipsEnabled": true,
+        "wifiDetailsViewMode": "grid"
     },
     "wallpaper": {
         "directory": "/home/harry/nix/wallpaper",
@@ -483,13 +499,16 @@
         "transitionEdgeSmoothness": 0.05,
         "transitionType": "random",
         "useWallhaven": false,
+        "wallhavenApiKey": "",
         "wallhavenCategories": "111",
         "wallhavenOrder": "desc",
         "wallhavenPurity": "100",
         "wallhavenQuery": "",
+        "wallhavenRatios": "",
         "wallhavenResolutionHeight": "",
         "wallhavenResolutionMode": "atleast",
         "wallhavenResolutionWidth": "",
-        "wallhavenSorting": "relevance"
+        "wallhavenSorting": "relevance",
+        "wallpaperChangeMode": "random"
     }
 }
