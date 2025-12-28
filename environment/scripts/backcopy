@@ -12,8 +12,16 @@ if [ -z "$MY_OVERLAYS" ]; then
     MY_OVERLAYS="$HOME/nix/environment/overlays"
 fi
 
+if [ -z "$HOST" ]; then
+    HOST=$(hostname)
+fi
+
 if [ -z "$OVERLAY" ]; then
-    OVERLAY=$(<"$MY_OVERLAYS/current")
+    if [ -f "$MY_OVERLAYS/$HOST" ]; then
+        OVERLAY=$(<"$MY_OVERLAYS/$HOST")
+    else
+        OVERLAY=$(<"$MY_OVERLAYS/current")
+    fi
 fi
 
 move () {
