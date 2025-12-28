@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+if [ -z "$MY_NIX" ]; then
+    MY_NIX="$HOME/nix"
+fi
+
+if [ -z "$MY_OVERLAYS" ]; then
+    MY_OVERLAYS="$MY_NIX/environment/overlays"
+fi
+
+if [ -z "$DMENU" ]; then
+    DMENU="vicinae dmenu -s \"Overlays ({count})\" -p \"Search overlays...\""
+fi
+
+overlay_names="$(find "$MY_OVERLAYS" -maxdepth 1 -mindepth 1 -type d -exec basename {} \; | sort)"
+
+overlay="$(echo "$overlay_names" | head -c -1 | eval "$DMENU")"
+
+if [ -z "$overlay" ]; then
+    exit 1
+fi
+
+OVERLAY="$overlay" switch-env
