@@ -29,7 +29,7 @@
         "density": "default",
         "exclusive": true,
         "floating": true,
-        "marginHorizontal": 0.25,
+        "marginHorizontal": 0.1,
         "marginVertical": 0.25,
         "monitors": [
         ],
@@ -37,7 +37,7 @@
         "position": "top",
         "showCapsule": true,
         "showOutline": false,
-        "transparent": false,
+        "transparent": true,
         "widgets": {
             "center": [
                 {
@@ -283,8 +283,8 @@
         "avatarImage": "/home/harry/.face",
         "boxRadiusRatio": 1,
         "compactLockScreen": false,
-        "dimmerOpacity": 0.1,
-        "enableShadows": true,
+        "dimmerOpacity": 0,
+        "enableShadows": false,
         "forceBlackScreenCorners": false,
         "iRadiusRatio": 1,
         "language": "",
@@ -487,7 +487,7 @@
         "fontDefaultScale": 1,
         "fontFixed": "JetBrainsMono Nerd Font",
         "fontFixedScale": 1,
-        "panelBackgroundOpacity": 0.93,
+        "panelBackgroundOpacity": 1,
         "panelsAttachedToBar": true,
         "settingsPanelMode": "attached",
         "tooltipsEnabled": true,
