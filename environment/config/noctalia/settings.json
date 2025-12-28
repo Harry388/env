@@ -388,7 +388,7 @@
         "countdownDuration": 10000,
         "enableCountdown": true,
         "largeButtonsStyle": false,
-        "position": "center",
+        "position": "top_right",
         "powerOptions": [
             {
                 "action": "lock",
@@ -428,7 +428,7 @@
             }
         ],
         "showHeader": true,
-        "showNumberLabels": true
+        "showNumberLabels": false
     },
     "settingsVersion": 33,
     "systemMonitor": {
