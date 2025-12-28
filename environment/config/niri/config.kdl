@@ -107,7 +107,7 @@ binds {
     Mod+C { spawn-sh "gnome-calculator"; }
     Mod+N { spawn-sh "noctalia-shell ipc call notifications toggleHistory"; }
     Mod+S { spawn "switch-env"; }
-    Mod+Shift+S { spawn "select-overlay"; }
+    Mod+Shift+S { spawn-sh "DMENU=vicinae select-overlay"; }
     Mod+Period { spawn-sh "vicinae vicinae://extensions/vicinae/core/search-emojis"; }
     Mod+Z { spawn-sh "wooz --invert-scroll"; }
 

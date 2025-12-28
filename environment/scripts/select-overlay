@@ -9,14 +9,31 @@ if [ -z "$MY_OVERLAYS" ]; then
 fi
 
 if [ -z "$DMENU" ]; then
-    DMENU="vicinae dmenu -s \"Overlays ({count})\" -p \"Search overlays...\""
+    DMENU="fzf"
 fi
+
+case "$DMENU" in
+    vicinae)
+        DMENU_COMMAND="vicinae dmenu -s \"Overlays ({count})\" -p \"Search overlays...\""
+        ;;
+    fuzzel)
+        DMENU_COMMAND="fuzzel --dmenu --placeholder=\"Search overlays...\""
+        ;;
+    fzf)
+        DMENU_COMMAND="fzf"
+        ;;
+    *)
+        echo "Unknown dmenu command: $DMENU"
+        exit 1
+        ;;
+esac
 
 overlay_names="$(find "$MY_OVERLAYS" -maxdepth 1 -mindepth 1 -type d -exec basename {} \; | sort)"
 
-overlay="$(echo "$overlay_names" | head -c -1 | eval "$DMENU")"
+overlay="$(echo "$overlay_names" | head -c -1 | eval "$DMENU_COMMAND")"
 
 if [ -z "$overlay" ]; then
+    echo "No overlay selected"
     exit 1
 fi
 
