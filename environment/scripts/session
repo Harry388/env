@@ -35,7 +35,9 @@ fi
 
 tmux new-session -c "$dir" -s "$name" -d
 
-if [ -f "$SESSIONS_HOME/$name" ]; then
+if [ -f "$dir/.session" ]; then
+    tmux send-keys -t "$name" "$dir/.session $name" c-M
+elif [ -f "$SESSIONS_HOME/$name" ]; then
     tmux send-keys -t "$name" "$SESSIONS_HOME/$name $name" c-M
 else
     tmux send-keys -t "$name" "default-session $name" c-M
