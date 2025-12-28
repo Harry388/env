@@ -461,7 +461,7 @@
         "emacs": false,
         "enableUserTemplates": false,
         "foot": false,
-        "fuzzel": false,
+        "fuzzel": true,
         "ghostty": false,
         "gtk": true,
         "helix": false,
