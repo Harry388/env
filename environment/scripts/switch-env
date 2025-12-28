@@ -111,6 +111,17 @@ if [ -n "$noctalia_running" ]; then
     kill -CONT "$noctalia_running"
     wallpaper="$MY_WALLPAPERS/$(<"$XDG_CONFIG_HOME/wallpaper/config")"
     if [ -f "$wallpaper" ]; then
+        if command -v matugen > /dev/null && command -v jq > /dev/null; then
+            matugen_config="$HOME/.cache/noctalia/matugen.dynamic.toml"
+            noctalia_config="$XDG_CONFIG_HOME/noctalia/settings.json"
+            if [ -f "$matugen_config" ] && [ -f "$noctalia_config" ]; then
+                matugen_type="$(cat "$noctalia_config" | jq '.colorSchemes.matugenSchemeType' -r)"
+                matugen_mode="$(cat "$noctalia_config" | jq 'if .colorSchemes.darkMode then "dark" else "light" end' -r)"
+                if [ -n "$matugen_type" ] && [ -n "$matugen_mode" ]; then
+                    matugen image "$wallpaper" -c "$matugen_config" -t "$matugen_type" -m "$matugen_mode" &> /dev/null
+                fi
+            fi
+        fi
         noctalia-shell ipc call wallpaper set "$wallpaper" "all" &> /dev/null
     fi
 fi
