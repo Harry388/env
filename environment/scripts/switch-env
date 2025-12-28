@@ -33,7 +33,11 @@ if [ -z "$MY_OVERLAYS" ]; then
 fi
 
 if [ -z "$OVERLAY" ]; then
-    OVERLAY=$(<"$MY_OVERLAYS/current")
+    if [ -f "$MY_OVERLAYS/$HOST" ]; then
+        OVERLAY=$(<"$MY_OVERLAYS/$HOST")
+    else
+        OVERLAY=$(<"$MY_OVERLAYS/current")
+    fi
 fi
 
 if [ -z "$MY_WALLPAPERS" ]; then
