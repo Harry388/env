@@ -97,7 +97,7 @@ overview {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
+    Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn-sh "ghostty +new-window"; }
     Mod+Space hotkey-overlay-title="Run an Application: vicinae" { spawn-sh "vicinae toggle"; }
     Mod+E hotkey-overlay-title="Lock the Screen: noctalia" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
     Mod+Shift+E hotkey-overlay-title="Lock the Screen: noctalia" { spawn-sh "noctalia-shell ipc call lockScreen lock; systemctl suspend"; }

@@ -103,9 +103,9 @@ if [ -n "$vicinae_running" ]; then
     vicinae server &> /dev/null &
 fi
 
-if [ -n "$ghostty_running" ]; then
-    pkill ghostty --signal SIGUSR2 # reload config
-fi
+#if [ -n "$ghostty_running" ]; then
+#    pkill ghostty --signal SIGUSR2 # reload config
+#fi
 
 if [ -n "$noctalia_running" ]; then
     kill -CONT "$noctalia_running"

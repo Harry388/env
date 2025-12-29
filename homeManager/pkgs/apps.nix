@@ -5,6 +5,11 @@
 
     programs.google-chrome.enable = true;
 
+    programs.ghostty = {
+        enable = true;
+        systemd.enable = true;
+    };
+
     home.packages = with pkgs; [
         alacritty
         sqlitebrowser
@@ -28,7 +33,6 @@
         gnome-disk-utility
         file-roller
         seahorse
-        ghostty
         gittyup
         bottles
         warehouse
