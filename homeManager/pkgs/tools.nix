@@ -39,6 +39,7 @@
         smartmontools
         chafa
         opencode
+        ffmpeg
     ];
 
 }
