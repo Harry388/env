@@ -508,7 +508,7 @@
         "bluetoothHideUnnamedDevices": false,
         "boxBorderEnabled": false,
         "fontDefault": "Noto Sans",
-        "fontDefaultScale": 0.9299999999999999,
+        "fontDefaultScale": 1,
         "fontFixed": "JetBrainsMono Nerd Font",
         "fontFixedScale": 0.88,
         "networkPanelView": "wifi",
