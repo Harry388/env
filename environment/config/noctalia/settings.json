@@ -46,12 +46,12 @@
         "widgets": {
             "center": [
                 {
-                    "customFont": "JetBrainsMono Nerd Font",
+                    "customFont": "Noto Sans Deseret",
                     "formatHorizontal": "HH:mm ddd, MMM dd",
                     "formatVertical": "HH mm - dd MM",
                     "id": "Clock",
                     "tooltipFormat": "HH:mm ddd, MMM dd",
-                    "useCustomFont": true,
+                    "useCustomFont": false,
                     "usePrimaryColor": true
                 }
             ],
@@ -508,9 +508,9 @@
         "bluetoothHideUnnamedDevices": false,
         "boxBorderEnabled": false,
         "fontDefault": "Noto Sans",
-        "fontDefaultScale": 0.95,
+        "fontDefaultScale": 0.9299999999999999,
         "fontFixed": "JetBrainsMono Nerd Font",
-        "fontFixedScale": 0.9,
+        "fontFixedScale": 0.88,
         "networkPanelView": "wifi",
         "panelBackgroundOpacity": 1,
         "panelsAttachedToBar": false,
