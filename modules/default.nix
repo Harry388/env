@@ -10,7 +10,7 @@
         ./base.nix
         ./openssh.nix
         ./tailscale.nix
-        ./tlp.nix
+        ./battery.nix
         ./flatpak.nix
         ./memlock.nix
     ];
@@ -23,7 +23,7 @@
     base.enable = lib.mkDefault true;
     openssh.enable = lib.mkDefault false;
     tailscale.enable = lib.mkDefault true;
-    tlp.enable = lib.mkDefault false;
+    battery.enable = lib.mkDefault false;
     flatpak.enable = lib.mkDefault true;
     memlock.enable = lib.mkDefault false;
 }

@@ -1,6 +1,6 @@
 { util, pkgs, ... }@confInps: util.mkModule {
     inherit confInps;
-    name = "tlp";
+    name = "battery";
 } {
 
     # copied from https://nixos.wiki/wiki/Laptop
@@ -12,10 +12,10 @@
     services.tlp = {
         enable = true;
         settings = {
-            CPU_SCALING_GOVERNOR_ON_AC = "performance";
+            CPU_SCALING_GOVERNOR_ON_AC = "schedutil";
             CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
-            CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+            CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance"; # performance, balance_performance, balance_power, power
             CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
 
             CPU_MIN_PERF_ON_AC = 0;
