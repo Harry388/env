@@ -5,7 +5,7 @@
 
     home.packages = with pkgs; [
         vesktop
-        prismlauncher
+        modrinth-app
         dolphin-emu
         clonehero
         azahar
