@@ -45,6 +45,7 @@ ssh_symbol = " "
 
 [nix_shell]
 symbol = " "
+format = 'via [$symbol$state]($style) '
 
 [os.symbols]
 Alpaquita = " "
