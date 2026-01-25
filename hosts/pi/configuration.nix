@@ -11,6 +11,7 @@
             defaultHomeDesktop.enable = false;
             gaming.enable = false;
             apps.enable = false;
+            spicetify.enable = false;
 
             home.stateVersion = "23.11"; # Don't change
         };
