@@ -26,6 +26,10 @@ alias git-nuke "git reset --hard HEAD && git clean -fd"
 alias git-auto-commit "git add -A && git commit -m"
 alias git-log-pretty "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
 
+if test "$TERM" = "dumb"
+    exit 0
+end
+
 if command -v zoxide &> /dev/null
     zoxide init fish | source
 end
