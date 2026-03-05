@@ -102,7 +102,7 @@ binds {
     Mod+Space hotkey-overlay-title="Run an Application: vicinae" { spawn-sh "vicinae toggle"; }
     Mod+E hotkey-overlay-title="Lock the Screen: noctalia" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
     Mod+Shift+E hotkey-overlay-title="Lock the Screen: noctalia" { spawn-sh "noctalia-shell ipc call lockScreen lock; systemctl suspend"; }
-    Mod+B { spawn-sh "zen"; }
+    Mod+B { spawn-sh "zen-beta"; }
     Mod+P { spawn-sh "flameshot gui"; }
     Mod+Shift+P { spawn-sh "hyprpicker -a"; }
     Mod+C { spawn-sh "gnome-calculator"; }
