@@ -13,7 +13,7 @@
         ripgrep
         pkg-config
         openssl
-        neofetch
+        fastfetch
         gnumake
         inotify-tools
         lazygit
