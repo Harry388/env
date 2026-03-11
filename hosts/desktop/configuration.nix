@@ -1,4 +1,4 @@
-{ inputs, util, ... }:
+{ inputs, util, pkgs, ... }:
 
 {
 
@@ -9,6 +9,10 @@
             home.stateVersion = "23.11"; # Don't change
         };
     };
+
+    environment.extraInit = ''
+      export XDG_DATA_DIRS="$XDG_DATA_DIRS:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
+    '';
 
     boot.loader = {
         efi.canTouchEfiVariables = true;
@@ -23,6 +27,8 @@
     };
 
     memlock.enable = true;
+
+    sunshine.enable = true;
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions

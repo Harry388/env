@@ -10,7 +10,6 @@
         clonehero
         azahar
         olympus
-        sunshine
         moonlight-qt
     ];
 
