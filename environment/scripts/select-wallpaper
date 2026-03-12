@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+if [ -z "$MY_NIX" ]; then
+    MY_NIX="$HOME/nix"
+fi
+
+if [ -z "$MY_WALLPAPERS" ]; then
+    MY_WALLPAPERS="$MY_NIX/wallpaper"
+fi
+
+wallpapers="$(find "$MY_WALLPAPERS" -maxdepth 1 -mindepth 1 -type f | sort)"
+
+wallpaper="$(echo "$wallpapers" | head -c -1 | DMENU="$DMENU" selector)"
+
+if [ -z "$wallpaper" ]; then
+    echo "No wallpaper selected"
+    exit 1
+fi
+
+set-wallpaper "$wallpaper"

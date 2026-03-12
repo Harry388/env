@@ -40,10 +40,6 @@ if [ -z "$OVERLAY" ]; then
     fi
 fi
 
-if [ -z "$MY_WALLPAPERS" ]; then
-    MY_WALLPAPERS="$MY_NIX/wallpaper"
-fi
-
 move () {
     dir="$1"
     to="$2"
@@ -107,16 +103,7 @@ if [ -n "$vicinae_running" ]; then
     vicinae server &> /dev/null &
 fi
 
-wallpaper="$MY_WALLPAPERS/$(<"$XDG_CONFIG_HOME/wallpaper/config")"
-
-if [ -f "$wallpaper" ]; then
-    if [ -n "$noctalia_running" ]; then
-        noctalia-shell ipc call wallpaper set "$wallpaper" all
-    fi
-    if command -v matugen &> /dev/null; then
-        matugen image "$wallpaper" -t "scheme-tonal-spot" -m "dark" --source-color-index 0 &> /dev/null
-    fi
-fi
+set-wallpaper
 
 if [ -n "$ghostty_running" ]; then
     systemctl reload --user app-com.mitchellh.ghostty.service

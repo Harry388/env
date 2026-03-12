@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+wallpaper="$1"
+
+if [ -z "$wallpaper" ]; then
+    if [ -z "$MY_NIX" ]; then
+        MY_NIX="$HOME/nix"
+    fi
+
+    if [ -z "$XDG_CONFIG_HOME" ]; then
+        XDG_CONFIG_HOME="$HOME/.config"
+    fi
+
+    if [ -z "$MY_WALLPAPERS" ]; then
+        MY_WALLPAPERS="$MY_NIX/wallpaper"
+    fi
+
+    wallpaper="$MY_WALLPAPERS/$(<"$XDG_CONFIG_HOME/wallpaper/config")"
+fi
+
+noctalia_running=$(command -v noctalia-shell > /dev/null && noctalia-shell list | grep "Process ID" | awk '/Process ID: [0-9]+/ {print $3}')
+
+if [ -f "$wallpaper" ]; then
+    if [ -n "$noctalia_running" ]; then
+        noctalia-shell ipc call wallpaper set "$wallpaper" all
+    fi
+    if command -v matugen &> /dev/null; then
+        matugen image "$wallpaper" -t "scheme-tonal-spot" -m "dark" --source-color-index 0 &> /dev/null
+    fi
+fi

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+if [ -z "$DMENU" ]; then
+    DMENU="fzf"
+fi
+
+case "$DMENU" in
+    vicinae)
+        vicinae dmenu -s "Overlays ({count})" -p "Search overlays..."
+        ;;
+    fuzzel)
+        fuzzel --dmenu --placeholder="Search overlays..."
+        ;;
+    fzf)
+        fzf
+        ;;
+    *)
+        echo "Unknown dmenu command: $DMENU"
+        exit 1
+        ;;
+esac
