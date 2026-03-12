@@ -1,0 +1,44 @@
+[config]
+
+[templates.noctalia]
+input_path = "~/.config/matugen/templates/noctalia/noctalia.json"
+output_path = "~/.config/noctalia/colors.json"
+
+[templates.gtk_0]
+input_path = "~/.config/matugen/templates/gtk/gtk3.css"
+output_path = "~/.config/gtk-3.0/noctalia.css"
+post_hook = "python3 ~/.config/matugen/hooks/gtk-refresh.py dark"
+
+[templates.gtk_1]
+input_path = "~/.config/matugen/templates/gtk/gtk4.css"
+output_path = "~/.config/gtk-4.0/noctalia.css"
+post_hook = "python3 ~/.config/matugen/hooks/gtk-refresh.py dark"
+
+[templates.fuzzel_0]
+input_path = "~/.config/matugen/templates/fuzzel/fuzzel.conf"
+output_path = "~/.config/fuzzel/themes/noctalia"
+post_hook = "~/.config/matugen/hooks/template-apply.sh fuzzel"
+
+[templates.vicinae_0]
+input_path = "~/.config/matugen/templates/vicinae/vicinae.toml"
+output_path = "~/.local/share/vicinae/themes/noctalia.toml"
+post_hook = "cp --update=none ~/.config/matugen/icons/noctalia.svg ~/.local/share/vicinae/themes/noctalia.svg && ~/.config/matugen/hooks/template-apply.sh vicinae"
+
+[templates.discord_midnight_vesktop]
+input_path = "~/.config/matugen/templates/vesktop/midnight.css"
+output_path = "~/.config/vesktop/themes/noctalia.theme.css"
+
+[templates.cava_0]
+input_path = "~/.config/matugen/templates/cava/cava.ini"
+output_path = "~/.config/cava/themes/noctalia"
+post_hook = "~/.config/matugen/hooks/template-apply.sh cava"
+
+[templates.yazi_0]
+input_path = "~/.config/matugen/templates/yazi/yazi.toml"
+output_path = "~/.config/yazi/flavors/noctalia.yazi/flavor.toml"
+post_hook = "~/.config/matugen/hooks/template-apply.sh yazi"
+
+[templates.niri_0]
+input_path = "~/.config/matugen/templates/niri/niri.kdl"
+output_path = "~/.config/niri/noctalia.kdl"
+post_hook = "~/.config/matugen/hooks/template-apply.sh niri"
