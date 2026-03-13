@@ -2,7 +2,7 @@
 
 mode="dark"
 
-while getopts "w:m:" opt; do
+while getopts ":w:m:" opt; do
     case "$opt" in
         w)
             wallpaper="$OPTARG"
