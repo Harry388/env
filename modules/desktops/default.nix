@@ -3,17 +3,11 @@
     name = "defaultDesktop";
     imports = [
         ./gnome.nix
-        ./kde.nix
-        ./xfcei3.nix
-        ./hyprland.nix
         ./niri.nix
     ];
 } {
 
-    kde.enable = lib.mkDefault false;
     gnome.enable = lib.mkDefault false;
-    xfcei3.enable = lib.mkDefault false;
-    hyprland.enable = lib.mkDefault true;
     niri.enable = lib.mkDefault true;
 
 }

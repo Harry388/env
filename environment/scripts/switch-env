@@ -108,7 +108,3 @@ set-wallpaper
 if [ -n "$ghostty_running" ]; then
     systemctl reload --user app-com.mitchellh.ghostty.service
 fi
-
-if [ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
-    hyprctl reload
-fi
