@@ -426,7 +426,7 @@
         "telemetryEnabled": false
     },
     "hooks": {
-        "darkModeChange": "set-wallpaper -m \"$([ $1 = 'true' ] && echo dark || echo light)\"",
+        "darkModeChange": "set-theme -m \"$([ $1 = 'true' ] && echo dark || echo light)\"",
         "enabled": true,
         "performanceModeDisabled": "",
         "performanceModeEnabled": "",
