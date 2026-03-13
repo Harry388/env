@@ -10,7 +10,7 @@ fi
 
 overlay_names="$(find "$MY_OVERLAYS" -maxdepth 1 -mindepth 1 -type d -exec basename {} \; | sort)"
 
-overlay="$(echo "$overlay_names" | head -c -1 | DMENU="$DMENU" selector)"
+overlay="$(echo "$overlay_names" | head -c -1 | SELECTOR="$SELECTOR" selector "Select overlay...")"
 
 if [ -z "$overlay" ]; then
     echo "No overlay selected"

@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
 
-if [ -z "$DMENU" ]; then
-    DMENU="fzf"
+if [ -z "$SELECTOR" ]; then
+    SELECTOR="fzf"
 fi
 
-case "$DMENU" in
+case "$SELECTOR" in
     vicinae)
-        vicinae dmenu -s "Overlays ({count})" -p "Search overlays..."
+        vicinae dmenu -s "Options ({count})" -p "$1"
         ;;
     fuzzel)
-        fuzzel --dmenu --placeholder="Search overlays..."
+        fuzzel --dmenu --placeholder="$1"
         ;;
     fzf)
         fzf
         ;;
     *)
-        echo "Unknown dmenu command: $DMENU"
+        echo "Unknown selector: $SELECTOR"
         exit 1
         ;;
 esac
