@@ -9,6 +9,7 @@
 // Learn more about configuration at https://docs.vicinae.com/config
 
 {
+   "$schema": "https://vicinae.com/schemas/config.json",
    "pop_to_root_on_close": true,
    "font": {
       "normal": {
@@ -19,6 +20,9 @@
       "light": {
          "name": "noctalia",
          "icon_theme": "Papirus"
+      },
+      "dark": {
+         "name": "noctalia"
       }
    },
    "launcher_window": {
