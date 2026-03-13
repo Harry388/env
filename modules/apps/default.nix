@@ -5,11 +5,13 @@
         ./steam.nix
         ./vial.nix
         ./sunshine.nix
+        ./kdeconnect.nix
     ];
 } {
 
     steam.enable = lib.mkDefault true;
     vial.enable = lib.mkDefault true;
     sunshine.enable = lib.mkDefault false;
+    kdeconnect.enable = lib.mkDefault true;
 
 }

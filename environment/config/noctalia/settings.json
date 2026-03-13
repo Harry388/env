@@ -306,7 +306,9 @@
                     "id": "Bluetooth"
                 },
                 {
-                    "id": "NoctaliaPerformance"
+                    "defaultSettings": {
+                    },
+                    "id": "plugin:kde-connect"
                 }
             ],
             "right": [
