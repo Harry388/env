@@ -38,15 +38,22 @@ move () {
     fi
 }
 
-if [[ "$1" == "--overlay" ]]; then
-    config="$2"
-    from="$XDG_CONFIG_HOME/$config"
+overlay=""
+config=""
+
+for arg in "$@"; do
+    if [[ "$arg" == "--overlay" ]]; then
+        overlay=1
+    else
+        config="$arg"
+    fi
+done
+
+if [ -n "$overlay" ]; then
     to="$MY_OVERLAYS/$OVERLAY/$config"
-    move "$from" "$to"
-    exit 0
+else
+    to="$MY_CONFIG/$config"
 fi
 
-config="$1"
 from="$XDG_CONFIG_HOME/$config"
-to="$MY_CONFIG/$config"
 move "$from" "$to"
