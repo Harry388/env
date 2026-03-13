@@ -17,4 +17,4 @@ if [ -z "$wallpaper" ]; then
     exit 1
 fi
 
-set-wallpaper "$wallpaper"
+set-wallpaper -w "$wallpaper"

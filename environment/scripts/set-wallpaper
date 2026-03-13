@@ -1,6 +1,23 @@
 #!/usr/bin/env bash
 
-wallpaper="$1"
+mode="dark"
+
+while getopts "w:d:" opt; do
+    case "$opt" in
+        w)
+            wallpaper="$OPTARG"
+            ;;
+        d)
+            if [ "$OPTARG" = "false" ]; then
+                mode="light"
+            fi
+            ;;
+        *)
+            echo "Usage: $0 [-w <wallpaper>] [-m <mode>]"
+            exit 1
+            ;;
+    esac
+done
 
 if [ -z "$wallpaper" ]; then
     if [ -z "$MY_NIX" ]; then
@@ -25,6 +42,6 @@ if [ -f "$wallpaper" ]; then
         noctalia-shell ipc call wallpaper set "$wallpaper" all
     fi
     if command -v matugen &> /dev/null; then
-        matugen image "$wallpaper" -t "scheme-tonal-spot" -m "dark" --source-color-index 0 &> /dev/null
+        matugen image "$wallpaper" -t "scheme-tonal-spot" -m "$mode" --source-color-index 0 &> /dev/null
     fi
 fi
