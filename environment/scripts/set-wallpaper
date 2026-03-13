@@ -2,14 +2,16 @@
 
 mode="dark"
 
-while getopts "w:d:" opt; do
+while getopts "w:m:" opt; do
     case "$opt" in
         w)
             wallpaper="$OPTARG"
             ;;
-        d)
-            if [ "$OPTARG" = "false" ]; then
-                mode="light"
+        m)
+            mode="$OPTARG"
+            if [ "$mode" != "dark" ] && [ "$mode" != "light" ]; then
+                echo "Invalid mode: $mode"
+                exit 1
             fi
             ;;
         *)
