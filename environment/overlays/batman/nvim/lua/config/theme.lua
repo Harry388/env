@@ -1,1 +1,1 @@
-vim.cmd("colorscheme everforest")
+vim.opt.termguicolors = false
