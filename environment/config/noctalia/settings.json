@@ -160,6 +160,9 @@
                     ]
                 },
                 {
+                    "id": "plugin:tailscale"
+                },
+                {
                     "compactMode": true,
                     "diskPath": "/",
                     "iconColor": "none",
