@@ -27,10 +27,6 @@ input {
 layout {
     gaps 8
 
-    struts {
-        top -5
-    }
-
     center-focused-column "on-overflow"
     always-center-single-column
 
@@ -54,7 +50,7 @@ layout {
     shadow {
         on
         softness 30
-        spread 5
+        spread 10
         offset x=0 y=5
         color "#0007"
     }
@@ -91,6 +87,12 @@ window-rule {
 layer-rule {
     match namespace="^noctalia-overview*"
     place-within-backdrop true
+}
+
+layer-rule {
+    background-effect {
+        xray false
+    }
 }
 
 overview {
