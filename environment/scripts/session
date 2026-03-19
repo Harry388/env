@@ -14,7 +14,12 @@ else
     dir="$1"
 fi
 
-name=$(basename "$dir")
+if [ -d "$dir" ]; then
+    name=$(basename "$dir")
+else
+    name="$dir"
+    dir=$(pwd)
+fi
 
 open () {
     if [ -n "$TMUX" ]; then
