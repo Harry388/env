@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+profiles="$(grep "Name=" < "$HOME/.mozilla/firefox/profiles.ini" | awk "-F=" '{print $2}')"
+
+profile="$(echo "$profiles" | selector)"
+
+if [ -n "$profile" ]; then
+    firefox -P "$profile"
+fi
