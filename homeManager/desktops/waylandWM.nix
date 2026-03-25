@@ -41,6 +41,7 @@ in util.mkModule {
         networkmanagerapplet
         matugen
         vicinae
+        waypipe
     ] ++ [
         flameshot
         inputs.wooz.packages.${pkgs.stdenv.hostPlatform.system}.default
