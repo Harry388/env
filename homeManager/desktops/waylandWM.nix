@@ -42,6 +42,7 @@ in util.mkModule {
         matugen
         vicinae
         waypipe
+        weylus
     ] ++ [
         flameshot
         inputs.wooz.packages.${pkgs.stdenv.hostPlatform.system}.default

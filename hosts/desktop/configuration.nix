@@ -21,14 +21,11 @@
 
     defaultModules.enable = true;
 
-    networking.firewall = {
-        allowedTCPPorts = [ 1701 ];
-        allowedUDPPorts = [ 1701 ];
-    };
-
     memlock.enable = true;
 
     sunshine.enable = true;
+
+    openssh.enable = true;
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
