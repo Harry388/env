@@ -653,7 +653,7 @@
     },
     "wallpaper": {
         "automationEnabled": false,
-        "directory": "/home/harry/nix/wallpaper",
+        "directory": "/home/harry/env/wallpaper",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
         "favorites": [

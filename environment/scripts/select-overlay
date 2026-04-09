@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-if [ -z "$MY_NIX" ]; then
-    MY_NIX="$HOME/nix"
+if [ -z "$MY_ENV" ]; then
+    MY_ENV="$HOME/env"
 fi
 
 if [ -z "$MY_OVERLAYS" ]; then
-    MY_OVERLAYS="$MY_NIX/environment/overlays"
+    MY_OVERLAYS="$MY_ENV/environment/overlays"
 fi
 
 overlay_names="$(find "$MY_OVERLAYS" -maxdepth 1 -mindepth 1 -type d -exec basename {} \; | sort)"

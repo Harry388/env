@@ -5,7 +5,7 @@ searches=(
 )
 
 extras=(
-    "$HOME" "$HOME/nix"
+    "$HOME" "$HOME/env"
 )
 
 extras=$(echo "${extras[@]}" | tr ' ' '\n')

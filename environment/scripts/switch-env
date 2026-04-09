@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-if [ -z "$MY_NIX" ]; then
-    MY_NIX="$HOME/nix"
+if [ -z "$MY_ENV" ]; then
+    MY_ENV="$HOME/env"
 fi
 
 if [ -z "$XDG_CONFIG_HOME" ]; then
@@ -9,7 +9,7 @@ if [ -z "$XDG_CONFIG_HOME" ]; then
 fi
 
 if [ -z "$MY_CONFIG" ]; then
-    MY_CONFIG="$MY_NIX/environment/config"
+    MY_CONFIG="$MY_ENV/environment/config"
 fi
 
 if [ -z "$SCRIPTS_HOME" ]; then
@@ -17,11 +17,11 @@ if [ -z "$SCRIPTS_HOME" ]; then
 fi
 
 if [ -z "$MY_SCRIPTS" ]; then
-    MY_SCRIPTS="$MY_NIX/environment/scripts"
+    MY_SCRIPTS="$MY_ENV/environment/scripts"
 fi
 
 if [ -z "$MY_HOSTS" ]; then
-    MY_HOSTS="$MY_NIX/environment/hosts"
+    MY_HOSTS="$MY_ENV/environment/hosts"
 fi
 
 if [ -z "$HOST" ]; then
@@ -29,7 +29,7 @@ if [ -z "$HOST" ]; then
 fi
 
 if [ -z "$MY_OVERLAYS" ]; then
-    MY_OVERLAYS="$MY_NIX/environment/overlays"
+    MY_OVERLAYS="$MY_ENV/environment/overlays"
 fi
 
 if [ -z "$OVERLAY" ]; then

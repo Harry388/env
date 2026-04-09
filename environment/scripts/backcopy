@@ -4,12 +4,16 @@ if [ -z "$XDG_CONFIG_HOME" ]; then
     XDG_CONFIG_HOME="$HOME/.config"
 fi
 
+if [ -z "$MY_ENV" ]; then
+    MY_ENV="$HOME/env"
+fi
+
 if [ -z "$MY_CONFIG" ]; then
-    MY_CONFIG="$HOME/nix/environment/config"
+    MY_CONFIG="$MY_ENV/environment/config"
 fi
 
 if [ -z "$MY_OVERLAYS" ]; then
-    MY_OVERLAYS="$HOME/nix/environment/overlays"
+    MY_OVERLAYS="$MY_ENV/environment/overlays"
 fi
 
 if [ -z "$HOST" ]; then
