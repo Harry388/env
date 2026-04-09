@@ -307,9 +307,7 @@
                     "id": "Bluetooth"
                 },
                 {
-                    "defaultSettings": {
-                    },
-                    "id": "plugin:kde-connect"
+                    "id": "AirplaneMode"
                 }
             ],
             "right": [
