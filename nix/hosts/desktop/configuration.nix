@@ -10,6 +10,8 @@
 
     flake.nixosModules.desktop = { pkgs, ... }: {
 
+        networking.hostName = "desktop";
+
         home-manager = {
             extraSpecialArgs = { inherit inputs; };
             users.harry = { ... }: {

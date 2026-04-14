@@ -10,6 +10,8 @@
 
     flake.nixosModules.pi = {
 
+        networking.hostName = "pi";
+
         home-manager = {
             extraSpecialArgs = { inherit inputs; };
             users.harry = { ... }: {
