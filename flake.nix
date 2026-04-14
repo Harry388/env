@@ -4,6 +4,10 @@
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+        import-tree.url = "github:vic/import-tree";
+
+        flake-parts.url = "github:hercules-ci/flake-parts";
+
         home-manager = {
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -46,16 +50,10 @@
         };
     };
 
-    outputs = inputs:
-    let
-        util = import ./util.nix { inherit inputs; };
-    in
-    with util; {
-        nixosConfigurations = {
-            laptop = mkSystem "laptop";
-            oldlaptop = mkSystem "oldlaptop";
-            desktop = mkSystem "desktop";
-            pi = mkSystem "pi";
-        };
+    outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+        imports = [
+            (inputs.import-tree ./nix)
+            inputs.home-manager.flakeModules.home-manager
+        ];
     };
 }
