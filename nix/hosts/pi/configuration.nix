@@ -8,7 +8,7 @@
         ];
     };
 
-    flake.nixosModules.pi = {
+    flake.nixosModules.pi = { lib, ... }: {
 
         networking.hostName = "pi";
 
@@ -42,6 +42,8 @@
             grub.enable = false;
             generic-extlinux-compatible.enable = true;
         };
+
+        hardware.graphics.enable = lib.mkForce false;
 
         services.getty.autologinUser = "harry";
 
