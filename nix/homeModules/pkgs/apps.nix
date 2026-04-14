@@ -39,6 +39,7 @@
             warehouse
             mysql-workbench
             xournalpp
+            rpi-imager
         ] ++ [
             inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
