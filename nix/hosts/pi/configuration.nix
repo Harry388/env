@@ -8,7 +8,7 @@
         ];
     };
 
-    flake.nixosModules.pi = { lib, ... }: {
+    flake.nixosModules.pi = { lib, pkgs, ... }: {
 
         networking.hostName = "pi";
 
@@ -38,10 +38,22 @@
             self.nixosModules.homeManager
         ];
 
-        boot.loader = {
-            grub.enable = false;
-            generic-extlinux-compatible.enable = true;
+        boot = {
+            kernelPackages = pkgs.linuxPackages_rpi4;
+            tmp.useTmpfs = true;
+            kernelParams = [
+                "console=ttyS0,115200n8"
+                "console=ttyAMA0,115200n8"
+                "console=tty0"
+            ];
+            loader = {
+                grub.enable = false;
+                generic-extlinux-compatible.enable = true;
+            };
         };
+
+        hardware.enableRedistributableFirmware = true;
+        powerManagement.cpuFreqGovernor = "ondemand";
 
         hardware.graphics.enable = lib.mkForce false;
 
