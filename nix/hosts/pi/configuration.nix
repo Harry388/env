@@ -36,6 +36,7 @@
             self.nixosModules.keyring
             self.nixosModules.tailscale
             self.nixosModules.homeManager
+            self.nixosModules.backupServer
         ];
 
         boot = {

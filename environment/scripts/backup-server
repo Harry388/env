@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+
+run_clean=0
+
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --clean)
+            run_clean=1
+            shift
+            ;;
+        *)
+            echo "Unknown option: $1"
+            exit 1
+            ;;
+    esac
+done
+
+# immich
+
+immich_backup () {
+    echo "Backing up immich..."
+    now="$(date +%Y-%m-%d_%H-%M-%S)"
+    tar czf "$HOME/sync/server-backups/immich/immich_$now.tar.gz" -C "$HOME/immich" "docker-compose.yml" ".env" "library"
+}
+
+immich_clean () {
+    echo "Cleaning immich..."
+    find "$HOME/sync/server-backups/immich" -type f -mtime +2 -exec rm {} \;
+}
+
+immich_stop_server () {
+    echo "Stopping immich..."
+    pushd "$HOME/immich" > /dev/null
+    docker compose stop
+    popd > /dev/null
+}
+
+immich_start_server () {
+    echo "Starting immich..."
+    pushd "$HOME/immich" > /dev/null
+    docker compose up -d
+    popd > /dev/null
+}
+
+# navidrome
+
+navidrome_backup () {
+    echo "Backing up navidrome..."
+    now="$(date +%Y-%m-%d_%H-%M-%S)"
+    tar czf "$HOME/sync/server-backups/navidrome/navidrome_$now.tar.gz" -C "$HOME/navidrome" "docker-compose.yml" "music" "data"
+}
+
+navidrome_clean () {
+    echo "Cleaning navidrome..."
+    find "$HOME/sync/server-backups/navidrome" -type f -mtime +2 -exec rm {} \;
+}
+
+navidrome_stop_server () {
+    echo "Stopping navidrome..."
+    pushd "$HOME/navidrome" > /dev/null
+    docker compose stop
+    popd > /dev/null
+}
+
+navidrome_start_server () {
+    echo "Starting navidrome..."
+    pushd "$HOME/navidrome" > /dev/null
+    docker compose up -d
+    popd > /dev/null
+}
+
+# all
+
+backup () {
+    immich_backup
+    navidrome_backup
+}
+
+clean () {
+    immich_clean
+    navidrome_clean
+}
+
+stop_servers () {
+    immich_stop_server
+    navidrome_stop_server
+}
+
+start_servers () {
+    immich_start_server
+    navidrome_start_server
+}
+
+stop_servers
+
+backup
+
+if [ "$run_clean" -ne 0 ]; then
+    clean
+fi
+
+start_servers
