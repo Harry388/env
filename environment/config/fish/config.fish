@@ -49,10 +49,6 @@ if command -v fzf &>/dev/null
     fzf --fish | source
 end
 
-#if command -v niri &> /dev/null && command -v auto-niri &> /dev/null
-#    auto-niri
-#end
-
 function nix_shell_on_variable_pwd --on-variable PWD
     if command -v nix &>/dev/null && test -f "flake.nix" && test -z "$IN_NIX_SHELL" && grep devShells "$PWD/flake.nix" &>/dev/null
         nix develop --command fish
