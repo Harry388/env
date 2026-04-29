@@ -6,6 +6,8 @@
             enable = true;
             settings = {
                 bigclock = "en";
+                numlock = true;
+                xinitrc = null;
             };
         };
 
