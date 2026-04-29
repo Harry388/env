@@ -35,7 +35,6 @@
             caddy
             go-task
             jujutsu
-            elinks
             smartmontools
             chafa
             opencode

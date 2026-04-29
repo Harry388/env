@@ -4,7 +4,6 @@
     flake.nixosModules.niri = { pkgs, ... }: {
 
         programs.niri.enable = true;
-        programs.niri.package = inputs.niri-blur.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
         programs.xwayland.enable = true;
 

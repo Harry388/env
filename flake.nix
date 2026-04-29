@@ -2,7 +2,8 @@
     description = "Nixos config flake";
 
     inputs = {
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+        # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+        nixpkgs.url = "github:nixos/nixpkgs/d733bdc3007fe767f912f18b05651369539dc368";
 
         import-tree.url = "github:vic/import-tree";
 
@@ -41,11 +42,6 @@
 
         spicetify-nix = {
             url = "github:Gerg-L/spicetify-nix";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
-        niri-blur = {
-            url = "github:niri-wm/niri/main";
             inputs.nixpkgs.follows = "nixpkgs";
         };
     };
