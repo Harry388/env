@@ -10,6 +10,8 @@
 
     flake.nixosModules.desktop = { pkgs, ... }: {
 
+        boot.binfmt.emulatedSystems = [ "aarch64-linux" ]; # for cross-compiling
+
         networking.hostName = "desktop";
 
         home-manager = {
