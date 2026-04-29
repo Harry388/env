@@ -16,6 +16,8 @@
             self.nixosModules.vial
 
             self.nixosModules.niri
+
+            self.nixosModules.ly
         ];
 
     };
