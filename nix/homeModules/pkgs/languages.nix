@@ -25,6 +25,20 @@
             php83Packages.composer
             laravel
             lua
+
+            rust-analyzer
+            rustc
+            gopls
+            vtsls
+            vue-language-server
+            tailwindcss-language-server
+            superhtml
+            emmet-ls
+            zls
+            elixir-ls
+            bash-language-server
+            fish-lsp
+            intelephense
         ];
         
     };

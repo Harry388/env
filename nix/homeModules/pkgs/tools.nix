@@ -5,6 +5,7 @@
         home.packages = with pkgs; [
             tmux
             neovim
+            luaPackages.tree-sitter-cli
             yazi
             air
             neocities
