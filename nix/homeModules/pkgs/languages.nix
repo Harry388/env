@@ -11,7 +11,6 @@
             zig_0_15
             mysql84
             typescript
-            typescript-language-server
             nodejs_22
             bun
             jdk
@@ -28,6 +27,7 @@
 
             rust-analyzer
             rustc
+            typescript-language-server
             gopls
             vtsls
             vue-language-server
