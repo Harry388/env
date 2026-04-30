@@ -5,7 +5,7 @@
 
     flake.homeModules.waylandWM = { pkgs, inputs, ... }:
         let
-            flameshot = pkgs.flameshot.override {
+            flameshot = inputs.nixpkgs-13_03_2026.legacyPackages.${pkgs.stdenv.hostPlatform.system}.flameshot.override {
                 enableWlrSupport = true;
             };
         in

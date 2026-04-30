@@ -5,6 +5,8 @@
         # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         nixpkgs.url = "github:nixos/nixpkgs/d733bdc3007fe767f912f18b05651369539dc368";
 
+        nixpkgs-13_03_2026.url = "github:nixos/nixpkgs/fe416aaedd397cacb33a610b33d60ff2b431b127";
+
         import-tree.url = "github:vic/import-tree";
 
         flake-parts.url = "github:hercules-ci/flake-parts";
