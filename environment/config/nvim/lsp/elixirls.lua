@@ -32,6 +32,7 @@
 
 ---@type vim.lsp.Config
 return {
+  executable = 'elixir-ls',
   cmd = { 'elixir-ls' },
   filetypes = { 'elixir', 'eelixir', 'heex', 'surface' },
   root_dir = function(bufnr, on_dir)

@@ -75,6 +75,7 @@
 
 ---@type vim.lsp.Config
 return {
+  executable = 'typescript-language-server',
   init_options = { hostInfo = 'neovim' },
   cmd = function(dispatchers, config)
     local cmd = 'typescript-language-server'

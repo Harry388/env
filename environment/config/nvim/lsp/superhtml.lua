@@ -18,6 +18,7 @@
 
 ---@type vim.lsp.Config
 return {
+  executable = 'superhtml',
   cmd = { 'superhtml', 'lsp' },
   filetypes = { 'superhtml', 'html' },
   root_markers = { '.git' },

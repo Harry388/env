@@ -20,6 +20,7 @@
 
 ---@type vim.lsp.Config
 return {
+  executable = 'vue-language-server',
   cmd = { 'vue-language-server', '--stdio' },
   filetypes = { 'vue' },
   root_markers = { 'package.json' },

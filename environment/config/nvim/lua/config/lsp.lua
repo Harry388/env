@@ -1,4 +1,4 @@
-vim.lsp.enable({
+local lsps = {
     "rust_analyzer",
     "gopls",
     -- "ts_ls",
@@ -13,7 +13,14 @@ vim.lsp.enable({
     "intelephense",
     "gleam",
     "emmet_ls",
-})
+}
+
+-- NOTE: executable property on lsp config is not standard in neovim
+for _, lsp in ipairs(lsps) do
+    if vim.fn.executable(vim.lsp.config[lsp].executable) == 1 then
+        vim.lsp.enable(lsp)
+    end
+end
 
 -- local vue_plugin = {
 --     name = '@vue/typescript-plugin',

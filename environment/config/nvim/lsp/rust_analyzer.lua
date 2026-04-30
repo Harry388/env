@@ -83,6 +83,7 @@ end
 
 ---@type vim.lsp.Config
 return {
+  executable = 'rust-analyzer',
   cmd = { 'rust-analyzer' },
   filetypes = { 'rust' },
   root_dir = function(bufnr, on_dir)

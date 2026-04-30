@@ -69,6 +69,7 @@
 
 ---@type vim.lsp.Config
 return {
+  executable = 'vtsls',
   cmd = { 'vtsls', '--stdio' },
   init_options = {
     hostInfo = 'neovim',

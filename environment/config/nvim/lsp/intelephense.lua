@@ -27,6 +27,7 @@
 
 ---@type vim.lsp.Config
 return {
+    executable = 'intelephense',
     cmd = { 'intelephense', '--stdio' },
     filetypes = { 'php' },
     root_markers = { '.git', 'composer.json' },

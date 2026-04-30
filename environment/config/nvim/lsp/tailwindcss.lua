@@ -10,6 +10,7 @@
 
 ---@type vim.lsp.Config
 return {
+  executable = 'tailwindcss-language-server',
   cmd = function(dispatchers, config)
     local cmd = 'tailwindcss-language-server'
     if (config or {}).root_dir then

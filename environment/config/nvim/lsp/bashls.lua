@@ -11,6 +11,7 @@
 
 ---@type vim.lsp.Config
 return {
+  executable = 'bash-language-server',
   cmd = { 'bash-language-server', 'start' },
   ---@type lspconfig.settings.bashls
   settings = {

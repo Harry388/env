@@ -9,6 +9,7 @@
 
 ---@type vim.lsp.Config
 return {
+  executable = 'emmet-ls',
   cmd = { 'emmet-ls', '--stdio' },
   filetypes = {
     'astro',
