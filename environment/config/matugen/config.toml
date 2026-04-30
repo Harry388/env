@@ -1,5 +1,9 @@
 [config]
 
+[templates.ghostty]
+input_path = "~/.config/matugen/templates/ghostty/matugen"
+output_path = "~/.config/ghostty/matugen"
+
 [templates.noctalia]
 input_path = "~/.config/matugen/templates/noctalia/noctalia.json"
 output_path = "~/.config/noctalia/colors.json"
