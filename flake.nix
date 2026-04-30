@@ -7,6 +7,8 @@
 
         nixpkgs-13_03_2026.url = "github:nixos/nixpkgs/fe416aaedd397cacb33a610b33d60ff2b431b127";
 
+        nixpkgs-27_04_2026.url = "github:nixos/nixpkgs/1c3fe55ad329cbcb28471bb30f05c9827f724c76";
+
         import-tree.url = "github:vic/import-tree";
 
         flake-parts.url = "github:hercules-ci/flake-parts";

@@ -1,3 +1,5 @@
+{ inputs, ... }:
+
 {
 
     flake.homeModules.tools = { pkgs, ... }: {
@@ -37,8 +39,9 @@
             jujutsu
             smartmontools
             chafa
-            opencode
             ffmpeg
+        ] ++ [
+            inputs.nixpkgs-27_04_2026.legacyPackages.${pkgs.stdenv.hostPlatform.system}.opencode
         ];
 
     };
