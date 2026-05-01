@@ -24,6 +24,11 @@
                     # self.homeModules.languages
                     self.homeModules.tools
                 ];
+
+                home.packages = with pkgs; [
+                    gcc
+                ];
+
                 home.stateVersion = "23.11"; # Don't change
             };
         };
