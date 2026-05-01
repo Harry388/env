@@ -31,6 +31,8 @@
         imports = [
             self.nixosModules.harry
 
+            inputs.nixos-hardware.nixosModules.raspberry-pi-4
+
             self.nixosModules.base
             self.nixosModules.gvfs
             self.nixosModules.keyring
