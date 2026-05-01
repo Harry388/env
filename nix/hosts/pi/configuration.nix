@@ -21,7 +21,7 @@
                     self.homeModules.switchEnv
                     self.homeModules.syncthing
 
-                    self.homeModules.languages
+                    # self.homeModules.languages
                     self.homeModules.tools
                 ];
                 home.stateVersion = "23.11"; # Don't change
@@ -40,7 +40,6 @@
         ];
 
         boot = {
-            kernelPackages = pkgs.linuxPackages_rpi4;
             tmp.useTmpfs = true;
             kernelParams = [
                 "console=ttyS0,115200n8"
