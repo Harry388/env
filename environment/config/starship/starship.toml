@@ -40,12 +40,16 @@ read_only = " 󰌾"
 [git_commit]
 tag_symbol = '  '
 
+[username]
+format = '[$user]($style) '
+
 [hostname]
 ssh_symbol = " "
+format = '[$ssh_symbol$hostname]($style) '
 
 [nix_shell]
 symbol = " "
-format = 'via [$symbol$state]($style) '
+format = '[$symbol$state]($style) '
 
 [os.symbols]
 Alpaquita = " "
