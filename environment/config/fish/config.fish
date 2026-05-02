@@ -10,12 +10,14 @@ if command -v ghostty &>/dev/null
     set -x TERMINAL ghostty
 end
 
+if command -v session &>/dev/null
+    bind ctrl-s session
+end
+
 set -x QT_QPA_PLATFORMTHEME gtk3
 
 if test -e "$HOME/.local/scripts"
     fish_add_path "$HOME/.local/scripts"
-    bind ctrl-f find-session
-    bind ctrl-s search-session
 end
 
 bind ctrl-space accept-autosuggestion

@@ -87,7 +87,12 @@ do
     move "$config" "$XDG_CONFIG_HOME/$base"
 done
 
-chmod -R +x "$XDG_CONFIG_HOME/sessions"
+if [ -f "$XDG_CONFIG_HOME/session/default-session" ]; then
+    chmod +x "$XDG_CONFIG_HOME/session/default-session"
+fi
+if [ -d "$XDG_CONFIG_HOME/session/scripts" ]; then
+    chmod -R +x "$XDG_CONFIG_HOME/session/scripts"
+fi
 
 cp "$MY_CONFIG/zshrc" "$HOME/.zshrc"
 cp "$MY_CONFIG/bashrc" "$HOME/.bashrc"

@@ -1,0 +1,10 @@
+{
+	"searchPaths": [
+        "~/dev/*",
+        "~/work/*"
+	],
+	"includePaths": [
+        "~/env",
+        "~"
+	]
+}

@@ -18,6 +18,24 @@
         "type": "github"
       }
     },
+    "flake-parts_2": {
+      "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib_2"
+      },
+      "locked": {
+        "lastModified": 1777678872,
+        "narHash": "sha256-EPIFsulyon7Z1vLQq5Fk64GR8L7cQsT+IPhcsukVbgk=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "5250617bffd85403b14dbf43c3870e7f255d2c16",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems_3"
@@ -171,6 +189,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-lib_2": {
+      "locked": {
+        "lastModified": 1777168982,
+        "narHash": "sha256-GOkGPcboWE9BmGCRMLX3worL4EMnsnG8MyKmXNeYuhQ=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "f5901329dade4a6ea039af1433fb087bd9c1fe14",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
     "noctalia": {
       "inputs": {
         "nixpkgs": [
@@ -227,6 +260,7 @@
         "nixpkgs-27_04_2026": "nixpkgs-27_04_2026",
         "noctalia": "noctalia",
         "noctalia-qs": "noctalia-qs",
+        "session": "session",
         "spicetify-nix": "spicetify-nix",
         "wooz": "wooz",
         "xwaylandSatellite": "xwaylandSatellite",
@@ -251,6 +285,27 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "session": {
+      "inputs": {
+        "flake-parts": "flake-parts_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1777738077,
+        "narHash": "sha256-TVXGuypaKatzbLR0KEaWprIM0K6wzPmYGJztDtu0Kj4=",
+        "owner": "harry388",
+        "repo": "session",
+        "rev": "93932ca89bf4818cfe5bc3c805e5347700584e75",
+        "type": "github"
+      },
+      "original": {
+        "owner": "harry388",
+        "repo": "session",
         "type": "github"
       }
     },

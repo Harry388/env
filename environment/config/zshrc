@@ -8,14 +8,14 @@ if command -v ghostty &> /dev/null; then
     export TERMINAL="ghostty"
 fi
 
+if command -v session &> /dev/null && [[ $- = *i* ]]; then
+    bind 'control-s:"session\n"'
+fi
+
 export QT_QPA_PLATFORMTHEME="gtk3"
 
 if [ -e "$HOME/.local/scripts" ]; then
     export PATH="$PATH:$HOME/.local/scripts"
-    if [[ $- = *i* ]]; then
-        bindkey -s "^F" 'find-session^M'
-        bindkey -s "^S" 'search-session^M'
-    fi
 fi
 
 alias clear="clear -x"

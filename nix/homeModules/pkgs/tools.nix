@@ -42,6 +42,7 @@
             ffmpeg
         ] ++ [
             inputs.nixpkgs-27_04_2026.legacyPackages.${pkgs.stdenv.hostPlatform.system}.opencode
+            inputs.session.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
 
     };

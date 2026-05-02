@@ -50,6 +50,11 @@
             url = "github:Gerg-L/spicetify-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        session = {
+            url = "github:harry388/session";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {
