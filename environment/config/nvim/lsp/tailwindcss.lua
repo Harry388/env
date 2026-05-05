@@ -88,6 +88,7 @@ return {
   ---@type lspconfig.settings.tailwindcss
   settings = {
     tailwindCSS = {
+      colorDecorators = false,
       validate = true,
       lint = {
         cssConflict = 'warning',
