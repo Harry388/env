@@ -1,9 +1,9 @@
 local lsps = {
     "rust_analyzer",
     "gopls",
+    "vtsls",
     -- "ts_ls",
-    -- "vue_ls",
-    -- "vtsls",
+    "vue_ls",
     "tailwindcss",
     "superhtml",
     "zls",
@@ -21,25 +21,6 @@ for _, lsp in ipairs(lsps) do
         vim.lsp.enable(lsp)
     end
 end
-
--- local vue_plugin = {
---     name = '@vue/typescript-plugin',
---     location = "",
---     languages = { 'vue' },
---     configNamespace = 'typescript',
--- }
--- vim.lsp.config('vtsls', {
---     settings = {
---         vtsls = {
---             tsserver = {
---                 globalPlugins = {
---                     vue_plugin,
---                 },
---             },
---         },
---     },
---     filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
--- })
 
 vim.diagnostic.config({
     virtual_text = true,

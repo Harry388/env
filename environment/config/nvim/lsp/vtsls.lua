@@ -79,6 +79,21 @@ return {
     'javascriptreact',
     'typescript',
     'typescriptreact',
+    'vue',
+  },
+  settings = {
+      vtsls = {
+          tsserver = {
+              globalPlugins = {
+                {
+                  name = '@vue/typescript-plugin',
+                  location = vim.fn.expand('~/.nix-profile/lib/language-tools/packages/language-server'),
+                  languages = { 'vue' },
+                  configNamespace = 'typescript',
+                }
+              },
+          },
+      },
   },
   root_dir = function(bufnr, on_dir)
     -- The project root is where the LSP can be started from

@@ -76,7 +76,17 @@
 ---@type vim.lsp.Config
 return {
   executable = 'typescript-language-server',
-  init_options = { hostInfo = 'neovim' },
+  init_options = {
+      hostInfo = 'neovim',
+      plugins = {
+        {
+           name = '@vue/typescript-plugin',
+           location = vim.fn.expand('~/.nix-profile/lib/language-tools/packages/language-server'),
+           languages = { 'vue' },
+           configNamespace = 'typescript',
+        },
+      },
+  },
   cmd = function(dispatchers, config)
     local cmd = 'typescript-language-server'
     if (config or {}).root_dir then
@@ -92,6 +102,7 @@ return {
     'javascriptreact',
     'typescript',
     'typescriptreact',
+    'vue',
   },
   root_dir = function(bufnr, on_dir)
     -- The project root is where the LSP can be started from
