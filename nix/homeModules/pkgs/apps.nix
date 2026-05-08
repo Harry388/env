@@ -49,6 +49,7 @@
             mysql-workbench
             xournalpp
             rpi-imager
+            feishin
         ] ++ [
             inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
