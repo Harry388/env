@@ -46,7 +46,3 @@ if command -v fzf &> /dev/null; then
       --prompt="> " --marker=">" --pointer="◆" --separator="─" --scrollbar="│"'
     eval "$(fzf --bash)"
 fi
-
-if command -v niri &> /dev/null && command -v auto-niri &> /dev/null; then
-    auto-niri
-fi
