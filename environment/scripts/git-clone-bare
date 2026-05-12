@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+repo="$1"
+
+if [ -z "$repo" ]; then
+    echo "Usage: $0 <repo> [<dir>]"
+    exit 1
+fi
+
+dir="$2"
+
+if [ -z "$dir" ]; then
+    dir="$(basename "$repo")"
+fi
+
+if [ -d "$dir" ]; then
+    echo "Directory '$dir' already exists"
+    exit 1
+fi
+
+if ! git clone --bare "$repo" "$dir"; then
+    echo "Failed to clone repository"
+    exit 1
+fi
+
+cd "$dir" || exit 1
+git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+git fetch origin
+cd - || exit 1
