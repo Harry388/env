@@ -3,3 +3,5 @@ require("config.set")
 require("config.lazy_init")
 require("config.theme")
 require("config.lsp")
+
+require("config.session")
