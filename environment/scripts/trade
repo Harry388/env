@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
 gen () {
-    gen-trade "$1" "$2"
-    if [ "$?" = 0 ]; then
-        mdp trade.md --nofade
+    if gen-trade "$1" "$2"; then
+        mdp trade.md --fade
     fi
 }
 

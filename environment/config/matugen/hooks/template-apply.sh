@@ -238,14 +238,6 @@ cava)
             echo 'theme = "noctalia"' >>"$CONFIG_FILE"
             THEME_MODIFIED=true
         fi
-
-        # Reload cava if it's running, but only if it's not using stdin config
-        if pgrep -f cava >/dev/null; then
-            # Check if Cava is running with -p /dev/stdin (managed by CavaService)
-            if ! pgrep -af cava | grep -q -- "-p.*stdin"; then
-                pkill -USR1 cava
-            fi
-        fi
     else
         echo "Error: cava config file not found at $CONFIG_FILE" >&2
         exit 1

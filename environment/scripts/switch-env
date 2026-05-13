@@ -67,7 +67,6 @@ apply-overlay () {
 }
 
 vicinae_running=$(pgrep vicinae)
-ghostty_running=$(pgrep ghostty)
 noctalia_running=$(command -v noctalia-shell > /dev/null && noctalia-shell list | grep "Process ID" | awk '/Process ID: [0-9]+/ {print $3}')
 
 if [ -n "$vicinae_running" ]; then
@@ -83,7 +82,7 @@ chmod -R +x "$SCRIPTS_HOME"
 
 for config in $(find "$MY_CONFIG" -maxdepth 1 -mindepth 1 -type d);
 do
-    base=$(basename $config)
+    base=$(basename "$config")
     move "$config" "$XDG_CONFIG_HOME/$base"
 done
 
@@ -108,8 +107,4 @@ if [ -n "$vicinae_running" ]; then
     vicinae server &> /dev/null &
 fi
 
-set-theme
-
-if [ -n "$ghostty_running" ]; then
-    systemctl reload --user app-com.mitchellh.ghostty.service
-fi
+"$SCRIPTS_HOME/set-theme"
