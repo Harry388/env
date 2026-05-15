@@ -4,12 +4,7 @@
 {
 
     flake.homeModules.waylandWM = { pkgs, inputs, ... }:
-        let
-            flameshot = inputs.nixpkgs-13_03_2026.legacyPackages.${pkgs.stdenv.hostPlatform.system}.flameshot.override {
-                enableWlrSupport = true;
-            };
-        in
-        {
+    {
 
         home.pointerCursor = {
             gtk.enable = true;
@@ -46,8 +41,8 @@
             vicinae
             waypipe
             weylus
-        ] ++ [
             flameshot
+        ] ++ [
             inputs.wooz.packages.${pkgs.stdenv.hostPlatform.system}.default
             inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];

@@ -4,8 +4,6 @@
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-        nixpkgs-13_03_2026.url = "github:nixos/nixpkgs/fe416aaedd397cacb33a610b33d60ff2b431b127";
-
         import-tree.url = "github:vic/import-tree";
 
         flake-parts.url = "github:hercules-ci/flake-parts";
