@@ -19,7 +19,6 @@
                     self.homeModules.harry
 
                     self.homeModules.switchEnv
-                    self.homeModules.syncthing
 
                     # self.homeModules.languages
                     self.homeModules.tools
@@ -44,6 +43,8 @@
             self.nixosModules.tailscale
             self.nixosModules.homeManager
             self.nixosModules.backupServer
+
+            self.nixosModules.syncthing
         ];
 
         boot = {
@@ -64,7 +65,7 @@
 
         hardware.graphics.enable = lib.mkForce false;
 
-        services.getty.autologinUser = "harry";
+        services.syncthing.user = "harry";
 
         # This value determines the NixOS release from which the default
         # settings for stateful data, like file locations and database versions

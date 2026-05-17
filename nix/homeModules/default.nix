@@ -7,7 +7,6 @@
         imports = [
             self.homeModules.spicetify
             self.homeModules.switchEnv
-            self.homeModules.syncthing
 
             self.homeModules.waylandWM
 

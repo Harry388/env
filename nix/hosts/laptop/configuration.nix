@@ -31,6 +31,8 @@
             self.nixosModules.battery
         ];
 
+        services.syncthing.user = "harry";
+
         boot.loader = {
             efi.canTouchEfiVariables = true;
             systemd-boot.enable = true;

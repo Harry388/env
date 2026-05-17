@@ -18,6 +18,8 @@
             self.nixosModules.niri
 
             self.nixosModules.ly
+
+            self.nixosModules.syncthing
         ];
 
     };

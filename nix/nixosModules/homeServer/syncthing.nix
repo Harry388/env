@@ -1,6 +1,6 @@
 {
 
-    flake.homeModules.syncthing = { config, ... }: {
+    flake.nixosModules.syncthing = { config, ... }: {
 
         services.syncthing = {
             enable = true;
@@ -30,7 +30,7 @@
                 };
                 folders = {
                     sync = {
-                        path = "${config.home.homeDirectory}/sync";
+                        path = "${config.users.users.${config.services.syncthing.user}.home}/sync";
                         devices = [ "desktop" "laptop" "pi" ];
                     };
                 };
@@ -39,6 +39,8 @@
                     globalAnnounceEnabled = false;
                 };
             };
+            dataDir = config.users.users.${config.services.syncthing.user}.home;
+            configDir = "${config.services.syncthing.dataDir}/.local/state/syncthing";
         };
 
     };
