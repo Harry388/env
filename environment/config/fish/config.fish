@@ -52,6 +52,9 @@ if command -v fzf &>/dev/null
 end
 
 function nix_shell_on_variable_pwd --on-variable PWD
+    if test -n "$DISABLE_NIX_SHELL_ON_CD"
+        return
+    end
     if command -v nix &>/dev/null && test -f "flake.nix" && test -z "$IN_NIX_SHELL" && grep devShells "$PWD/flake.nix" &>/dev/null
         nix develop --command fish
     end
