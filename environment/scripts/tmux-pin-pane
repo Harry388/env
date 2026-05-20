@@ -3,7 +3,7 @@
 command="$1"
 
 if [ -z "$command" ] || ! { [ "$command" = "toggle" ] || [ "$command" = "sync" ] || [ "$command" = "resize" ]; }; then
-    echo "Usage: $0 <toggle|sync|resize>"
+    echo "Usage: $0 <toggle|sync|resize> [sync target]"
     exit 1
 fi
 
@@ -61,11 +61,16 @@ elif [ "$command" = "sync" ]; then
         rm "$session_file"
         exit 0
     fi
+    target="$2"
+    if [ -z "$target" ]; then
+        target="$pane_id"
+    fi
     pin_window_id=$(tmux display-message -t "$pin_pane" -p "#{window_id}")
-    if [ "$window_id" = "$pin_window_id" ]; then
+    target_window_id=$(tmux display-message -t "$target" -p "#{window_id}")
+    if [ "$target_window_id" = "$pin_window_id" ]; then
         exit 0
     fi
-    tmux join-pane -d -hb -s "$pin_pane" -t "$pane_id" -l "$width"
+    tmux join-pane -d -hb -s "$pin_pane" -t "$target" -l "$width"
 elif [ "$command" = "resize" ]; then
     if ! [ -f "$session_file" ]; then
         exit 0
