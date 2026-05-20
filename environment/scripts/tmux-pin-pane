@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+command="$1"
+
+if [ -z "$command" ] || ! { [ "$command" = "toggle" ] || [ "$command" = "sync" ] || [ "$command" = "resize" ]; }; then
+    echo "Usage: $0 <toggle|sync|resize>"
+    exit 1
+fi
+
+if [ -z "$XDG_STATE_HOME" ]; then
+    XDG_STATE_HOME="$HOME/.local/state"
+fi
+
+get_pane_width() {
+    pane_id="$1"
+    w_width=$(tmux display-message -t "$pane_id" -p "#{window_width}")
+    p_width=$(tmux display-message -t "$pane_id" -p "#{pane_width}")
+    echo "$(( (p_width * 100) / w_width ))%"
+}
+
+session=$(tmux display-message -p "#{session_name}")
+pane_id=$(tmux display-message -p "#{pane_id}")
+window_id=$(tmux display-message -p "#{window_id}")
+
+if [ -z "$pane_id" ] || [ -z "$session" ] || [ -z "$window_id" ]; then
+    exit 1
+fi
+
+session_file="$XDG_STATE_HOME/tmux-pin-pane/$session"
+
+if ! [ -d "$XDG_STATE_HOME/tmux-pin-pane" ]; then
+    mkdir -p "$XDG_STATE_HOME/tmux-pin-pane"
+fi
+
+if [ "$command" = "toggle" ]; then
+    if [ -f "$session_file" ]; then
+        read -r pin_pane < "$session_file"
+        if [ "$pane_id" = "$pin_pane" ]; then
+            rm "$session_file"
+            exit 0
+        fi
+    fi
+    if ! tmux join-pane -hb -s "$pane_id" -t "$window_id.0"; then
+        tmux join-pane -hb -s "$pane_id" -t "$window_id.1"
+    fi
+    sleep 0.5
+    width=$(get_pane_width "$pane_id")
+    if [ "$width" = "100%" ]; then
+        width="30%"
+    fi
+    echo -e "$pane_id\n$width" > "$session_file"
+elif [ "$command" = "sync" ]; then
+    if ! [ -f "$session_file" ]; then
+        exit 0
+    fi
+    {
+        read -r pin_pane
+        read -r width
+    } < "$session_file"
+    if ! tmux has-session -t "$pin_pane"; then
+        rm "$session_file"
+        exit 0
+    fi
+    pin_window_id=$(tmux display-message -t "$pin_pane" -p "#{window_id}")
+    if [ "$window_id" = "$pin_window_id" ]; then
+        exit 0
+    fi
+    tmux join-pane -d -hb -s "$pin_pane" -t "$pane_id" -l "$width"
+elif [ "$command" = "resize" ]; then
+    if ! [ -f "$session_file" ]; then
+        exit 0
+    fi
+    read -r pin_pane < "$session_file"
+    if ! tmux has-session -t "$pin_pane"; then
+        rm "$session_file"
+        exit 0
+    fi
+    sleep 0.5
+    width="$(get_pane_width "$pin_pane")"
+    if [ "$width" = "100%" ]; then
+        width="30%"
+    fi
+    echo -e "$pin_pane\n$width" > "$session_file"
+fi
