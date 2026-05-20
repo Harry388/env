@@ -63,7 +63,7 @@ elif [ "$command" = "sync" ]; then
     fi
     target="$2"
     if [ -z "$target" ]; then
-        target="$pane_id"
+        target="$window_id.{left}"
     fi
     pin_window_id=$(tmux display-message -t "$pin_pane" -p "#{window_id}")
     target_window_id=$(tmux display-message -t "$target" -p "#{window_id}")
