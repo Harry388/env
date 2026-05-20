@@ -12,6 +12,8 @@
 
         networking.hostName = "pi";
 
+        # nixpkgs.buildPlatform = "x86_64-linux"; # force system to be cross compiled from x86_64
+
         home-manager = {
             extraSpecialArgs = { inherit inputs; };
             users.harry = { ... }: {

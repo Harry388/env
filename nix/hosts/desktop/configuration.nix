@@ -10,7 +10,7 @@
 
     flake.nixosModules.desktop = { pkgs, ... }: {
 
-        boot.binfmt.emulatedSystems = [ "aarch64-linux" ]; # for cross-compiling
+        boot.binfmt.emulatedSystems = [ "aarch64-linux" ]; # qemu emulation as a fallback for cross compiling
 
         networking.hostName = "desktop";
 
