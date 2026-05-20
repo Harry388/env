@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+
+run_clean=0
+
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --clean)
+            run_clean=1
+            shift
+            ;;
+        *)
+            echo "Unknown option: $1"
+            exit 1
+            ;;
+    esac
+done
+
+services=("immich" "navidrome")
+declare -A service_dirs=(
+    [immich]="$HOME/immich"
+    [navidrome]="$HOME/navidrome"
+)
+declare -A service_backups=(
+    [immich]="docker-compose.yml .env library"
+    [navidrome]="docker-compose.yml .env music data"
+)
+
+backup_service () {
+    service="$1"
+    dir="${service_dirs[$service]}"
+    backups="${service_backups[$service]}"
+    echo "Backing up $service..."
+    now="$(date +%Y-%m-%d_%H-%M-%S)"
+    tar czf "$HOME/sync/server-backups/$service/${service}_$now.tar.gz" -C "$dir" $backups
+}
+
+clean_service () {
+    service="$1"
+    dir="${service_dirs[$service]}"
+    backups="${service_backups[$service]}"
+    echo "Cleaning $service..."
+    find "$HOME/sync/server-backups/$service" -type f -mtime +2 -exec rm {} \;
+}
+
+stop_service () {
+    service="$1"
+    dir="${service_dirs[$service]}"
+    echo "Stopping $service..."
+    pushd "$dir" > /dev/null || exit 1
+    docker compose stop
+    popd > /dev/null || exit 1
+}
+
+start_service () {
+    service="$1"
+    dir="${service_dirs[$service]}"
+    echo "Starting $service..."
+    pushd "$dir" > /dev/null || exit 1
+    docker compose up -d
+    popd > /dev/null || exit 1
+}
+
+
+backup () {
+    for service in "${services[@]}"; do
+        backup_service "$service"
+    done
+}
+
+clean () {
+    for service in "${services[@]}"; do
+        clean_service "$service"
+    done
+}
+
+stop_services () {
+    for service in "${services[@]}"; do
+        stop_service "$service"
+    done
+}
+
+start_services () {
+    for service in "${services[@]}"; do
+        start_service "$service"
+    done
+}
+
+stop_services
+
+backup
+
+if [ "$run_clean" -ne 0 ]; then
+    clean
+fi
+
+start_services
