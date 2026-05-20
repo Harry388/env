@@ -2,8 +2,8 @@
 
 command="$1"
 
-if [ -z "$command" ] || ! { [ "$command" = "toggle" ] || [ "$command" = "sync" ] || [ "$command" = "resize" ]; }; then
-    echo "Usage: $0 <toggle|sync|resize> [sync target]"
+if [ -z "$command" ] || ! { [ "$command" = "toggle" ] || [ "$command" = "sync" ] || [ "$command" = "resize" ] || [ "$command" = "test" ]; }; then
+    echo "Usage: $0 <toggle|sync|resize|test> [sync target]"
     exit 1
 fi
 
@@ -86,4 +86,10 @@ elif [ "$command" = "resize" ]; then
         width="30%"
     fi
     echo -e "$pin_pane\n$width" > "$session_file"
+elif [ "$command" = "test" ]; then
+    if [ -z "$TMUX" ] || [ ! -f "$session_file" ]; then
+        exit 1
+    fi
+    read -r pin_pane < "$session_file"
+    [ "$pin_pane" = "$pane_id" ]
 fi

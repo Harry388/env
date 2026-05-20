@@ -1,6 +1,7 @@
 add_newline = false
 
 format = """
+$custom\
 $username\
 $hostname\
 $localip\
@@ -21,6 +22,11 @@ $container\
 $netns\
 $shell\
 $character"""
+
+[custom.tmux-pin-pane]
+symbol = " "
+shell = "sh"
+when = 'tmux-pin-pane test'
 
 [character]
 success_symbol = '[➜](bold green)'
