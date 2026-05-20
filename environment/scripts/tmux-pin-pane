@@ -2,8 +2,8 @@
 
 command="$1"
 
-if [ -z "$command" ] || ! { [ "$command" = "toggle" ] || [ "$command" = "sync" ] || [ "$command" = "resize" ] || [ "$command" = "test" ]; }; then
-    echo "Usage: $0 <toggle|sync|resize|test> [sync target]"
+if [ -z "$command" ] || ! { [ "$command" = "toggle-pin" ] || [ "$command" = "toggle-display" ] || [ "$command" = "sync" ] || [ "$command" = "resize" ] || [ "$command" = "test" ]; }; then
+    echo "Usage: $(basename "$0") <toggle-pin|toggle-display|sync|resize|test> [sync target]"
     exit 1
 fi
 
@@ -32,7 +32,7 @@ if ! [ -d "$XDG_STATE_HOME/tmux-pin-pane" ]; then
     mkdir -p "$XDG_STATE_HOME/tmux-pin-pane"
 fi
 
-if [ "$command" = "toggle" ]; then
+if [ "$command" = "toggle-pin" ]; then
     if [ -f "$session_file" ]; then
         read -r pin_pane < "$session_file"
         if [ "$pane_id" = "$pin_pane" ]; then
@@ -40,15 +40,13 @@ if [ "$command" = "toggle" ]; then
             exit 0
         fi
     fi
-    if ! tmux join-pane -hb -s "$pane_id" -t "$window_id.0"; then
-        tmux join-pane -hb -s "$pane_id" -t "$window_id.1"
-    fi
+    tmux join-pane -hb -s "$pane_id" -t "$window_id.{left}"
     sleep 0.5
     width=$(get_pane_width "$pane_id")
     if [ "$width" = "100%" ]; then
         width="30%"
     fi
-    echo -e "$pane_id\n$width" > "$session_file"
+    echo -e "$pane_id\n$width\nshow" > "$session_file"
 elif [ "$command" = "sync" ]; then
     if ! [ -f "$session_file" ]; then
         exit 0
@@ -56,26 +54,43 @@ elif [ "$command" = "sync" ]; then
     {
         read -r pin_pane
         read -r width
+        read -r display
     } < "$session_file"
     if ! tmux has-session -t "$pin_pane"; then
         rm "$session_file"
         exit 0
     fi
-    target="$2"
-    if [ -z "$target" ]; then
-        target="$window_id.{left}"
+    detach="-d"
+    if [ "$display" = "show" ]; then
+        target="$2"
+        if [ -z "$target" ]; then
+            target="$window_id.{left}"
+        fi
+        if tmux has-session -t ":98"; then
+            tmux kill-pane -t ":98"
+            detach=""
+        fi
+    else
+        if ! tmux has-session -t ":98"; then
+            tmux neww -t ":98" -d
+        fi
+        target=":98"
     fi
     pin_window_id=$(tmux display-message -t "$pin_pane" -p "#{window_id}")
     target_window_id=$(tmux display-message -t "$target" -p "#{window_id}")
     if [ "$target_window_id" = "$pin_window_id" ]; then
         exit 0
     fi
-    tmux join-pane -d -hb -s "$pin_pane" -t "$target" -l "$width"
+    tmux join-pane $detach -hb -s "$pin_pane" -t "$target" -l "$width"
 elif [ "$command" = "resize" ]; then
     if ! [ -f "$session_file" ]; then
         exit 0
     fi
-    read -r pin_pane < "$session_file"
+    {
+        read -r pin_pane
+        read -r _
+        read -r display
+    } < "$session_file"
     if ! tmux has-session -t "$pin_pane"; then
         rm "$session_file"
         exit 0
@@ -85,7 +100,25 @@ elif [ "$command" = "resize" ]; then
     if [ "$width" = "100%" ]; then
         width="30%"
     fi
-    echo -e "$pin_pane\n$width" > "$session_file"
+    echo -e "$pin_pane\n$width\n$display" > "$session_file"
+elif [ "$command" = "toggle-display" ]; then
+    if ! [ -f "$session_file" ]; then
+        tmux split-window -hb -t "$window_id.{left}" -l "30%"
+        "$0" toggle-pin
+        exit 0
+    fi
+    {
+        read -r pin_pane
+        read -r width
+        read -r display
+    } < "$session_file"
+    if [ "$display" = "show" ]; then
+        display="hide"
+    else
+        display="show"
+    fi
+    echo -e "$pin_pane\n$width\n$display" > "$session_file"
+    "$0" sync
 elif [ "$command" = "test" ]; then
     if [ -z "$TMUX" ] || [ ! -f "$session_file" ]; then
         exit 1
