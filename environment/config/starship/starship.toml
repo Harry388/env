@@ -24,7 +24,7 @@ $shell\
 $character"""
 
 [custom.tmux-pin-pane]
-symbol = " "
+symbol = " "
 shell = "sh"
 when = 'tmux-pin-pane test'
 
