@@ -3,7 +3,7 @@
 command="$1"
 
 if [ -z "$command" ] || ! { [ "$command" = "toggle-pin" ] || [ "$command" = "toggle-display" ] || [ "$command" = "toggle-orientation" ] || [ "$command" = "sync" ] ||  [ "$command" = "test" ]; }; then
-    echo "Usage: $(basename "$0") <toggle-pin|toggle-display|toggle-orientation|sync|test> [sync target]"
+    echo "Usage: $(basename "$0") <toggle-pin|toggle-display|toggle-orientation|sync|test> [sync target window]"
     exit 1
 fi
 
@@ -54,11 +54,7 @@ sync_pane() {
     detach="-d"
     if [ "$display" = "show" ]; then
         if [ -z "$target" ]; then
-            if [ "$orientation" = "vertical" ]; then
-                target="$window_id.{bottom}"
-            else
-                target="$window_id.{left}"
-            fi
+            target="$window_id"
         fi
         if tmux has-session -t "$COLLAPSE_WINDOW"; then
             detach=""
@@ -68,11 +64,12 @@ sync_pane() {
             tmux neww -t "$COLLAPSE_WINDOW" -d
         fi
         target="$COLLAPSE_WINDOW"
-        if [ "$orientation" = "vertical" ]; then
-            target="$target.{bottom}"
-        else
-            target="$target.{left}"
-        fi
+    fi
+
+    if [ "$orientation" = "vertical" ]; then
+        target="$target.{bottom}"
+    else
+        target="$target.{left}"
     fi
 
     split="-v"
