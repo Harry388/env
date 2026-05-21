@@ -86,6 +86,11 @@ sync_pane() {
             tmux neww -t "$COLLAPSE_WINDOW" -d
         fi
         target="$COLLAPSE_WINDOW"
+        if [ "$orientation" = "vertical" ]; then
+            target="$target.{bottom}"
+        else
+            target="$target.{left}"
+        fi
     fi
     split="-v"
     if [ "$orientation" = "horizontal" ]; then
