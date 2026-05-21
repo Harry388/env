@@ -11,18 +11,110 @@ if [ -z "$XDG_STATE_HOME" ]; then
     XDG_STATE_HOME="$HOME/.local/state"
 fi
 
+if [ -z "$COLLAPSE_WINDOW" ]; then
+    COLLAPSE_WINDOW=":98"
+fi
+
+if [ -z "$DEFAULT_SIZE" ]; then
+    DEFAULT_SIZE="30%"
+fi
+
+if [ -z "$DEFAULT_ORIENTATION" ]; then
+    DEFAULT_ORIENTATION="vertical"
+fi
+
+if [ -z "$DEFAULT_DISPLAY" ]; then
+    DEFAULT_DISPLAY="show"
+fi
+
 get_pane_width() {
-    pane_id="$1"
-    w_width=$(tmux display-message -t "$pane_id" -p "#{window_width}")
-    p_width=$(tmux display-message -t "$pane_id" -p "#{pane_width}")
+    target_pane_id="$1"
+    w_width=$(tmux display-message -t "$target_pane_id" -p "#{window_width}")
+    p_width=$(tmux display-message -t "$target_pane_id" -p "#{pane_width}")
     echo "$(( (p_width * 100) / w_width ))%"
 }
 
 get_pane_height() {
-    pane_id="$1"
-    w_height=$(tmux display-message -t "$pane_id" -p "#{window_height}")
-    p_height=$(tmux display-message -t "$pane_id" -p "#{pane_height}")
+    target_pane_id="$1"
+    w_height=$(tmux display-message -t "$target_pane_id" -p "#{window_height}")
+    p_height=$(tmux display-message -t "$target_pane_id" -p "#{pane_height}")
     echo "$(( (p_height * 100) / w_height ))%"
+}
+
+read_session_file() {
+    session_file="$1"
+    {
+        read -r pin_pane
+        read -r size
+        read -r display
+        read -r orientation
+    } < "$session_file"
+}
+
+write_session_file() {
+    session_file="$1"
+    pin_pane="$2"
+    size="$3"
+    display="$4"
+    orientation="$5"
+
+    echo -e "$pin_pane\n$size\n$display\n$orientation" > "$session_file"
+}
+
+sync_pane() {
+    pin_pane="$1"
+    size="$2"
+    display="$3"
+    orientation="$4"
+    target="$5"
+
+    detach="-d"
+    if [ "$display" = "show" ]; then
+        if [ -z "$target" ]; then
+            if [ "$orientation" = "vertical" ]; then
+                target="$window_id.{bottom}"
+            else
+                target="$window_id.{left}"
+            fi
+        fi
+        if tmux has-session -t "$COLLAPSE_WINDOW"; then
+            tmux kill-pane -t "$COLLAPSE_WINDOW"
+            detach=""
+        fi
+    else
+        if ! tmux has-session -t "$COLLAPSE_WINDOW"; then
+            tmux neww -t "$COLLAPSE_WINDOW" -d
+        fi
+        target="$COLLAPSE_WINDOW"
+    fi
+    split="-v"
+    if [ "$orientation" = "horizontal" ]; then
+        split="-hb"
+    fi
+    target_pane_id=$(tmux display-message -t "$target" -p "#{pane_id}")
+    if [ "$target_pane_id" = "$pin_pane" ]; then
+        return 0
+    fi
+    if [ -n "$size" ]; then
+        size_option=(-l "$size")
+    else
+        size_option=()
+    fi
+    tmux join-pane $detach $split -s "$pin_pane" -t "$target" "${size_option[@]}"
+}
+
+sync_pane_from_file() {
+    session_file="$1"
+    target="$2"
+    if ! [ -f "$session_file" ]; then
+        return 0
+    fi
+    read_session_file "$session_file"
+    if ! tmux has-session -t "$pin_pane"; then
+        rm "$session_file"
+        return 0
+    fi
+    sync_pane "$pin_pane" "$size" "$display" "$orientation" "$target"
 }
 
 session=$(tmux display-message -p "#{session_name}")
@@ -47,66 +139,20 @@ if [ "$command" = "toggle-pin" ]; then
             exit 0
         fi
     fi
-    tmux join-pane -v -s "$pane_id" -t "$window_id.{bottom}"
+    sync_pane "$pane_id" "" "$DEFAULT_DISPLAY" "$DEFAULT_ORIENTATION" ""
     sleep 0.5
     size=$(get_pane_height "$pane_id")
     if [ "$size" = "100%" ]; then
-        size="30%"
+        size="$DEFAULT_SIZE"
     fi
-    echo -e "$pane_id\n$size\nshow\nvertical" > "$session_file"
+    write_session_file "$session_file" "$pane_id" "$size" "$DEFAULT_DISPLAY" "$DEFAULT_ORIENTATION"
 elif [ "$command" = "sync" ]; then
-    if ! [ -f "$session_file" ]; then
-        exit 0
-    fi
-    {
-        read -r pin_pane
-        read -r size
-        read -r display
-        read -r orientation
-    } < "$session_file"
-    if ! tmux has-session -t "$pin_pane"; then
-        rm "$session_file"
-        exit 0
-    fi
-    detach="-d"
-    if [ "$display" = "show" ]; then
-        target="$2"
-        if [ -z "$target" ]; then
-            if [ "$orientation" = "vertical" ]; then
-                target="$window_id.{bottom}"
-            else
-                target="$window_id.{left}"
-            fi
-        fi
-        if tmux has-session -t ":98"; then
-            tmux kill-pane -t ":98"
-            detach=""
-        fi
-    else
-        if ! tmux has-session -t ":98"; then
-            tmux neww -t ":98" -d
-        fi
-        target=":98"
-    fi
-    split="-v"
-    if [ "$orientation" = "horizontal" ]; then
-        split="-hb"
-    fi
-    target_pane_id=$(tmux display-message -t "$target" -p "#{pane_id}")
-    if [ "$target_pane_id" = "$pin_pane" ]; then
-        exit 0
-    fi
-    tmux join-pane $detach $split -s "$pin_pane" -t "$target" -l "$size"
+    sync_pane_from_file "$session_file" "$2"
 elif [ "$command" = "resize" ]; then
     if ! [ -f "$session_file" ]; then
         exit 0
     fi
-    {
-        read -r pin_pane
-        read -r _
-        read -r display
-        read -r orientation
-    } < "$session_file"
+    read_session_file "$session_file"
     if ! tmux has-session -t "$pin_pane"; then
         rm "$session_file"
         exit 0
@@ -118,45 +164,35 @@ elif [ "$command" = "resize" ]; then
         size="$(get_pane_width "$pin_pane")"
     fi
     if [ "$size" = "100%" ]; then
-        size="30%"
+        size="$DEFAULT_SIZE"
     fi
-    echo -e "$pin_pane\n$size\n$display\n$orientation" > "$session_file"
+    write_session_file "$session_file" "$pin_pane" "$size" "$display" "$orientation"
 elif [ "$command" = "toggle-display" ]; then
     if ! [ -f "$session_file" ]; then
-        tmux split-window -v -t "$window_id.{bottom}" -l "30%"
+        tmux split-window -v -t "$window_id.{bottom}" -l "$DEFAULT_SIZE"
         "$0" toggle-pin
         exit 0
     fi
-    {
-        read -r pin_pane
-        read -r size
-        read -r display
-        read -r orientation
-    } < "$session_file"
+    read_session_file "$session_file"
     if [ "$display" = "show" ]; then
         display="hide"
     else
         display="show"
     fi
-    echo -e "$pin_pane\n$size\n$display\n$orientation" > "$session_file"
-    "$0" sync
+    write_session_file "$session_file" "$pin_pane" "$size" "$display" "$orientation"
+    sync_pane_from_file "$session_file"
 elif [ "$command" = "toggle-orientation" ]; then
     if ! [ -f "$session_file" ]; then
         exit 0
     fi
-    {
-        read -r pin_pane
-        read -r size
-        read -r display
-        read -r orientation
-    } < "$session_file"
+    read_session_file "$session_file"
     if [ "$orientation" = "vertical" ]; then
         orientation="horizontal"
     else
         orientation="vertical"
     fi
-    echo -e "$pin_pane\n$size\n$display\n$orientation" > "$session_file"
-    "$0" sync
+    write_session_file "$session_file" "$pin_pane" "$size" "$display" "$orientation"
+    sync_pane_from_file "$session_file"
 elif [ "$command" = "test" ]; then
     if [ -z "$TMUX" ] || [ ! -f "$session_file" ]; then
         exit 1
