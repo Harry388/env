@@ -1,6 +1,6 @@
 {
 
-    flake.nixosModules.backupServer = { pkgs, config, ... }:
+    flake.nixosModules.backupServer = { pkgs, config, lib, ... }:
     let
         cfg = config.backupServer;
         backupServerScript = pkgs.writeShellScriptBin "backup-server" (builtins.readFile ./backup-server);
