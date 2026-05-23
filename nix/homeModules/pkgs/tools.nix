@@ -41,6 +41,7 @@
             chafa
             ffmpeg
             opencode
+            socat
         ] ++ [
             inputs.session.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
