@@ -24,7 +24,6 @@
             systemd.services.backup-server = {
                 description = "Backup server folders";
                 path = [
-                    backupServerScript
                     pkgs.bash
                     pkgs.docker
                     pkgs.gnutar
@@ -32,7 +31,7 @@
                 ];
                 serviceConfig = {
                     Type = "oneshot";
-                    ExecStart = "backup-server --clean";
+                    ExecStart = "${backupServerScript}/bin/backup-server --clean";
                     User = cfg.serviceUser;
                 };
             };
