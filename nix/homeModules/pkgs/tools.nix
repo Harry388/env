@@ -42,6 +42,7 @@
             ffmpeg
             opencode
             socat
+            ascii
         ] ++ [
             inputs.session.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
