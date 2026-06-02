@@ -1,1 +1,1 @@
-.env docker-compose.yml data config
+start stop backup .env docker-compose.yml data config

@@ -1,1 +1,1 @@
-.env docker-compose.yml data music
+start stop backup .env docker-compose.yml data music
