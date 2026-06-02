@@ -44,9 +44,8 @@
             self.nixosModules.keyring
             self.nixosModules.tailscale
             self.nixosModules.homeManager
-            self.nixosModules.backupServer
 
-            self.nixosModules.syncthing
+            self.nixosModules.homeServer
         ];
 
         boot = {
@@ -67,8 +66,7 @@
 
         hardware.graphics.enable = lib.mkForce false;
 
-        services.syncthing.user = "harry";
-        backupServer.serviceUser = "harry";
+        homeServer.user = "harry";
 
         # This value determines the NixOS release from which the default
         # settings for stateful data, like file locations and database versions

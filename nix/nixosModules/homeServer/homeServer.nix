@@ -1,15 +1,22 @@
+{ self, ... }:
+
 {
 
-    flake.nixosModules.backupServer = { pkgs, config, lib, ... }:
+    flake.nixosModules.homeServer = { pkgs, config, lib, ... }:
     let
-        cfg = config.backupServer;
-        backupServerScript = pkgs.writeShellScriptBin "backup-server" (builtins.readFile ./backup-server);
+        cfg = config.homeServer;
+        homeServerScript = pkgs.writeShellScriptBin "home-server" (builtins.readFile ./home-server);
+        homeServerBin = "${homeServerScript}/bin/home-server";
     in
     {
 
-        options.backupServer = {
+        imports = [
+            self.nixosModules.syncthing
+        ];
 
-            serviceUser = lib.mkOption {
+        options.homeServer = {
+
+            user = lib.mkOption {
                 type = lib.types.str;
             };
 
@@ -17,9 +24,13 @@
 
         config = {
 
+            services.syncthing.user = cfg.user;
+
             environment.systemPackages = [
-                backupServerScript
+                homeServerScript
             ];
+
+            virtualisation.docker.enable = true;
 
             systemd.services.backup-server = {
                 description = "Backup server folders";
@@ -31,8 +42,8 @@
                 ];
                 serviceConfig = {
                     Type = "oneshot";
-                    ExecStart = "${backupServerScript}/bin/backup-server --clean";
-                    User = cfg.serviceUser;
+                    ExecStart = "${pkgs.bash}/bin/bash -c '${homeServerBin} backup && ${homeServerBin} clean 2'";
+                    User = cfg.user;
                 };
             };
 
