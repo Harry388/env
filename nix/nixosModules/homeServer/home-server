@@ -60,7 +60,9 @@ start-service () {
     fi
     echo "Starting $service..."
     if [ -f "$home/start" ]; then
+        pushd "$home" || return 1
         "$home/start"
+        popd || return 1
     fi
 }
 
@@ -73,7 +75,9 @@ stop-service () {
     fi
     echo "Stopping $service..."
     if [ -f "$home/stop" ]; then
+        pushd "$home" || return 1
         "$home/stop"
+        popd || return 1
     fi
 }
 
