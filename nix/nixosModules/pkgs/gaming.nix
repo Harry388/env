@@ -1,12 +1,22 @@
 {
 
-    flake.nixosModules.steam = {
+    flake.nixosModules.gaming = { pkgs, ... }: {
 
         programs.steam = {
             enable = true;
             remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
             dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
         };
+
+        environment.systemPackages = with pkgs; [
+            vesktop
+            prismlauncher
+            dolphin-emu
+            clonehero
+            azahar
+            olympus
+            moonlight-qt
+        ];
 
     };
 

@@ -14,24 +14,6 @@
 
         # nixpkgs.buildPlatform = "x86_64-linux"; # force system to be cross compiled from x86_64
 
-        home-manager = {
-            extraSpecialArgs = { inherit inputs; };
-            users.harry = { ... }: {
-                imports = [
-                    self.homeModules.harry
-
-                    # self.homeModules.languages
-                    self.homeModules.tools
-                ];
-
-                home.packages = with pkgs; [
-                    gcc
-                ];
-
-                home.stateVersion = "23.11"; # Don't change
-            };
-        };
-
         imports = [
             self.nixosModules.harry
 
@@ -41,8 +23,9 @@
             self.nixosModules.gvfs
             self.nixosModules.keyring
             self.nixosModules.tailscale
-            self.nixosModules.homeManager
             self.nixosModules.switchEnv
+
+            self.nixosModules.tools
 
             self.nixosModules.homeServer
         ];

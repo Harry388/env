@@ -1,8 +1,8 @@
 {
 
-    flake.homeModules.languages = { pkgs, ... }: {
+    flake.nixosModules.languages = { pkgs, ... }: {
 
-        home.packages = with pkgs; [
+        environment.systemPackages = with pkgs; [
             cargo
             cargo-shuttle
             go

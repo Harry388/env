@@ -2,14 +2,13 @@
 
 {
 
-    flake.homeModules.apps = { pkgs, ... }: {
+    flake.nixosModules.apps = { pkgs, ... }: {
 
-        programs.google-chrome.enable = true;
+        programs.kdeconnect.enable = true;
 
-        programs.ghostty = {
-            enable = true;
-            systemd.enable = true;
-        };
+        services.udev.packages = with pkgs; [ 
+            vial
+        ];
 
         # NOTE: this is a temporary fix for openldap, which is a dependency of bottles
         nixpkgs.overlays = [
@@ -20,7 +19,7 @@
             })
         ];
 
-        home.packages = with pkgs; [
+        environment.systemPackages = with pkgs; [
             alacritty
             sqlitebrowser
             # spotify
@@ -50,6 +49,10 @@
             xournalpp
             rpi-imager
             feishin
+            ghostty
+            kdePackages.qttools
+            vial
+            chromium
         ] ++ [
             inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];

@@ -1,4 +1,5 @@
 { self, ... }:
+
 {
     flake.nixosModules.default = {
         
@@ -12,9 +13,10 @@
             self.nixosModules.homeManager
             self.nixosModules.switchEnv
 
-            self.nixosModules.kdeconnect
-            self.nixosModules.steam
-            self.nixosModules.vial
+            self.nixosModules.apps
+            self.nixosModules.gaming
+            self.nixosModules.languages
+            self.nixosModules.tools
 
             self.nixosModules.niri
 

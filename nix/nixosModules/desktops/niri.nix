@@ -1,4 +1,5 @@
 { inputs, ... }:
+
 {
 
     flake.nixosModules.niri = { pkgs, ... }: {

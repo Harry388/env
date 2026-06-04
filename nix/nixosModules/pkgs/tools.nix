@@ -2,9 +2,9 @@
 
 {
 
-    flake.homeModules.tools = { pkgs, ... }: {
+    flake.nixosModules.tools = { pkgs, ... }: {
 
-        home.packages = with pkgs; [
+        environment.systemPackages = with pkgs; [
             tmux
             neovim
             luaPackages.tree-sitter-cli
