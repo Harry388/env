@@ -60,11 +60,12 @@ backup-service () {
     if ! [ -d "$BACKUPS_LOCATION/$service" ]; then
         mkdir -p "$BACKUPS_LOCATION/$service"
     fi
-    tar czf "$BACKUPS_LOCATION/$service/${service}_$now.tar.gz" -C "$home" $backups
+    tar czfh "$BACKUPS_LOCATION/$service/${service}_$now.tar.gz" -C "$home" $backups
 }
 
 restore-service () {
     service="$1"
+    use_sudo="$2"
     home="$SERVICES_LOCATION/$service"
     latest="$(find "$BACKUPS_LOCATION/$service" -type f -name "${service}_*" -printf '%T@ %p\n' | sort -n | tail -1 | cut -d' ' -f2)"
     if [ -z "$latest" ]; then
@@ -80,7 +81,11 @@ restore-service () {
     if ! [ -d "$SERVICES_LOCATION" ]; then
         mkdir -p "$SERVICES_LOCATION"
     fi
-    tar xf "$latest" --directory "$home"
+    if [ -n "$use_sudo" ]; then
+        sudo tar xf "$latest" --directory "$home"
+    else
+        tar xf "$latest" --directory "$home"
+    fi
 }
 
 clean-backups () {
@@ -177,9 +182,15 @@ case "$command" in
         fi
         ;;
     restore)
+        use_sudo=""
+        echo -n "Use sudo to restore (preserves permissions) (y/n) "
+        read -r response
+        if [ "$response" = "y" ]; then
+            use_sudo="true"
+        fi
         if [ -n "$1" ]; then
             stop-service "$1"
-            if ! restore-service "$1"; then
+            if ! restore-service "$1" "$use_sudo"; then
                 exit 1
             fi
         else
@@ -189,7 +200,7 @@ case "$command" in
                 services=$(find-services)
                 for service in $services; do
                     stop-service "$(basename "$service")"
-                    if ! restore-service "$(basename "$service")"; then
+                    if ! restore-service "$(basename "$service")" "$use_sudo"; then
                         exit 1
                     fi
                 done
