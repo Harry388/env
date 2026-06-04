@@ -192,7 +192,7 @@ binds {
 
     Mod+W { toggle-column-tabbed-display; }
 
-    Mod+M { quit; }
+    Mod+M { spawn-sh "ssh-add -D && niri msg action quit"; }
 }
 
 include "./noctalia.kdl"
