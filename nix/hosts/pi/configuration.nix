@@ -21,7 +21,6 @@
 
             self.nixosModules.base
             self.nixosModules.gvfs
-            self.nixosModules.keyring
             self.nixosModules.tailscale
             self.nixosModules.switchEnv
 
