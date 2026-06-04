@@ -5,7 +5,6 @@
     flake.homeModules.default = {
 
         imports = [
-            self.homeModules.spicetify
             self.homeModules.switchEnv
 
             self.homeModules.waylandWM
