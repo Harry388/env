@@ -7,6 +7,9 @@
         cfg = config.homeServer;
         homeServerScript = pkgs.writeShellScriptBin "home-server" (builtins.readFile ./home-server);
         homeServerBin = "${homeServerScript}/bin/home-server";
+        defaultServices = builtins.attrNames (builtins.readDir ./services);
+        home = config.users.users.${config.homeServer.user}.home;
+        group = config.users.users.${config.homeServer.user}.group;
     in
     {
 
@@ -20,17 +23,40 @@
                 type = lib.types.str;
             };
 
+            services = lib.mkOption {
+                type = lib.types.listOf lib.types.str;
+                default = defaultServices;
+            };
+
+            servicesLocation = lib.mkOption {
+                type = lib.types.str;
+                default = "${home}/services";
+            };
+
         };
 
         config = {
 
+            virtualisation.docker.enable = true;
+
             services.syncthing.user = cfg.user;
+
+            # setup /home/user/services/*/* (docker-compose.yml, start, stop, backup for each service)
+            systemd.tmpfiles.rules = [
+                "d ${cfg.servicesLocation} 0755 ${cfg.user} ${group} - -"
+            ] ++ (map (service:
+                "d ${cfg.servicesLocation}/${service} 0755 ${cfg.user} ${group} - -"
+            ) cfg.services) ++ (lib.lists.flatten (
+                map (service:
+                    map (file:
+                        "L+ ${cfg.servicesLocation}/${service}/${file} 0755 ${cfg.user} ${group} - ${./services/${service}/${file}}"
+                    ) (builtins.attrNames (builtins.readDir ./services/${service}))
+                ) cfg.services
+            ));
 
             environment.systemPackages = [
                 homeServerScript
             ];
-
-            virtualisation.docker.enable = true;
 
             systemd.services.backup-server = {
                 description = "Backup server folders";
