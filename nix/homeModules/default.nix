@@ -5,8 +5,6 @@
     flake.homeModules.default = {
 
         imports = [
-            self.homeModules.switchEnv
-
             self.homeModules.waylandWM
 
             self.homeModules.apps

@@ -1,8 +1,8 @@
 {
 
-    flake.homeModules.switchEnv = { pkgs, ... }: {
+    flake.nixosModules.switchEnv = { pkgs, ... }: {
 
-        home.packages = with pkgs; [
+        environment.systemPackages = with pkgs; [
             (writeShellScriptBin "switch-env" (builtins.readFile ../../environment/scripts/switch-env))
         ];
 

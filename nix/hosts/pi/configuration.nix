@@ -20,8 +20,6 @@
                 imports = [
                     self.homeModules.harry
 
-                    self.homeModules.switchEnv
-
                     # self.homeModules.languages
                     self.homeModules.tools
                 ];
@@ -44,6 +42,7 @@
             self.nixosModules.keyring
             self.nixosModules.tailscale
             self.nixosModules.homeManager
+            self.nixosModules.switchEnv
 
             self.nixosModules.homeServer
         ];
