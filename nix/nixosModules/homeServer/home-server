@@ -1,59 +1,21 @@
 #!/usr/bin/env bash
 
-if [ -z "$ENV_SOURCE" ]; then
-    ENV_SOURCE="$HOME/env"
+if [ -z "$SERVICES_LOCATION" ]; then
+    SERVICES_LOCATION="$HOME/services"
 fi
 
-if [ -z "$SERVICES_SOURCE" ]; then
-    SERVICES_SOURCE="$ENV_SOURCE/services"
-fi
-
-if [ -z "$SERVICES_HOME" ]; then
-    SERVICES_HOME="$HOME/services"
-fi
-
-if [ -z "$BACKUPS" ]; then
-    BACKUPS="$HOME/sync/server-backups"
+if [ -z "$BACKUPS_LOCATION" ]; then
+    BACKUPS_LOCATION="$HOME/sync/server-backups"
 fi
 
 find-services () {
-    target="$1"
-    if [ "$target" = "source" ]; then
-        target="$SERVICES_SOURCE"
-    elif [ "$target" = "home" ]; then
-        target="$SERVICES_HOME"
-    else
-        echo "No services found"
-        return 1
-    fi
+    target="$SERVICES_LOCATION"
     find "$target" -mindepth 1 -maxdepth 1 -type d
-}
-
-switch-service () {
-    service="$1"
-    source="$SERVICES_SOURCE/$service"
-    home="$SERVICES_HOME/$service"
-    if ! [ -d "$source" ]; then
-        echo "No such service: $service"
-        return 1
-    fi
-    if ! [ -d "$home" ]; then
-        mkdir -p "$home"
-    fi
-    echo "Switching $service..."
-    service_files=$(find "$source" -mindepth 1 -maxdepth 1 -type f)
-    for file in $service_files; do
-        base="$(basename "$file")"
-        cp "$file" "$home/$base"
-        if [ "$base" = "start" ] || [ "$base" = "stop" ]; then
-            chmod +x "$home/$base"
-        fi
-    done
 }
 
 start-service () {
     service="$1"
-    home="$SERVICES_HOME/$service"
+    home="$SERVICES_LOCATION/$service"
     if ! [ -d "$home" ]; then
         echo "No such service: $service"
         return 1
@@ -68,7 +30,7 @@ start-service () {
 
 stop-service () {
     service="$1"
-    home="$SERVICES_HOME/$service"
+    home="$SERVICES_LOCATION/$service"
     if ! [ -d "$home" ]; then
         echo "No such service: $service"
         return 1
@@ -83,7 +45,7 @@ stop-service () {
 
 backup-service () {
     service="$1"
-    home="$SERVICES_HOME/$service"
+    home="$SERVICES_LOCATION/$service"
     if ! [ -d "$home" ]; then
         echo "No such service: $service"
         return 1
@@ -95,16 +57,16 @@ backup-service () {
     echo "Backing up $service..."
     backups=$(<"$home/backup")
     now="$(date +%Y-%m-%d_%H-%M-%S)"
-    if ! [ -d "$BACKUPS/$service" ]; then
-        mkdir -p "$BACKUPS/$service"
+    if ! [ -d "$BACKUPS_LOCATION/$service" ]; then
+        mkdir -p "$BACKUPS_LOCATION/$service"
     fi
-    tar czf "$BACKUPS/$service/${service}_$now.tar.gz" -C "$home" $backups
+    tar czf "$BACKUPS_LOCATION/$service/${service}_$now.tar.gz" -C "$home" $backups
 }
 
 restore-service () {
     service="$1"
-    home="$SERVICES_HOME/$service"
-    latest="$(find "$BACKUPS/$service" -type f -name "${service}_*" -printf '%T@ %p\n' | sort -n | tail -1 | cut -d' ' -f2)"
+    home="$SERVICES_LOCATION/$service"
+    latest="$(find "$BACKUPS_LOCATION/$service" -type f -name "${service}_*" -printf '%T@ %p\n' | sort -n | tail -1 | cut -d' ' -f2)"
     if [ -z "$latest" ]; then
         echo "No backups found for $service"
         return 1
@@ -115,15 +77,15 @@ restore-service () {
     fi
     mkdir -p "$home"
     echo "Restoring $service..."
-    if ! [ -d "$SERVICES_HOME" ]; then
-        mkdir -p "$SERVICES_HOME"
+    if ! [ -d "$SERVICES_LOCATION" ]; then
+        mkdir -p "$SERVICES_LOCATION"
     fi
     tar xf "$latest" --directory "$home"
 }
 
 clean-backups () {
     service="$1"
-    backups="$BACKUPS/$service"
+    backups="$BACKUPS_LOCATION/$service"
     if ! [ -d "$backups" ]; then
         echo "No backups found for $service"
         return 1
@@ -140,31 +102,13 @@ command="$1"
 shift
 
 case "$command" in
-    switch)
-        if [ -n "$1" ]; then
-            if ! switch-service "$1"; then
-                exit 1
-            fi
-        else
-            echo "Confirm switching all services (y/n) "
-            read -r response
-            if [ "$response" = "y" ]; then
-                services=$(find-services "source")
-                for service in $services; do
-                    if ! switch-service "$(basename "$service")"; then
-                        exit 1
-                    fi
-                done
-            fi
-        fi
-        ;;
     start)
         if [ -n "$1" ]; then
             if ! start-service "$1"; then
                 exit 1
             fi
         else
-            services=$(find-services "home")
+            services=$(find-services)
             for service in $services; do
                 if ! start-service "$(basename "$service")"; then
                     exit 1
@@ -178,7 +122,7 @@ case "$command" in
                 exit 1
             fi
         else
-            services=$(find-services "home")
+            services=$(find-services)
             for service in $services; do
                 if ! stop-service "$(basename "$service")"; then
                     exit 1
@@ -195,7 +139,7 @@ case "$command" in
                 exit 1
             fi
         else
-            services=$(find-services "home")
+            services=$(find-services)
             for service in $services; do
                 if ! stop-service "$(basename "$service")"; then
                     exit 1
@@ -218,7 +162,7 @@ case "$command" in
                 exit 1
             fi
         else
-            services=$(find-services "home")
+            services=$(find-services)
             for service in $services; do
                 if ! stop-service "$(basename "$service")"; then
                     exit 1
@@ -239,10 +183,10 @@ case "$command" in
                 exit 1
             fi
         else
-            echo "Confirm restoring all services (y/n) "
+            echo -n "Confirm restoring all services (y/n) "
             read -r response
             if [ "$response" = "y" ]; then
-                services=$(find-services "home")
+                services=$(find-services)
                 for service in $services; do
                     stop-service "$(basename "$service")"
                     if ! restore-service "$(basename "$service")"; then
@@ -261,7 +205,7 @@ case "$command" in
                 exit 1
             fi
         else
-            services=$(find-services "home")
+            services=$(find-services)
             for service in $services; do
                 if ! clean-backups "$(basename "$service")" "$1"; then
                     exit 1
@@ -270,7 +214,7 @@ case "$command" in
         fi
         ;;
     *)
-        echo "Usage: $(basename "$0") <switch|start|stop|restart|backup|restore|clean> [service]"
+        echo "Usage: $(basename "$0") <start|stop|restart|backup|restore|clean> [service]"
         exit 1
         ;;
 esac
