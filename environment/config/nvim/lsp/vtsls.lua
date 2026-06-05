@@ -87,7 +87,7 @@ return {
               globalPlugins = {
                 {
                   name = '@vue/typescript-plugin',
-                  location = vim.fn.expand('~/.nix-profile/lib/language-tools/packages/language-server'),
+                  location = vim.fn.expand('/run/current-system/sw/lib/language-tools/packages/language-server'),
                   languages = { 'vue' },
                   configNamespace = 'typescript',
                 }
