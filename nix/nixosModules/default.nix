@@ -11,6 +11,7 @@
             self.nixosModules.keyring
             self.nixosModules.tailscale
             self.nixosModules.switchEnv
+            self.nixosModules.openssh
 
             self.nixosModules.apps
             self.nixosModules.gaming

@@ -22,6 +22,7 @@
             self.nixosModules.base
             self.nixosModules.gvfs
             self.nixosModules.tailscale
+            self.nixosModules.openssh
             self.nixosModules.switchEnv
 
             self.nixosModules.tools

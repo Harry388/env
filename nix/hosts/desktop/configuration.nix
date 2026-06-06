@@ -20,8 +20,6 @@
             self.nixosModules.default
 
             self.nixosModules.memlock
-            self.nixosModules.openssh
-
             self.nixosModules.sunshine
         ];
 
