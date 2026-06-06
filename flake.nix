@@ -10,11 +10,6 @@
 
         nixos-hardware.url = "github:nixos/nixos-hardware/master";
 
-        home-manager = {
-            url = "github:nix-community/home-manager";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
         noctalia-qs = {
             url = "github:noctalia-dev/noctalia-qs";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -45,7 +40,6 @@
     outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {
         imports = [
             (inputs.import-tree ./nix)
-            inputs.home-manager.flakeModules.home-manager
         ];
     };
 }

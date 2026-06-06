@@ -12,18 +12,6 @@
 
         networking.hostName = "laptop";
 
-        home-manager = {
-            extraSpecialArgs = { inherit inputs; };
-            users.harry = { ... }: {
-                imports = [
-                    self.homeModules.harry
-
-                    self.homeModules.default
-                ];
-                home.stateVersion = "23.11"; # Don't change
-            };
-        };
-
         imports = [
             self.nixosModules.harry
 
