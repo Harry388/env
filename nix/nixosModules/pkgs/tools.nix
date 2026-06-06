@@ -22,6 +22,7 @@
             nmap
             udiskie
             colorz
+            cava
             git-filter-repo
             git
             btop

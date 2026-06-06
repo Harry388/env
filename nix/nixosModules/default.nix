@@ -19,6 +19,7 @@
             self.nixosModules.tools
 
             self.nixosModules.niri
+            self.nixosModules.waylandWMExtras
 
             self.nixosModules.ly
 
