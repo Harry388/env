@@ -6,24 +6,24 @@
     flake.homeModules.waylandWM = { pkgs, inputs, ... }:
     {
 
-        home.pointerCursor = {
-            gtk.enable = true;
-            # package = pkgs.banana-cursor;
-            # name = "Banana";
-            # size = 32;
-            package = pkgs.apple-cursor;
-            name = "macOS";
-            size = 24;
-        };
+        #home.pointerCursor = {
+        #    gtk.enable = true;
+        #    # package = pkgs.banana-cursor;
+        #    # name = "Banana";
+        #    # size = 32;
+        #    package = pkgs.apple-cursor;
+        #    name = "macOS";
+        #    size = 24;
+        #};
 
-        gtk = {
-            enable = true;
+        #gtk = {
+        #    enable = true;
 
-            iconTheme = {
-                package = pkgs.papirus-icon-theme;
-                name = "Papirus-Dark";
-            };
-        };
+        #    iconTheme = {
+        #        package = pkgs.papirus-icon-theme;
+        #        name = "Papirus-Dark";
+        #    };
+        #};
 
     };
 

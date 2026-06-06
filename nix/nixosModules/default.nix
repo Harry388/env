@@ -20,6 +20,7 @@
 
             self.nixosModules.niri
             self.nixosModules.waylandWMExtras
+            self.nixosModules.icons
 
             self.nixosModules.ly
 
