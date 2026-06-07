@@ -5,7 +5,7 @@
         services.sunshine = {
             enable = true;
             autoStart = false;
-            openFirewall = true;
+            openFirewall = false;
         };
 
         services.udev.extraRules = ''
