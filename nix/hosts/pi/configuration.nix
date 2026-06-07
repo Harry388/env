@@ -12,7 +12,7 @@
 
         networking.hostName = "pi";
 
-        # nixpkgs.buildPlatform = "x86_64-linux"; # force system to be cross compiled from x86_64
+        nixpkgs.buildPlatform = "x86_64-linux"; # force system to be cross compiled from x86_64
 
         imports = [
             self.nixosModules.harry
@@ -25,7 +25,7 @@
             self.nixosModules.openssh
             self.nixosModules.switchEnv
 
-            self.nixosModules.tools
+            self.nixosModules.minimalTools
 
             self.nixosModules.homeServer
         ];

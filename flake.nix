@@ -10,7 +10,10 @@
 
         flake-parts.url = "github:hercules-ci/flake-parts";
 
-        nixos-hardware.url = "github:nixos/nixos-hardware/master";
+        nixos-hardware = {
+            url = "github:nixos/nixos-hardware/master";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
         session = {
             url = "github:harry388/session";
