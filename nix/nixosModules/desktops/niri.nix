@@ -24,8 +24,8 @@
             NIXOS_OZONE_WL = "1";
         };
 
-        environment.systemPackages = [
-            inputs.xwaylandSatellite.packages.${pkgs.stdenv.hostPlatform.system}.default
+        environment.systemPackages = with pkgs; [
+            xwayland-satellite
         ];
 
     };

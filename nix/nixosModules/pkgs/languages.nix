@@ -8,7 +8,7 @@
             go
             templ
             gleam
-            zig_0_15
+            zig
             mysql84
             typescript
             nodejs_22

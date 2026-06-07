@@ -2,7 +2,11 @@
 
 {
 
-    flake.nixosModules.apps = { pkgs, ... }: {
+    flake.nixosModules.apps = { pkgs, ... }:
+    let
+        unstable-pkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+    in
+    {
 
         programs.kdeconnect.enable = true;
 
@@ -49,11 +53,12 @@
             xournalpp
             rpi-imager
             feishin
-            ghostty
             kdePackages.qttools
             vial
             chromium
-        ];
+        ] ++ (with unstable-pkgs; [
+            ghostty
+        ]);
 
     };
 

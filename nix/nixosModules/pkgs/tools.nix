@@ -2,11 +2,15 @@
 
 {
 
-    flake.nixosModules.tools = { pkgs, ... }: {
+    flake.nixosModules.tools = { pkgs, ... }:
+    let
+        unstable-pkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+        session = inputs.session.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    in
+    {
 
         environment.systemPackages = with pkgs; [
             tmux
-            neovim
             luaPackages.tree-sitter-cli
             yazi
             air
@@ -45,8 +49,10 @@
             socat
             ascii
         ] ++ [
-            inputs.session.packages.${pkgs.stdenv.hostPlatform.system}.default
-        ];
+            session
+        ] ++ (with unstable-pkgs; [
+            neovim
+        ]);
 
     };
 
