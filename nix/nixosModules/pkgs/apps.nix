@@ -8,8 +8,6 @@
     in
     {
 
-        programs.kdeconnect.enable = true;
-
         services.udev.packages = with pkgs; [ 
             vial
         ];
@@ -53,7 +51,6 @@
             xournalpp
             rpi-imager
             feishin
-            kdePackages.qttools
             vial
             chromium
         ] ++ (with unstable-pkgs; [
