@@ -1,9 +1,9 @@
 add_newline = false
 
 format = """
-$custom\
-$username\
-$hostname\
+${custom.tmux-pin-pane}\
+${custom.username}\
+${custom.hostname}\
 $localip\
 $directory\
 $git_branch\
@@ -12,14 +12,10 @@ $git_state\
 $git_metrics\
 $git_status\
 $nix_shell\
-$sudo\
 $jobs\
 $battery\
 $time\
 $status\
-$os\
-$container\
-$netns\
 $shell\
 $character"""
 
@@ -27,6 +23,20 @@ $character"""
 symbol = " "
 shell = "sh"
 when = 'tmux-pin-pane test'
+
+[custom.username]
+command = "whoami"
+style = "bold green"
+format = '[$output]($style)@'
+shell = "sh"
+when = 'test -n "$SSH_CLIENT" && test -n "$SSH_TTY"'
+
+[custom.hostname]
+command = "hostname"
+style = "bold yellow"
+format = '[$output]($style) '
+shell = "sh"
+when = 'test -n "$SSH_CLIENT" && test -n "$SSH_TTY"'
 
 [character]
 success_symbol = '[➜](bold green)'
@@ -46,60 +56,23 @@ read_only = " 󰌾"
 [git_commit]
 tag_symbol = '  '
 
-[username]
-format = '[$user]($style) '
-
-[hostname]
-ssh_symbol = " "
-format = '[$ssh_symbol$hostname]($style) '
-
 [nix_shell]
 symbol = " "
 format = '[$symbol$state]($style) '
 
-[os.symbols]
-Alpaquita = " "
-Alpine = " "
-AlmaLinux = " "
-Amazon = " "
-Android = " "
-Arch = " "
-Artix = " "
-CachyOS = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Kali = " "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-Nobara = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-RockyLinux = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Void = " "
-Windows = "󰍲 "
+[status]
+format = '[$status]($style) '
+disabled = false
+
+[time]
+format = '[$time]($style) '
+disabled = true
+
+[git_metrics]
+disabled = true
+
+[shell]
+disabled = true
+
+[localip]
+disabled = true
