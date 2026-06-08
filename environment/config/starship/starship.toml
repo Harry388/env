@@ -1,7 +1,6 @@
 add_newline = false
 
 format = """
-${custom.tmux-pin-pane}\
 ${custom.username}\
 ${custom.hostname}\
 $localip\
@@ -9,15 +8,19 @@ $directory\
 $git_branch\
 $git_commit\
 $git_state\
-$git_metrics\
 $git_status\
 $nix_shell\
 $jobs\
-$battery\
-$time\
 $status\
 $shell\
 $character"""
+
+right_format = """
+$time\
+$battery\
+$git_metrics\
+${custom.tmux-pin-pane}\
+"""
 
 [custom.tmux-pin-pane]
 symbol = " "
@@ -69,7 +72,7 @@ format = '[$time]($style) '
 disabled = true
 
 [git_metrics]
-disabled = true
+disabled = false
 
 [shell]
 disabled = true
