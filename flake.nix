@@ -16,7 +16,7 @@
         };
 
         session = {
-            url = "github:harry388/session";
+            url = "github:harrythomp/session";
             inputs.nixpkgs.follows = "nixpkgs";
         };
     };

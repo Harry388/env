@@ -154,13 +154,13 @@
       "locked": {
         "lastModified": 1780938903,
         "narHash": "sha256-5CM083/rhNaXJkGwTGn/JWXfX9tH0mjg0jxW+2W8rVQ=",
-        "owner": "harry388",
+        "owner": "harrythomp",
         "repo": "session",
         "rev": "623607d660e092cc2d258cf1641ac0bb178ff21f",
         "type": "github"
       },
       "original": {
-        "owner": "harry388",
+        "owner": "harrythomp",
         "repo": "session",
         "type": "github"
       }
