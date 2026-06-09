@@ -65,7 +65,7 @@ format = '[$symbol$state]($style) '
 
 [status]
 format = '[$status]($style) '
-disabled = false
+disabled = true
 
 [time]
 format = '[$time]($style) '
