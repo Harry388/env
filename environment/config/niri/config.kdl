@@ -103,20 +103,26 @@ overview {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn-sh "ghostty +new-window"; }
-    Mod+Space hotkey-overlay-title="Run an Application: vicinae" { spawn-sh "vicinae toggle"; }
-    Mod+E hotkey-overlay-title="Lock the Screen: noctalia" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
-    Mod+Shift+E hotkey-overlay-title="Lock the Screen: noctalia" { spawn-sh "noctalia-shell ipc call lockScreen lock; systemctl suspend"; }
-    Mod+B { spawn-sh "firefox"; }
-    Mod+Shift+B { spawn-sh "SELECTOR=vicinae select-firefox-profile"; }
-    Mod+P { spawn-sh "flameshot gui"; }
-    Mod+Shift+P { spawn-sh "hyprpicker -a"; }
-    Mod+C { spawn-sh "gnome-calculator"; }
-    Mod+N { spawn-sh "noctalia-shell ipc call notifications toggleHistory"; }
-    Mod+S { spawn "switch-env"; }
-    Mod+Shift+S { spawn-sh "SELECTOR=vicinae select-overlay"; }
-    Mod+Period { spawn-sh "vicinae vicinae://launch/core/search-emojis"; }
-    Mod+Z { spawn-sh "wooz --invert-scroll"; }
+    // Apps
+    Mod+T hotkey-overlay-title="Ghostty" { spawn-sh "ghostty +new-window"; }
+    Mod+Space hotkey-overlay-title="Vicinae" { spawn-sh "vicinae toggle"; }
+    Mod+B hotkey-overlay-title="Firefox" { spawn-sh "firefox"; }
+    Mod+Shift+B hotkey-overlay-title="Select Firefox Profile" { spawn-sh "SELECTOR=vicinae select-firefox-profile"; }
+    Mod+C hotkey-overlay-title="Calculator" { spawn-sh "gnome-calculator"; }
+
+    // Tools
+    Mod+S hotkey-overlay-title="Switch Env" { spawn "switch-env"; }
+    Mod+P hotkey-overlay-title="Screenshot (Flameshot)" { spawn-sh "flameshot gui"; }
+    Mod+Shift+P hotkey-overlay-title="Colour Picker (Hyprpicker)" { spawn-sh "hyprpicker -a"; }
+    Mod+N hotkey-overlay-title="Notifications" { spawn-sh "noctalia-shell ipc call notifications toggleHistory"; }
+    Mod+Shift+S hotkey-overlay-title="Select Overlay" { spawn-sh "SELECTOR=vicinae select-overlay"; }
+    Mod+Period hotkey-overlay-title="Emoji Picker" { spawn-sh "vicinae vicinae://launch/core/search-emojis"; }
+    Mod+Z hotkey-overlay-title="Zoom (Wooz)" { spawn-sh "wooz --invert-scroll"; }
+
+    // Exit
+    Mod+E hotkey-overlay-title="Lock" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
+    Mod+Shift+E hotkey-overlay-title="Lock and Sleep" { spawn-sh "noctalia-shell ipc call lockScreen lock; systemctl suspend"; }
+    Mod+M hotkey-overlay-title="Empty ssh-add and Exit" { spawn-sh "ssh-add -D && niri msg action quit"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
@@ -132,7 +138,6 @@ binds {
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
 
     Mod+O repeat=false { toggle-overview; }
-
     Mod+Q repeat=false { close-window; }
 
     Mod+H     { focus-column-left; }
@@ -151,6 +156,9 @@ binds {
 
     Mod+Ctrl+J         { move-workspace-down; }
     Mod+Ctrl+K         { move-workspace-up; }
+
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-column-right; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-column-left; }
 
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
@@ -184,15 +192,10 @@ binds {
     Mod+Up { set-window-height "-10%"; }
     Mod+Down { set-window-height "+10%"; }
 
-    Mod+WheelScrollDown      cooldown-ms=150 { focus-column-right; }
-    Mod+WheelScrollUp        cooldown-ms=150 { focus-column-left; }
-
     Mod+V       { toggle-window-floating; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
     Mod+W { toggle-column-tabbed-display; }
-
-    Mod+M { spawn-sh "ssh-add -D && niri msg action quit"; }
 }
 
 include "./noctalia.kdl"
