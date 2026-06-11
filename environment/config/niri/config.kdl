@@ -198,4 +198,4 @@ binds {
     Mod+W { toggle-column-tabbed-display; }
 }
 
-include "./noctalia.kdl"
+include "./matugen.kdl"

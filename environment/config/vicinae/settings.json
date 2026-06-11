@@ -18,11 +18,12 @@
    },
    "theme": {
       "light": {
-         "name": "noctalia",
+         "name": "matugen",
          "icon_theme": "Papirus"
       },
       "dark": {
-         "name": "noctalia"
+         "name": "matugen",
+         "icon_theme": "Papirus"
       }
    },
    "launcher_window": {
