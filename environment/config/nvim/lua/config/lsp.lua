@@ -13,6 +13,7 @@ local lsps = {
     "intelephense",
     "gleam",
     "emmet_ls",
+    "clangd",
 }
 
 -- NOTE: executable property on lsp config is not standard in neovim

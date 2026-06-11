@@ -39,6 +39,7 @@
             bash-language-server
             fish-lsp
             intelephense
+            clang-tools
         ];
         
     };
